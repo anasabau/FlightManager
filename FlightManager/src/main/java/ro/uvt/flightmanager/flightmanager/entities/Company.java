@@ -1,10 +1,11 @@
 package ro.uvt.flightmanager.flightmanager.entities;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.AllArgsConstructor;
+import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,6 +38,12 @@ public class Company {
         this.is_active = is_active;
     }
     
-    
+    /*
+    This field is not part of the Company class entity,
+    but is used to create a join table between Company and Airport
+    thus it is not part of the class constructor
+    */
+    @ManyToMany(mappedBy = "companies")
+    Set<Airport> airports;
     
 }
