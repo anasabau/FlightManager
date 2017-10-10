@@ -2,6 +2,7 @@ package ro.uvt.flightmanager.flightmanager.entities;
 
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,10 +46,10 @@ public class Flight {
     private FlightState state = FlightState.SATIONED;    
     
     @OneToOne
-    private User pilot;
+    private Users pilot;
     
     
-    public Flight(Plane plane_id, Airport departure_airport, Airport arival_airport, Date departure_time, User pilot) {
+    public Flight(Plane plane_id, Airport departure_airport, Airport arival_airport, Date departure_time, Users pilot) {
         this.plane_id = plane_id;
         this.departure_airport = departure_airport;
         this.arival_airport = arival_airport;

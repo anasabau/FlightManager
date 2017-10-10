@@ -5,6 +5,7 @@
  */
 package ro.uvt.flightmanager.flightmanager.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,15 +21,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Role {
+public class Roles {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String name;
 
-    public Role(String name) {
+    public Roles(String name) {
         this.name = name;
     }
         

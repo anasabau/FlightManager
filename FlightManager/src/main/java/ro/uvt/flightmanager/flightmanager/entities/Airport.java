@@ -1,6 +1,7 @@
 package ro.uvt.flightmanager.flightmanager.entities;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +26,13 @@ public class Airport {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String name;
     
+    @Column(nullable = false)    
     private String city;
     
+    @Column(nullable = false)
     private String country;
     
     private boolean is_active = true;
