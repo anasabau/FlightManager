@@ -1,9 +1,6 @@
 package ro.uvt.flightmanager.flightmanager.entities;
 
-import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
-import static java.lang.System.in;
 import java.util.Set;
-import static javafx.beans.binding.Bindings.not;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +10,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import static org.eclipse.persistence.expressions.ExpressionOperator.As;
 
 /**
  *
