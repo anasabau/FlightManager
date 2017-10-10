@@ -34,13 +34,6 @@ public class Company {
     private String headquarters;
     
     private boolean is_active = true;
-
-    public Company(String name, String country, String headquarters) {
-        this.name = name;
-        this.country = country;
-        this.headquarters = headquarters;
-        this.is_active = is_active;
-    }
     
     /*
     This field is not part of the Company class entity,
@@ -48,6 +41,13 @@ public class Company {
     thus it is not part of the class constructor
     */
     @ManyToMany(mappedBy = "companies")
-    Set<Airport> airports;
+    private Set<Airport> airports;
+
+    public Company(String name, String country, String headquarters) {
+        this.name = name;
+        this.country = country;
+        this.headquarters = headquarters;
+        this.is_active = is_active;
+    }
     
 }

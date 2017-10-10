@@ -47,6 +47,8 @@ public class Flight {
     @OneToOne
     private Users pilot;
     
+    @ManyToMany(mappedBy = "flights")
+    private Set<Itinerary> itineraries;
     
     public Flight(Plane plane_id, Airport departure_airport, Airport arival_airport, Date departure_time, Users pilot) {
         this.plane_id = plane_id;
@@ -55,7 +57,4 @@ public class Flight {
         this.departure_time = departure_time;
         this.pilot = pilot;
     }
-   
-    @ManyToMany(mappedBy = "flights")
-    Set<Itinerary> itineraries;
 }

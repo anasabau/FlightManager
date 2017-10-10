@@ -27,15 +27,15 @@ public class Itinerary {
 
     @Column(nullable = false)
     private String name;
-
-    public Itinerary(String name) {
-        this.name = name;
-    }
-
+    
     @ManyToMany
     @JoinTable(name = "Itinerary_Flight",
             joinColumns = @JoinColumn(name = "itinerary_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "flight_id", referencedColumnName = "id")
     )
-    Set<Flight> flights;
+    private Set<Flight> flights;
+
+    public Itinerary(String name) {
+        this.name = name;
+    }
 }

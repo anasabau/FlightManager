@@ -36,6 +36,14 @@ public class Airport {
     private String country;
     
     private boolean is_active = true;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "Airpot_Company",
+        joinColumns =  @JoinColumn(name = "airport_id",  referencedColumnName = "id"),
+        inverseJoinColumns =  @JoinColumn(name = "company_id", referencedColumnName = "id")
+    )
+    private Set<Company> companies;
 
     public Airport(String name, String city, String country) {
         this.name = name;
@@ -46,14 +54,6 @@ public class Airport {
       As noticed, it is not part of the Airport tabel and it is not
     required nor desiered in the Airport class constructor
     */
-    @ManyToMany
-    @JoinTable(
-        name = "Airpot_Company",
-        joinColumns = 
-                @JoinColumn(name = "airport_id",  referencedColumnName = "id"),
-        inverseJoinColumns = 
-                @JoinColumn(name = "company_id", referencedColumnName = "id")
-    )
-    Set<Company> companies;
+
   
 }
