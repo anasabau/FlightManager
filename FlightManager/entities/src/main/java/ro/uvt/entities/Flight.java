@@ -1,4 +1,4 @@
-package ro.uvt.flightmanager.entities;
+package ro.uvt.entities;
 
 import java.util.Date;
 import java.util.Set;

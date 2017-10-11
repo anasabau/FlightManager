@@ -1,5 +1,5 @@
 
-package ro.uvt.flightmanager.entities;
+package ro.uvt.entities;
 
 /**
  *
