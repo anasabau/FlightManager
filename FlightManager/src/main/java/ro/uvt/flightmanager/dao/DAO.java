@@ -17,7 +17,7 @@ import javax.persistence.criteria.Root;
 public class DAO<E> implements DAOInterface<E> {
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
     
     public final Class<E> entityClass;
     
