@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 
 /**
  *
- * @author vagrant
+ * @author Dan
  */
 
 @Path("r")

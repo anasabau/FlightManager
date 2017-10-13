@@ -1,4 +1,4 @@
-package ro.uvt.dao;
+package ro.uvt.entity.dao;
 
 import java.util.List;
 

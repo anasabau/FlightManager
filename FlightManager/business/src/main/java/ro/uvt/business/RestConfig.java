@@ -10,7 +10,7 @@ import javax.ws.rs.core.Application;
 
 /**
  *
- * @author vagrant
+ * @author Dan
  */
 
 @ApplicationPath("rest")

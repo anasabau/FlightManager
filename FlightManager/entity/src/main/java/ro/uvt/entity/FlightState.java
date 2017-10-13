@@ -1,5 +1,5 @@
 
-package ro.uvt.entities;
+package ro.uvt.entity;
 
 /**
  *

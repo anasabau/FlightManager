@@ -1,4 +1,4 @@
-package ro.uvt.entities;
+package ro.uvt.entity;
 
 import java.util.Set;
 import javax.persistence.Column;

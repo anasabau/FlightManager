@@ -8,11 +8,10 @@ package ro.uvt.business;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import ro.uvt.entities.Itinerary;
-
+import ro.uvt.entity.Itinerary;
 /**
  *
- * @author vagrant
+ * @author Dan
  */
 @Stateless
 public class Bean {
