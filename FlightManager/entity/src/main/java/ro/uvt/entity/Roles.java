@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.uvt.flightmanager.entities;
+package ro.uvt.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

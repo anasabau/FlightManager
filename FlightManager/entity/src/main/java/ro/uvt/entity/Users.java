@@ -1,4 +1,4 @@
-package ro.uvt.flightmanager.entities;
+package ro.uvt.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
