@@ -21,6 +21,6 @@ public class Bean {
     EntityManager em;
     
     public void dodo(){
-        em.persist(new Itinerary("ts"));
+        em.persist(new Itinerary("tds"));
     }
 }
