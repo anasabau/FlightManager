@@ -1,12 +1,14 @@
 package ro.uvt.entity.dao;
 
 import java.util.List;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import ro.uvt.entity.Persistent;
 
 /**
  *
@@ -14,58 +16,47 @@ import javax.persistence.criteria.Root;
  */
 
 @Stateless
-public class DAO<E> implements DAOInterface<E> {
+public class DAO implements DAOInterface {
 
     @PersistenceContext
     private EntityManager em;
-    
-    public final Class<E> entityClass;
-    
-
-    public DAO(Class<E> entityClass) {
-        this.entityClass = entityClass;
-    }
-    
-    public DAO(){
-        this.entityClass = null;
-    }
 
     @Override
-    public void create(E entity) {
+    public void create(Persistent entity) {
         em.persist(entity);
     }
 
     @Override
-    public void update(E entity) {
+    public void update(Persistent entity) {
         em.persist(em.merge(entity));
     }
     
     @Override
-    public void remove(E entity) {
+    public void remove(Persistent entity) {
         em.remove(entity);
     }
 
     @Override
     public void removeById(long id) {
-        em.remove(em.find(entityClass, id));
+        em.remove(em.find(Persistent.class, id));
     }
 
     @Override
-    public E findById(long id) {
-        return em.find(entityClass, id);
+    public Persistent findById(long id) {
+        return em.find(Persistent.class, id);
     }
 
     @Override
-    public List<E> findAll() {
+    public List<Persistent> findAll() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
+        cq.select(cq.from(Persistent.class));
         return em.createQuery(cq).getResultList();
     }
 
     @Override
     public int count() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        Root<E> rt = cq.from(entityClass);
+        Root<Persistent> rt = cq.from(Persistent.class);
         cq.select(em.getCriteriaBuilder().count(rt));
         Query q = em.createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();

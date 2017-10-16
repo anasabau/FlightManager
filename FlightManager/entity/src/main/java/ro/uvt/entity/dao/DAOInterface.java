@@ -1,26 +1,27 @@
 package ro.uvt.entity.dao;
 
 import java.util.List;
+import javax.ejb.Remote;
+import ro.uvt.entity.Persistent;
 
 /**
  *
  * @author Anastasia
- * @param <E> the type of entity we are working with
  */
+@Remote
+public interface DAOInterface {
 
-public interface DAOInterface<E> {
+    void create(Persistent entity);
 
-    void create(E entity);
+    void update(Persistent entity);
 
-    void update(E entity);
-
-    void remove(E entity);
+    void remove(Persistent entity);
 
     void removeById(long id);
 
-    E findById(long id);
+    Persistent findById(long id);
     
-    List<E> findAll();
+    List<Persistent> findAll();
 
     int count();
 }

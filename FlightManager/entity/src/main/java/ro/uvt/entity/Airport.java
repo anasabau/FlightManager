@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Airport {
+public class Airport implements Persistent{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

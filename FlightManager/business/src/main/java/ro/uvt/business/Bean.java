@@ -5,10 +5,10 @@
  */
 package ro.uvt.business;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import ro.uvt.entity.Itinerary;
+import ro.uvt.entity.dao.DAOInterface;
 /**
  *
  * @author Dan
@@ -16,11 +16,12 @@ import ro.uvt.entity.Itinerary;
 @Stateless
 public class Bean {
     
+ 
     
-    @PersistenceContext
-    EntityManager em;
+    @EJB
+    DAOInterface dao;
     
     public void dodo(){
-        em.persist(new Itinerary("tds"));
+        dao.create(new Itinerary("dodo"));
     }
 }

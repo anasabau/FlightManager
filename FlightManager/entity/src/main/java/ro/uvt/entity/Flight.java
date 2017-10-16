@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Flight {
+public class Flight implements Persistent {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

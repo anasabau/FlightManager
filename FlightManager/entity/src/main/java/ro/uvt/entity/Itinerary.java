@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Itinerary {
+public class Itinerary implements Persistent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

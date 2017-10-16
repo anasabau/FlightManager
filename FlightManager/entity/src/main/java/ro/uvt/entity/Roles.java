@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Roles {
+public class Roles implements Persistent {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
