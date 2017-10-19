@@ -2,13 +2,12 @@ package ro.uvt.entity.dao;
 
 import ro.uvt.entity.Persistent;
 import java.util.List;
-import javax.ejb.Remote;
 
 /**
  *
  * @author Anastasia
  */
-@Remote
+
 public interface DAOInterface {
 
     <E extends Persistent> void create(E entity);
