@@ -5,10 +5,9 @@
  */
 package ro.uvt.controller;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import ro.uvt.entity.Itinerary;
-import ro.uvt.entity.dao.DAO;
 import ro.uvt.entity.dao.DAOInterface;
 /**
  *
@@ -19,7 +18,7 @@ public class Bean {
     
  
     
-    @EJB
+    @Inject
     DAOInterface dao;
     
     public void dodo(){

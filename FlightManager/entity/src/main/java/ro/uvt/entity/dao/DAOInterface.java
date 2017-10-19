@@ -7,23 +7,21 @@ import javax.ejb.Remote;
 /**
  *
  * @author Anastasia
- * @param <E> the entity type that will be handled 
- * @param <K> the type of the entity primary key
  */
 @Remote
-public interface DAOInterface<E extends Persistent,K> {
+public interface DAOInterface {
 
-    void create(E entity);
+    <E extends Persistent> void create(E entity);
 
-    void update(E entity);
+    <E extends Persistent> void update(E entity);
 
-    void remove(E entity);
+    <E extends Persistent> void remove(E entity);
 
-    void removeById(K id);
+    <E extends Persistent ,K> void removeById(Class<E> type, K id);
 
-    E findById(K id);
-    
-    List<E> findAll();
+    <E extends Persistent, K> E findById(Class<E> type, K id);
 
-    int count();
+    <E extends Persistent> List<E> findAll(Class<E> type);
+
+    <E extends Persistent> int count(Class<E> type);
 }
