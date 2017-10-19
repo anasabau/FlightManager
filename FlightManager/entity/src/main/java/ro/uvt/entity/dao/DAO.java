@@ -16,47 +16,54 @@ import javax.persistence.criteria.Root;
  */
 
 @Stateless
-public class DAO implements DAOInterface {
+public class DAO<E extends Persistent,K> implements DAOInterface<E,K> {
 
     @PersistenceContext
-    private EntityManager em;
+    private  EntityManager em;
+    
+    private final Class<E> type;
+    
+    
+    public DAO(Class<E> type){
+        this.type = type;
+    }
 
     @Override
-    public void create(Persistent entity) {
+    public void create(E entity) {
         em.persist(entity);
     }
 
     @Override
-    public void update(Persistent entity) {
+    public void update(E entity) {
         em.persist(em.merge(entity));
     }
     
     @Override
-    public void remove(Persistent entity) {
+    public void remove(E entity) {
         em.remove(entity);
     }
 
     @Override
-    public void removeById(long id) {
-        em.remove(em.find(Persistent.class, id));
+    public void removeById(K id) {
+        em.remove(em.find(type, id));
     }
 
     @Override
-    public Persistent findById(long id) {
-        return em.find(Persistent.class, id);
+    public E findById(K id) {
+        return em.find(type, id);
     }
 
     @Override
-    public List<Persistent> findAll() {
+    public List<E> findAll() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(Persistent.class));
+        cq.select(cq.from(type));
         return em.createQuery(cq).getResultList();
     }
 
     @Override
     public int count() {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        Root<Persistent> rt = cq.from(Persistent.class);
+        Root<Persistent> rt = cq.from(type);
         cq.select(em.getCriteriaBuilder().count(rt));
         Query q = em.createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
