@@ -19,7 +19,7 @@ import javax.persistence.criteria.Root;
 public class DAO implements DAOInterface {
 
     @PersistenceContext
-    private  EntityManager em;
+    protected EntityManager em;
     
     
 

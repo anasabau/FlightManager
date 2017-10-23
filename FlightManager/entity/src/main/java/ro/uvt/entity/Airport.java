@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.uvt.entity.dao.Activable;
 
 /**
  *
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public  class Airport implements Persistent{
+public  class Airport implements Activable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,6 +56,11 @@ public  class Airport implements Persistent{
       As noticed, it is not part of the Airport tabel and it is not
     required nor desiered in the Airport class constructor
     */
+
+    @Override
+    public void setActive(boolean is_active) {
+        this.is_active = is_active;
+    }
 
   
 }
