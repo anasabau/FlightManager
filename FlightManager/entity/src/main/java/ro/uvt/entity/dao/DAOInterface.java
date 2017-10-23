@@ -1,6 +1,5 @@
 package ro.uvt.entity.dao;
 
-import ro.uvt.entity.Persistent;
 import java.util.List;
 
 /**
@@ -23,4 +22,5 @@ public interface DAOInterface {
     <E extends Persistent> List<E> findAll(Class<E> type);
 
     <E extends Persistent> int count(Class<E> type);
+    
 }

@@ -1,5 +1,6 @@
 package ro.uvt.entity;
 
+import ro.uvt.entity.dao.Persistent;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;

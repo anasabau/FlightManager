@@ -1,4 +1,4 @@
-package ro.uvt.entity;
+package ro.uvt.entity.dao;
 
 import java.io.Serializable;
 

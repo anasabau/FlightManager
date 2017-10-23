@@ -1,6 +1,5 @@
 package ro.uvt.entity.dao;
 
-import ro.uvt.entity.Persistent;
 import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
