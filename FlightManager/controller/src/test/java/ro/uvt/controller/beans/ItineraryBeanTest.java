@@ -1,8 +1,9 @@
 package ro.uvt.controller.beans;
 
-import javax.ejb.EJB;
-import javax.inject.Inject;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import ro.uvt.entity.Itinerary;
 
@@ -13,10 +14,17 @@ import ro.uvt.entity.Itinerary;
 
 
 public class ItineraryBeanTest {
-        
-    @Inject
+    
     ItineraryBean ib;
     
+    @Before
+    public void intiMockEjbContainer() throws Exception{
+        Context context = new InitialContext();
+        ib = (ItineraryBean) context.lookup("ItineraryBean");
+
+    }
+    
+       
     @Test
     public void addItinerary(){
        

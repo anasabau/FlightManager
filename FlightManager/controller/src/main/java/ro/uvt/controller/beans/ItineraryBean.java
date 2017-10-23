@@ -46,7 +46,7 @@ public class ItineraryBean {
     }
     
     public Itinerary findById(long id){
-        return findById(id);
+        return dao.findById(TYPE, id);
     }
     
     public long count(){
