@@ -49,5 +49,5 @@ public class CompanyBean {
     
     public void setActive(Company company, boolean bool) {
         active.setActive(TYPE, company, bool);
-    }    
+    }
 }

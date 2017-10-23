@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.uvt.entity.dao.Activable;
 
 /**
  *
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Company implements Persistent {
+public class Company implements Activable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,6 +49,11 @@ public class Company implements Persistent {
         this.name = name;
         this.country = country;
         this.headquarters = headquarters;
+        this.is_active = is_active;
+    }
+
+    @Override
+    public void setActive(boolean is_active) {
         this.is_active = is_active;
     }
     
