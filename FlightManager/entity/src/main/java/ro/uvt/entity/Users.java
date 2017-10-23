@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.uvt.entity.dao.Activable;
 
 /**
  *
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Users implements Persistent {
+public class Users implements Activable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,6 +52,11 @@ public class Users implements Persistent {
         this.password = password;
         this.role_id = role_id;
         this.company_id = company_id;
+    }
+
+    @Override
+    public void setActive(boolean is_active) {
+        this.is_active = is_active;
     }
     
     

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.uvt.entity.dao.Activable;
 
 /**
  *
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Plane implements Persistent {
+public class Plane implements Activable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,6 +43,11 @@ public class Plane implements Persistent {
         this.registration_id = registration_id;
         this.company_id = company_id;
         this.nr_sits = nr_sits;
+    }
+
+    @Override
+    public void setActive(boolean is_active) {
+            this.is_active = is_active;
     }
     
     
