@@ -18,6 +18,12 @@
     
     <dependencies>
         <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.1.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>ro.uvt</groupId>
             <artifactId>entity</artifactId>
             <version>1.0-SNAPSHOT</version>
