@@ -48,6 +48,6 @@ public class PlaneBean {
     
     
     public void setActive(Plane plane, boolean isActive){
-        plane.setActive(isActive);
+        dao.setActive(TYPE, plane, isActive);
     }
 }
