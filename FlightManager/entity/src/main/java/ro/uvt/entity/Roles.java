@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.uvt.entity.dao.Activable;
 
 /**
  *
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Roles implements Persistent {
+public class Roles implements Activable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,9 +31,17 @@ public class Roles implements Persistent {
     
     @Column(nullable = false)
     private String name;
-
+    
+    
+    private boolean is_active = true;
+    
     public Roles(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void setActive(boolean is_active) {
+        this.is_active = is_active;
     }
         
 }

@@ -45,5 +45,9 @@ public class PlaneBean {
     public long count() {
         return dao.count(TYPE);
     }
- 
+    
+    
+    public void setActive(Plane plane, boolean isActive){
+        plane.setActive(isActive);
+    }
 }
