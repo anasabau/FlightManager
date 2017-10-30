@@ -3,6 +3,7 @@ package ro.uvt.controller.beans;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 import ro.uvt.entity.Itinerary;
 import ro.uvt.entity.dao.DAOInterface;
 
@@ -19,6 +20,7 @@ import ro.uvt.entity.dao.DAOInterface;
 public class ItineraryBean {
     
     @Inject
+    @Named("BaseDAO")
     private DAOInterface dao;
     
     // The type of the entity we are dealing with

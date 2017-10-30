@@ -3,6 +3,7 @@ package ro.uvt.entity.dao;
 import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,7 +16,7 @@ import javax.persistence.criteria.Root;
  */
 
 @Dependent
-@Default
+@Named("BaseDAO")
 public class DAO implements DAOInterface {
 
     @PersistenceContext

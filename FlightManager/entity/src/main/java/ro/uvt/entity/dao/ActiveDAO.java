@@ -5,10 +5,13 @@
  */
 package ro.uvt.entity.dao;
 
+import javax.enterprise.context.Dependent;
+
 /**
  *
  * @author dan
  */
+@Dependent
 public class ActiveDAO extends DAO implements  Active{
 
     @Override
