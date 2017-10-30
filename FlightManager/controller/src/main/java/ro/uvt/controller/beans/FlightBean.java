@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import ro.uvt.entity.Flight;
 import ro.uvt.entity.dao.Active;
+import ro.uvt.entity.dao.DAOInterface;
 
 /**
  *
@@ -14,7 +15,7 @@ import ro.uvt.entity.dao.Active;
 public class FlightBean {
     
     @Inject
-    private Active dao;
+    private DAOInterface dao;
     
     private final Class<Flight> TYPE = Flight.class;
     
