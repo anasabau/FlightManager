@@ -1,13 +1,8 @@
 package ro.uvt.controller.beans;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.inject.Qualifier;
 import ro.uvt.entity.Airport;
 import ro.uvt.entity.dao.Active;
 

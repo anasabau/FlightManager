@@ -5,7 +5,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import ro.uvt.entity.Flight;
-import ro.uvt.entity.dao.Active;
 import ro.uvt.entity.dao.DAOInterface;
 
 /**
