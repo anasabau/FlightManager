@@ -9,7 +9,8 @@
     <modules>
         <module>entity</module>
         <module>controller</module>
-    </modules>
+    <module>boundry</module>
+  </modules>
    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
