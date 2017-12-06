@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Flight Manager</title>
+    </h:head>
+    <h:body>
+        Welcome too Flight Manager
+        <h:form >
+            
+        <h:inputText label="username: " value="#{auth.userName}"/><br></br>
+        <h:inputSecret label="password: " value="#{auth.password}"/><br></br>
+        
+        <br><h:commandButton value="login" action="#{auth.login()}"/></br> 
+        </h:form>
+    </h:body>
+</html>
+
