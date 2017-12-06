@@ -14,8 +14,6 @@
 
     <name>boundry</name>
 
-
-    
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -24,6 +22,5 @@
         </dependency>
     </dependencies>
 
-  
 
 </project>
