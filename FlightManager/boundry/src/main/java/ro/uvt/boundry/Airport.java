@@ -12,31 +12,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
 import ro.uvt.controller.beans.AirportBean;
-import ro.uvt.controller.beans.CompanyBean;
 
 /**
  *
  * @author dan
  */
-@Named("auth")
-@SessionScoped
+@Named
 @Data
-public class Authenthification implements Serializable {
-
+@SessionScoped
+public class Airport implements Serializable{
+    
     @Inject
-    private AirportBean airportBean;
-
-    private String userName;
-
-    private String password;
-
-    public Authenthification() {
-
-    }
-
-    public void login() {
-        System.out.println("fsdf" + airportBean.count() );
-        airportBean.create(new ro.uvt.entity.Airport("sad", "fsd", "dfs"));
-    }
-
+    AirportBean airportBean;
+    
+    private List<ro.uvt.entity.Airport> companyList = airportBean.findAll();
+    
 }

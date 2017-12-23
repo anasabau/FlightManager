@@ -2,7 +2,6 @@ package ro.uvt.entity.dao;
 
 import java.util.List;
 import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

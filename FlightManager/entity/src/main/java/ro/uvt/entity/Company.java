@@ -48,7 +48,6 @@ public class Company implements Activable {
         this.name = name;
         this.country = country;
         this.headquarters = headquarters;
-        this.is_active = is_active;
     }
 
     @Override
