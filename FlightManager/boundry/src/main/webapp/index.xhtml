@@ -9,10 +9,10 @@
         Welcome too Flight Manager
         <h:form >
             
-        <h:inputText label="username: " value="#{auth.userName}"/><br></br>
-        <h:inputSecret label="password: " value="#{auth.password}"/><br></br>
+            username: <h:inputText   id="username" value="#{auth.userName}"/><br></br>
+           password: <h:inputSecret id="password" value="#{auth.password}"/><br></br>
         
-        <br><h:commandButton value="login" action="#{auth.login()}"/></br> 
+        <br><h:commandButton value="Submit" action="#{auth.login()}"/></br> 
         </h:form>
     </h:body>
 </html>

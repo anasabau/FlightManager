@@ -5,7 +5,9 @@
  */
 package ro.uvt.boundry;
 
-import javax.ejb.EJB;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
 import ro.uvt.controller.beans.AirportBean;
@@ -16,22 +18,24 @@ import ro.uvt.entity.Airport;
  * @author dan
  */
 @Named("auth")
+@SessionScoped
 @Data
-public class Authenthification {
-    
-    @EJB
+public class Authenthification implements Serializable {
+
+    @Inject
     private AirportBean airportBean;
-    
+
     private String userName;
-    
+
     private String password;
-    
-    public Authenthification(){
-        
+
+    public Authenthification() {
+
     }
-    
-    public void login(){
-        airportBean.create(new Airport());
+
+    public void login() {
+        System.out.println("tset");
+       airportBean.create(new Airport());
     }
-    
+
 }

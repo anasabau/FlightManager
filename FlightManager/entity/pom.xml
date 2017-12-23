@@ -11,4 +11,5 @@
     <artifactId>entity</artifactId>
     <packaging>jar</packaging>
     <name>entity</name>
+    
 </project>
