@@ -12,7 +12,7 @@
      
 
             <ui:define name="title">
-              Company
+              Airports
             </ui:define>
 
             <ui:define name="content">
@@ -37,7 +37,14 @@
             </ui:define>
 
             <ui:define name="bottom">
-               
+                <h:form>
+                    Name: <h:inputText id="name" value="#{airport.name}"/><br></br>
+                    Country: <h:inputText id="country" value="#{airport.country}"/><br></br>
+                    City:   <h:inputText id="city" value="#{airport.city}"/><br></br>
+                    
+                    <h:commandButton value="add" action="#{airport.submit()}"/>
+                    <h:commandButton value="clear" action="#{airport.clear()}"/>
+                </h:form>
             </ui:define>
 
         </ui:composition>

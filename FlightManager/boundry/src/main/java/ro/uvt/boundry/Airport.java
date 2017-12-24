@@ -7,6 +7,7 @@ package ro.uvt.boundry;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,8 +24,29 @@ import ro.uvt.controller.beans.AirportBean;
 public class Airport implements Serializable{
     
     @Inject
-    AirportBean airportBean;
+    private AirportBean airportBean;
     
-    private List<ro.uvt.entity.Airport> companyList = airportBean.findAll();
+    private String name;
+    
+    private String country;
+    
+    private String city;
+    
+    private List<ro.uvt.entity.Airport> companyList;
+    
+    @PostConstruct
+    private void init(){
+        companyList = airportBean.findAll();
+    }
+    
+    public void submit(){
+        airportBean.create(new ro.uvt.entity.Airport(name, city, country));
+    }
+    
+    public void clear(){
+        name = "";
+        country = "";
+        city = "";
+    }
     
 }
