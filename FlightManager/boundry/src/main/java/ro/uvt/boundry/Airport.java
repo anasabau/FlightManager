@@ -21,32 +21,28 @@ import ro.uvt.controller.beans.AirportBean;
 @Named
 @Data
 @SessionScoped
-public class Airport implements Serializable{
-    
+public class Airport implements Serializable {
+
     @Inject
     private AirportBean airportBean;
-    
-    private String name;
-    
-    private String country;
-    
-    private String city;
+
+    private ro.uvt.entity.Airport bean = new ro.uvt.entity.Airport();
     
     private List<ro.uvt.entity.Airport> companyList;
-    
+
     @PostConstruct
-    private void init(){
+    private void init() {
         companyList = airportBean.findAll();
     }
-    
-    public void submit(){
-        airportBean.create(new ro.uvt.entity.Airport(name, city, country));
+
+    public void submit() {
+        airportBean.create(bean);
     }
-    
-    public void clear(){
-        name = "";
-        country = "";
-        city = "";
+
+    public void clear() {
+        bean.setName("");
+        bean.setCountry("");
+        bean.setCity("");
     }
-    
+
 }
