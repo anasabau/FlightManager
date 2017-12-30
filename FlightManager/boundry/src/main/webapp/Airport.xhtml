@@ -3,48 +3,90 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./templates/MasterTemplate.xhtml">
 
-     
+
 
             <ui:define name="title">
-              Airports
+                Airports
             </ui:define>
 
             <ui:define name="content">
-                Total items: #{airport.airportBean.findAll().size()}
-                <h:dataTable var="p" value="#{airport.airportBean.findAll()}">
 
-                    <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        <h:outputText value="#{p.name}"/>
-                    </h:column>
+                Total items: #{airport.airportList.size()}
 
-                    <h:column>
-                        <f:facet name="header">Country</f:facet>
-                        <h:outputText value="#{p.country}"/>
-                    </h:column>
+                <p:dataTable id="table"
+                             var="p"
+                             value="#{airport.airportList}" 
+                             editable="true"
+                             lazy="false" >
+                    <f:facet name="header">
+                        Airports
+                    </f:facet>
 
-                    <h:column>
-                        <f:facet name="header">City</f:facet>
-                        <h:outputText value="#{p.city}"/>
-                    </h:column>
-                </h:dataTable>
+                    <p:ajax event="rowEdit" listener="#{airport.onRowEdit}" update="table" immediate="true"  />
+
+                    <p:column headerText="Id">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText  value="#{p.id}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{p.id}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    
+                    <p:column headerText="Name">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{p.name}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Country">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{p.country}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+
+                    <p:column headerText="City">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText  value="#{p.city}"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{p.city}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Edit">
+                        <p:rowEditor/>
+                    </p:column>
+
+
+                </p:dataTable>
             </ui:define>
 
             <ui:define name="bottom">
                 <h:form>
-                    Name: <h:inputText id="name" value="#{airport.bean.name}"/><br></br>
-                    Country: <h:inputText id="country" value="#{airport.bean.country}"/><br></br>
-                    City:   <h:inputText id="city" value="#{airport.bean.city}"/><br></br>
-                    
-                    <h:commandButton value="add" action="#{airport.submit()}"/>
-                    <h:commandButton value="clear" action="#{airport.clear()}"/>
+                    Name: <p:inputText id="name"  value="#{airport.name}"/><br></br>
+                    Country: <p:inputText id="country" value="#{airport.country}"/><br></br>
+                    City:   <p:inputText id="city" value="#{airport.city}"/><br></br>
+
+                    <p:commandButton value="add"   action="#{airport.submit()}" update="table"/>
+                    <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
                 </h:form>
+
             </ui:define>
 
         </ui:composition>

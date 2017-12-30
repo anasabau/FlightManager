@@ -6,12 +6,15 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 import ro.uvt.controller.beans.AirportBean;
 
 /**
@@ -26,23 +29,33 @@ public class Airport implements Serializable {
     @Inject
     private AirportBean airportBean;
 
-    private ro.uvt.entity.Airport bean = new ro.uvt.entity.Airport();
+    private String name;
     
-    private List<ro.uvt.entity.Airport> companyList;
+    private String city;
+    
+    private String country;
+    
+    private List<ro.uvt.entity.Airport> airportList;
 
     @PostConstruct
     private void init() {
-        companyList = airportBean.findAll();
-    }
+        airportList = airportBean.findAll();
+     }
 
     public void submit() {
-        airportBean.create(bean);
+        ro.uvt.entity.Airport a = new ro.uvt.entity.Airport(name, city, country);
+        airportList.add(a);
+        clear();
     }
+    
 
     public void clear() {
-        bean.setName("");
-        bean.setCountry("");
-        bean.setCity("");
+        name = "";
+        city = "";
+        country = "";
     }
-
+    
+    public void onRowEdit(RowEditEvent event){
+        // it gets here
+     }
 }
