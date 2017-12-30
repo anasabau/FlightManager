@@ -17,76 +17,75 @@
             </ui:define>
 
             <ui:define name="content">
+                <h:form id="form">
 
-                Total items: #{airport.airportList.size()}
+                    Total items: #{airport.airportList.size()}
 
-                <p:dataTable id="table"
-                             var="p"
-                             value="#{airport.airportList}" 
-                             editable="true"
-                             lazy="false" >
-                    <f:facet name="header">
-                        Airports
-                    </f:facet>
+                    <p:dataTable id="table"
+                                 var="p"
+                                 value="#{airport.airportList}" 
+                                 editable="true"
+                                 lazy="false" >
+                        <f:facet name="header">
+                            Airports
+                        </f:facet>
 
-                    <p:ajax event="rowEdit" listener="#{airport.onRowEdit}" update="table" immediate="true"  />
+                        <p:ajax event="rowEdit" listener="#{airport.onRowEdit}" update=":form:table"/>
 
-                    <p:column headerText="Id">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.id}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.id}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    
-                    
-                    <p:column headerText="Name">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.name}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="Country">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.country}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                        <p:column headerText="Id">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.id}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.id}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
 
-                    <p:column headerText="City">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.city}"/></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.city}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                        <p:column headerText="Name">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.name}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
-                    <p:column headerText="Edit">
-                        <p:rowEditor/>
-                    </p:column>
+                        <p:column headerText="Country">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.country}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
 
-                </p:dataTable>
-            </ui:define>
+                        <p:column headerText="City">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.city}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.city}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
 
-            <ui:define name="bottom">
-                <h:form>
-                    Name: <p:inputText id="name"  value="#{airport.name}"/><br></br>
-                    Country: <p:inputText id="country" value="#{airport.country}"/><br></br>
-                    City:   <p:inputText id="city" value="#{airport.city}"/><br></br>
+                        <p:column headerText="Edit">
+                            <p:rowEditor/>
+                        </p:column>
 
-                    <p:commandButton value="add"   action="#{airport.submit()}" update="table"/>
-                    <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
+
+                    </p:dataTable>
                 </h:form>
 
+
+
+                Name: <p:inputText id="name"  value="#{airport.name}"/><br></br>
+                Country: <p:inputText id="country" value="#{airport.country}"/><br></br>
+                City:   <p:inputText id="city" value="#{airport.city}"/><br></br>
+
+                <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table"/>
+                <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
             </ui:define>
 
         </ui:composition>

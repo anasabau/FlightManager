@@ -6,14 +6,12 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
-import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import ro.uvt.controller.beans.AirportBean;
 
