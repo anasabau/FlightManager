@@ -27,11 +27,7 @@ public class Airport implements Serializable {
     @Inject
     private AirportBean airportBean;
 
-    private String name;
-    
-    private String city;
-    
-    private String country;
+    ro.uvt.entity.Airport entity = new ro.uvt.entity.Airport();
     
     private List<ro.uvt.entity.Airport> airportList;
 
@@ -41,19 +37,22 @@ public class Airport implements Serializable {
      }
 
     public void submit() {
-        ro.uvt.entity.Airport a = new ro.uvt.entity.Airport(name, city, country);
-        airportList.add(a);
-        clear();
+        airportList.add(entity);
+        entity = new ro.uvt.entity.Airport();
     }
     
 
     public void clear() {
-        name = "";
-        city = "";
-        country = "";
+        entity.setName("");
+        entity.setCity("");
+        entity.setCountry("");
     }
     
     public void onRowEdit(RowEditEvent event){
         // it gets here
      }
+    
+    public void deleteRow(ro.uvt.entity.Airport airport){
+        airportList.remove(airport);
+    }
 }

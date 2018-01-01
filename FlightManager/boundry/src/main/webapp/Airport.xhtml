@@ -72,20 +72,20 @@
 
                         <p:column headerText="Edit">
                             <p:rowEditor/>
+                            <p:commandLink value="Delete" action="#{airport.deleteRow(p)}" update="table"/>
                         </p:column>
 
 
                     </p:dataTable>
+
+
+                    Name: <p:inputText id="name"  value="#{airport.entity.name}"/><br></br>
+                    Country: <p:inputText id="country" value="#{airport.entity.country}"/><br></br>
+                    City:   <p:inputText id="city" value="#{airport.entity.city}"/><br></br>
+
+                    <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table name country city"/>
+                    <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
                 </h:form>
-
-
-
-                Name: <p:inputText id="name"  value="#{airport.name}"/><br></br>
-                Country: <p:inputText id="country" value="#{airport.country}"/><br></br>
-                City:   <p:inputText id="city" value="#{airport.city}"/><br></br>
-
-                <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table"/>
-                <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
             </ui:define>
 
         </ui:composition>
