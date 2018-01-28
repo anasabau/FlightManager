@@ -13,15 +13,12 @@ import javax.persistence.criteria.Root;
  *
  * @author Anastasia
  */
-
 @Dependent
 @Named("BaseDAO")
 public class DAO implements DAOInterface {
 
     @PersistenceContext
     protected EntityManager em;
-    
-    
 
     @Override
     public <E extends Persistent> void create(E entity) {
@@ -32,9 +29,13 @@ public class DAO implements DAOInterface {
     public <E extends Persistent> void update(E entity) {
         em.persist(em.merge(entity));
     }
-    
+
     @Override
     public <E extends Persistent> void remove(E entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
+
         em.remove(entity);
     }
 
@@ -44,7 +45,7 @@ public class DAO implements DAOInterface {
     }
 
     @Override
-    public <E extends Persistent,K> E findById(Class<E> type, K id) {
+    public <E extends Persistent, K> E findById(Class<E> type, K id) {
         return em.find(type, id);
     }
 

@@ -19,11 +19,11 @@
             <ui:define name="content">
                 <h:form id="form">
 
-                    Total items: #{airport.airportList.size()}
+                    Total items: #{airport.airportBean.findAll().size()}
 
                     <p:dataTable id="table"
                                  var="p"
-                                 value="#{airport.airportList}" 
+                                 value="#{airport.airportBean.findAll()}" 
                                  editable="true"
                                  lazy="false" >
                         <f:facet name="header">

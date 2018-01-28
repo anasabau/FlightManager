@@ -6,8 +6,6 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,16 +26,9 @@ public class Airport implements Serializable {
     private AirportBean airportBean;
 
     ro.uvt.entity.Airport entity = new ro.uvt.entity.Airport();
-    
-    private List<ro.uvt.entity.Airport> airportList;
-
-    @PostConstruct
-    private void init() {
-        airportList = airportBean.findAll();
-     }
-
+   
     public void submit() {
-        airportList.add(entity);
+        airportBean.create(entity);
         entity = new ro.uvt.entity.Airport();
     }
     
@@ -53,6 +44,7 @@ public class Airport implements Serializable {
      }
     
     public void deleteRow(ro.uvt.entity.Airport airport){
-        airportList.remove(airport);
+        airportBean.remove(airport);
+        System.out.println("ro.uvt.boundry.Airport.deleteRow()");
     }
 }
