@@ -83,7 +83,7 @@
                     Country: <p:inputText id="country" value="#{airport.entity.country}"/><br></br>
                     City:   <p:inputText id="city" value="#{airport.entity.city}"/><br></br>
 
-                    <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table name country city"/>
+                    <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table name country city form"/>
                     <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
                 </h:form>
             </ui:define>
