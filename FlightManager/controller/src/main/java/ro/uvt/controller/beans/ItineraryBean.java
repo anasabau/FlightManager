@@ -35,9 +35,11 @@ public class ItineraryBean {
         dao.update(itinerary);
     }
     
+    /*
     public void remove(Itinerary itinerary){
         dao.remove(itinerary);
     }
+    */
     
     public void removeById(long id){
         dao.removeById(TYPE, id);

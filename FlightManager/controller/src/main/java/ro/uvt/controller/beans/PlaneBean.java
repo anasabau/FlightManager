@@ -26,10 +26,11 @@ public class PlaneBean {
         dao.update(plane);
     }
     
+    /*
     public void remove(Plane plane) {
         dao.remove(plane);
     }
-    
+    */
     public void removeById(long id) {
         dao.removeById(TYPE, id);
     }

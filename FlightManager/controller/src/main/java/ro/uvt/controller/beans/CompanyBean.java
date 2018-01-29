@@ -27,9 +27,11 @@ public class CompanyBean {
         active.update(company);
     }
     
+    /*
     public void remove(Company company) {
         active.remove(company);
     }
+    */
     
     public void removeId(long id) {
         active.removeById(TYPE, id);

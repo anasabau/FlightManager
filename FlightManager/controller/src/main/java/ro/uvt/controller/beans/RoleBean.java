@@ -28,9 +28,11 @@ public class RoleBean {
         dao.create(role);
     }
     
+    /*
     public void remove(Roles role){
         dao.remove(role);
     }
+    */
     
     public void removeById(long id){
         dao.removeById(type, id);

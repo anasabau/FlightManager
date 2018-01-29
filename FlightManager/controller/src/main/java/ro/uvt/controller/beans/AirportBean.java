@@ -16,7 +16,6 @@ public class AirportBean {
     @Inject
     private Active dao;
     
-    
     private final Class<Airport> TYPE = Airport.class;
     
     public void create(Airport airport){
@@ -27,10 +26,11 @@ public class AirportBean {
         dao.update(airport);
     }
     
+    /*
     public void remove(Airport airport){
         dao.remove(airport);
     }
-    
+    */
     public void removeById(long id){
         dao.removeById(TYPE, id);
     }

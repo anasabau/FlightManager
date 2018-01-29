@@ -26,9 +26,11 @@ public class UserBean {
         dao.update(user);
     }
     
+    /*
     public void remove(Users user){
         dao.remove(user);
     }
+    */
     
     public void removeById(long id){
         dao.removeById(type, id);

@@ -16,7 +16,7 @@ import javax.persistence.criteria.Root;
 @Dependent
 @Named("BaseDAO")
 public class DAO implements DAOInterface {
-
+    
     @PersistenceContext
     protected EntityManager em;
 
@@ -29,7 +29,8 @@ public class DAO implements DAOInterface {
     public <E extends Persistent> void update(E entity) {
         em.persist(em.merge(entity));
     }
-
+    
+    /* Too discuss if needed, may show buggy behaviour
     @Override
     public <E extends Persistent> void remove(E entity) {
         if (!em.contains(entity)) {
@@ -38,7 +39,9 @@ public class DAO implements DAOInterface {
 
         em.remove(entity);
     }
-
+    */
+    
+    
     @Override
     public <E extends Persistent, K> void removeById(Class<E> type, K id) {
         em.remove(em.find(type, id));

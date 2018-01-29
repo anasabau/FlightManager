@@ -28,9 +28,11 @@ public class FlightBean {
         dao.update(flight);
     }
     
+    /*
     public void remove(Flight flight){
         dao.remove(flight);
     }
+    */
     
     public void removeById(long id){
         dao.removeById(TYPE, id);

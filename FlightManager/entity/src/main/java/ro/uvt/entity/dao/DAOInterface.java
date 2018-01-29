@@ -13,7 +13,7 @@ public interface DAOInterface {
 
     <E extends Persistent> void update(E entity);
 
-    <E extends Persistent> void remove(E entity);
+   // To discuss if needed at all <E extends Persistent> void remove(E entity);
 
     <E extends Persistent ,K> void removeById(Class<E> type, K id);
 

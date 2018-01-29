@@ -10,26 +10,24 @@
 
         <ui:composition template="./templates/MasterTemplate.xhtml">
 
-
-
             <ui:define name="title">
-                Airports
+                Company
             </ui:define>
 
             <ui:define name="content">
-                <h:form id="form">
-                    <p:poll interval="3" listener="#{airport.init()}" update=":form :form:table" />
-                    Total items: #{airport.airportList.size()}
+                  <h:form id="form">
+                      <p:poll interval="3" listener="#{company.init()}" update=":form :form:table" />
+                      Total items: #{company.companyList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
-                                 value="#{airport.airportList}" 
+                                 value="#{company.companyList}" 
                                  editable="true"
                                  lazy="false" >
                         <f:facet name="header">
-                            Airports
+                            Companies
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{airport.onRowEdit}" update=":form:table"/>
+                        <p:ajax event="rowEdit" listener="#{company.onRowEdit}" update=":form:table"/>
 
                         <p:column headerText="Name">
                             <p:cellEditor>
@@ -50,30 +48,30 @@
                         </p:column>
 
 
-                        <p:column headerText="City">
+                        <p:column headerText="Headquarters">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.city}"/></f:facet>
+                                <f:facet name="output"><h:outputText  value="#{p.headquarters}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.city}"/>
+                                    <p:inputText value="#{p.headquarters}"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
 
                         <p:column headerText="Edit">
                             <p:rowEditor/>
-                            <p:commandLink value="Delete" action="#{airport.onRowDelete(p)}" update="table"/>
+                            <p:commandLink value="Delete" action="#{company.onRowDelete(p)}" update="table"/>
                         </p:column>
 
 
                     </p:dataTable>
 
 
-                    Name: <p:inputText id="name"  value="#{airport.entity.name}"/><br></br>
-                    Country: <p:inputText id="country" value="#{airport.entity.country}"/><br></br>
-                    City:   <p:inputText id="city" value="#{airport.entity.city}"/><br></br>
+                      Name: <p:inputText id="name"  value="#{company.entity.name}"/><br></br>
+                      Country: <p:inputText id="country" value="#{company.entity.country}"/><br></br>
+                      City:   <p:inputText id="city" value="#{company.entity.headquarters}"/><br></br>
 
-                    <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table name country city form"/>
-                    <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
+                      <p:commandButton value="add"   action="#{company.submit()}" update=":form:table name country city form"/>
+                      <p:commandButton value="clear"  action="#{company.clear()}" update="name country city"/>
                 </h:form>
             </ui:define>
 
