@@ -53,6 +53,6 @@ public class Company implements Serializable {
     }
 
     public void onRowDelete(ro.uvt.entity.Company company) {
-        companyBean.removeId(company.getId());
+        companyBean.removeById(company.getId());
     }
 }

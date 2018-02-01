@@ -33,7 +33,7 @@ public class CompanyBean {
     }
     */
     
-    public void removeId(long id) {
+    public void removeById(long id) {
         active.removeById(TYPE, id);
     }
     
