@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
@@ -19,7 +19,7 @@ import ro.uvt.controller.beans.PlaneBean;
  */
 @Named("plane")
 @Data
-@SessionScoped
+@RequestScoped
 public class Plane implements Serializable {
 
     @Inject
@@ -32,10 +32,14 @@ public class Plane implements Serializable {
 
     private List<ro.uvt.entity.Plane> planeList;
     
-    private Map<Long,ro.uvt.entity.Company> companies = new HashMap<>();
-
+    private Map<String,Long> companies = new HashMap<>();
+    
+    private String selectedId;
+    
     public void submit() {
-
+        entity.setCompany_id(companyBean.findById(Long.decode(selectedId)));
+        planeBean.create(entity);
+        entity = new ro.uvt.entity.Plane();
     }
 
     public void clear() {
@@ -49,12 +53,9 @@ public class Plane implements Serializable {
     @PostConstruct
     public void init() {
         planeList = planeBean.findAll();
-        
-        for(ro.uvt.entity.Company c : companyBean.findAll()){
-            companies.put(c.getId(), c);
+        for(ro.uvt.entity.Company comp :companyBean.findAll()){
+            companies.put(comp.getName() + " (id " + comp.getId() + " )", comp.getId());
         }
-        ro.uvt.entity.Company com = companies.get(1L); 
-        entity.setCompany_id(com);
     }
 
     public void onRowEdit(RowEditEvent event) {

@@ -41,7 +41,7 @@ public class CompanyBean {
         return active.findAll(TYPE);
     }
     
-    public Company findId(long id) {
+    public Company findById(long id) {
         return active.findById(TYPE, id);
     }
     

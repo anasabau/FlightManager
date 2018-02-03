@@ -80,7 +80,7 @@
                     Nr of Sits <p:inputText id="sits" value="#{plane.entity.nr_sits}"/><br></br>
                     Registration id   <p:inputText id="registration_id" value="#{plane.entity.registration_id}"/><br></br>
                     Company id              
-                    <p:selectOneMenu id="company_id" value="#{plane.entity.company_id}" style="width:150px">
+                    <p:selectOneMenu id="company_id" value="#{plane.selectedId}" style="width:150px">
                         <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
                         <f:selectItems value="#{plane.companies}" />
                     </p:selectOneMenu><br></br>
