@@ -1,5 +1,6 @@
 package ro.uvt.controller.beans;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import ro.uvt.entity.Users;
@@ -38,6 +39,10 @@ public class UserBean {
     
     public long count(){
         return dao.count(type);
+    }
+    
+    public List<Users> findAll(){
+        return dao.findAll(type);
     }
     
     public void setActive(Users user, boolean is_active){
