@@ -121,12 +121,14 @@
                         <f:selectItems value="#{flight.airports}" />
                     </p:selectOneMenu>
 
-                    <p:calendar id="time" value="#{flight.arivalTime}" pattern="HH:mm" timeOnly="true"  />
-
-                    <p:calendar id="time" value="#{flight.departureTime}" pattern="HH:mm" timeOnly="true"  />
-
-                    <p:commandButton value="add"   action="#{flight.submit()}" update=":form:table model sits registration_id company_id form"/>
-                    <p:commandButton value="clear"  action="#{flight.clear()}" update=" model sits registration_id company_id"/>
+                    <p:calendar id="arivalTime" value="#{flight.arivalTime}" pattern="HH:mm" timeOnly="true"  />
+                   
+                    <p:calendar id="departureTime" value="#{flight.departureTime}" pattern="HH:mm" timeOnly="true"  />
+    
+                    
+                    <p:commandButton value="add"   action="#{flight.submit()}" update=":form:table plane arivalAirport  departureAirport arivalTime departureTime "/>
+                    <p:commandButton value="clear"  action="#{flight.clear()}" update=" plane arivalAirport  departureAirport arivalTime departureTime  "/>
+                    
                 </h:form>
             </ui:define>
 

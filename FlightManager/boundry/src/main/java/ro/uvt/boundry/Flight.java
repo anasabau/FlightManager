@@ -89,10 +89,6 @@ public class Flight implements Serializable {
             planes.put(plane.getRegistration_id() + " (id " + plane.getId() + ")", plane.getId());
         }
 
-        for (ro.uvt.entity.Plane plane : planeBean.findAll()) {
-            planes.put(plane.getRegistration_id() + " (id " + plane.getId() + ")", plane.getId());
-        }
-
         for (ro.uvt.entity.Users user : userBean.findAll()  ) {
             users.put(user.getFirst_name() + " " + user.getLast_name() + " (id " + user.getId() + ")", user.getId());
         }
