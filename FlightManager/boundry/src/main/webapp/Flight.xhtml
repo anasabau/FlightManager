@@ -60,7 +60,7 @@
 
                         <p:column headerText="Departure Time">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.departure_time}"/></f:facet>
+                                <f:facet name="output"><h:outputText  value="#{flight.formater(p.departure_time)}"/></f:facet>
                                 <f:facet name="input">
                                     <p:inputText value="#{p.departure_time}"/>
                                 </f:facet>
@@ -70,9 +70,9 @@
 
                         <p:column headerText="Arival Time">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.arival_airport}"/></f:facet>
+                                <f:facet name="output"><h:outputText  value="#{flight.formater(p.arival_time)}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.arival_airport}"/>
+                                    <p:inputText value="#{p.arival_time}"/>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -121,9 +121,12 @@
                         <f:selectItems value="#{flight.airports}" />
                     </p:selectOneMenu>
 
-                    <p:calendar id="arivalTime" value="#{flight.arivalTime}" pattern="HH:mm" timeOnly="true"  />
+                    <p:calendar id="arivalTime" value="#{flight.entity.arival_time}" pattern="HH:mm" timeOnly="true">
+                    </p:calendar>
+                    
+                    
                    
-                    <p:calendar id="departureTime" value="#{flight.departureTime}" pattern="HH:mm" timeOnly="true"  />
+                    <p:calendar id="departureTime" value="#{flight.entity.departure_time}" pattern="HH:mm" timeOnly="true"  />
     
                     
                     <p:commandButton value="add"   action="#{flight.submit()}" update=":form:table plane arivalAirport  departureAirport arivalTime departureTime "/>

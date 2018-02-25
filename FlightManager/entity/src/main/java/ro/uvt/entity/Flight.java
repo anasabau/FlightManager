@@ -1,6 +1,7 @@
 package ro.uvt.entity;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 import ro.uvt.entity.dao.Persistent;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,11 +38,11 @@ public class Flight implements Persistent {
     @OneToOne
     private Airport arival_airport;
     
-  
-    private LocalDate departure_time;
+    @Temporal(TemporalType.TIME)
+    private Date departure_time;
     
- 
-    private LocalDate arival_time;
+    @Temporal(TemporalType.TIME)
+    private Date arival_time;
     
     private FlightState state = FlightState.SATIONED;    
     
@@ -49,11 +52,12 @@ public class Flight implements Persistent {
     @ManyToMany(mappedBy = "flights")
     private Set<Itinerary> itineraries;
     
-    public Flight(Plane plane_id, Airport departure_airport, Airport arival_airport, LocalDate departure_time, Users pilot) {
+    public Flight(Plane plane_id, Airport departure_airport, Airport arival_airport, Date departure_time, Date arival_time, Users pilot) {
         this.plane_id = plane_id;
         this.departure_airport = departure_airport;
         this.arival_airport = arival_airport;
         this.departure_time = departure_time;
+        this.arival_time = arival_time;
         this.pilot = pilot;
     }
 }

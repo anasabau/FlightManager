@@ -6,24 +6,23 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
 import lombok.Data;
+import javax.inject.Inject;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import ro.uvt.controller.beans.AirportBean;
 import ro.uvt.controller.beans.FlightBean;
 import ro.uvt.controller.beans.PlaneBean;
 import ro.uvt.controller.beans.UserBean;
 
-/**
- *
+/*
  * @author dan
  */
 @Named("flight")
@@ -58,13 +57,17 @@ public class Flight implements Serializable {
     private String departurePlaneSelectedId;
 
     private String arivalPlaneSelectedId;
-
-    private LocalTime arivalTime;
-
-    private LocalTime departureTime;
-
+    
+    
+    public String formater(Date date){
+        SimpleDateFormat formater = new SimpleDateFormat("HH:mm");
+        return formater.format(date);
+    }
+    
     public void submit() {
-
+        entity.setPlane_id(planeBean.findById(Long.decode(planeSelectedId)));
+        entity.setDeparture_airport(airportBean.findById(Long.decode(departurePlaneSelectedId)));
+        entity.setArival_airport(airportBean.findById(Long.decode(arivalPlaneSelectedId)));
         flightBean.create(entity);
         entity = new ro.uvt.entity.Flight();
     }
