@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./templates/MasterTemplate.xhtml">
+
+            <ui:define name="title">
+                User
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:poll interval="3" listener="#{user.init()}" update=":form :form:table" />
+                    Total items: #{user.userList.size()}
+
+                    <p:dataTable id="table"
+                                 var="p"
+                                 value="#{user.userList}" 
+                                 editable="true"
+                                 lazy="false" >
+                        <f:facet name="header">
+                            Users
+                        </f:facet>
+                        <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:table"/>
+
+                        <p:column headerText="Username">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.username}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.username}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Password">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.password}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.password}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="First Name">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.first_name}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.first_name}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Last Name">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.last_name}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.last_name}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Company id">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.company_id}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.company_id}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Role id">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.role_id}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.role_id}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Edit">
+                            <p:rowEditor/>
+                            <p:commandLink value="Delete" action="#{user.onRowDelete(p)}" update="table"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+
+
+                    Username  <p:inputText id="username"  value="#{user.entity.username}"/><br></br>
+                    Password <p:inputText id="password" value="#{user.entity.password}"/><br></br>
+                    First Name <p:inputText id="first_name" value="#{user.entity.first_name}"/><br></br>
+                    Last Name <p:inputText id="last_name" value="#{user.entity.last_name}"/><br></br>
+                    Company id              
+                    <p:selectOneMenu id="company_id" value="#{user.companySelectedId}" style="width:150px">
+                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{user.companies}" />
+                    </p:selectOneMenu><br></br>
+                    Role id              
+                    <p:selectOneMenu id="role_id" value="#{user.roleSelectedId}" style="width:150px">
+                        <f:selectItem itemLabel="Select Role" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{user.companies}" />
+                    </p:selectOneMenu><br></br>
+
+                    <p:commandButton value="add"   action="#{user.submit()}" update=":form:table username password first_name last_name company_id role_id form"/>
+                    <p:commandButton value="clear"  action="#{user.clear()}" update=" username password first_name last_name company_id role_id"/>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -101,8 +101,8 @@ public class Flight implements Serializable {
         flightBean.update((ro.uvt.entity.Flight) event.getObject());
     }
 
-    public void onRowDelete(ro.uvt.entity.Plane plane) {
-        flightBean.removeById(plane.getId());
+    public void onRowDelete(ro.uvt.entity.Flight flight) {
+        flightBean.removeById(flight.getId());
     }
 
 }

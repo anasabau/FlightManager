@@ -35,7 +35,7 @@ public class Plane implements Serializable {
     private Map<String,Long> companies = new HashMap<>();
     
     private String selectedId;
-    
+        
     public void submit() {
         entity.setCompany_id(companyBean.findById(Long.decode(selectedId)));
         planeBean.create(entity);
