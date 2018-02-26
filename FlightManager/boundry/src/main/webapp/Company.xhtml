@@ -15,9 +15,9 @@
             </ui:define>
 
             <ui:define name="content">
-                  <h:form id="form">
-                      <p:poll interval="3" listener="#{company.init()}" update=":form :form:table" />
-                      Total items: #{company.companyList.size()}
+                <h:form id="form">
+                    <p:poll interval="3" listener="#{company.init()}" update=":form:table" />
+                    Total items: #{company.companyList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -27,8 +27,12 @@
                         <f:facet name="header">
                             Companies
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{company.onRowEdit}" update=":form:table"/>
-
+                       
+                        
+                        <p:ajax event="rowEdit" listener="#{company.onRowEdit}" update=":form:table" immediate="#{company.stop()}"/>
+                       
+                        
+                        
                         <p:column headerText="Name">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
@@ -58,7 +62,9 @@
                         </p:column>
 
                         <p:column headerText="Edit">
-                            <p:rowEditor/>
+                            <p:rowEditor>
+                                <p:commandLink action="#{company.stop}"/>
+                            </p:rowEditor>
                             <p:commandLink value="Delete" action="#{company.onRowDelete(p)}" update="table"/>
                         </p:column>
 
@@ -66,12 +72,12 @@
                     </p:dataTable>
 
 
-                      Name: <p:inputText id="name"  value="#{company.entity.name}"/><br></br>
-                      Country: <p:inputText id="country" value="#{company.entity.country}"/><br></br>
-                      City:   <p:inputText id="city" value="#{company.entity.headquarters}"/><br></br>
+                    Name: <p:inputText id="name"  value="#{company.entity.name}"/><br></br>
+                    Country: <p:inputText id="country" value="#{company.entity.country}"/><br></br>
+                    City:   <p:inputText id="city" value="#{company.entity.headquarters}"/><br></br>
 
-                      <p:commandButton value="add"   action="#{company.submit()}" update=":form:table name country city form"/>
-                      <p:commandButton value="clear"  action="#{company.clear()}" update="name country city"/>
+                    <p:commandButton value="add"   action="#{company.submit()}" update=":form:table name country city form"/>
+                    <p:commandButton value="clear"  action="#{company.clear()}" update="name country city"/>
                 </h:form>
             </ui:define>
 

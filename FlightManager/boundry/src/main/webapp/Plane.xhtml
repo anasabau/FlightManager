@@ -16,7 +16,7 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                    <p:poll interval="3" listener="#{plane.init()}" update=":form :form:table" />
+                    <p:poll interval="3" listener="#{plane.init()}" update=":form:table" />
                     Total items: #{plane.planeList.size()}
 
                     <p:dataTable id="table"

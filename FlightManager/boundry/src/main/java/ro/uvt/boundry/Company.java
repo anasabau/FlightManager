@@ -16,7 +16,6 @@ import org.primefaces.event.RowEditEvent;
 import ro.uvt.controller.beans.CompanyBean;
 
 /**
- *
  * @author dan
  */
 @Named("company")
@@ -33,6 +32,7 @@ public class Company implements Serializable {
 
     @PostConstruct
     public void init() {
+
         companyList = companyBean.findAll();
     }
 
@@ -49,7 +49,7 @@ public class Company implements Serializable {
     }
 
     public void onRowEdit(RowEditEvent event) {
-            companyBean.update( (ro.uvt.entity.Company) event.getObject());
+        companyBean.update((ro.uvt.entity.Company) event.getObject());
     }
 
     public void onRowDelete(ro.uvt.entity.Company company) {
