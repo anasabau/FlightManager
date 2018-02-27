@@ -24,6 +24,8 @@ public class Company implements Serializable {
     private List<ro.uvt.entity.Company> companyList;
 
     private ro.uvt.entity.Company entity = new ro.uvt.entity.Company();
+    
+    private ro.uvt.entity.Company selctedCompany;
 
     @PostConstruct
     public void init() {

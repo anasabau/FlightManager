@@ -23,16 +23,21 @@
                                  var="p"
                                  value="#{company.companyList}" 
                                  editable="true"
-                                 lazy="false" >
+                                 lazy="false"
+                                 selectionMode="single" selection="#{company.selctedCompany}"
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
                         <f:facet name="header">
                             Companies
                         </f:facet>
-                       
-                        
+
+
                         <p:ajax event="rowEdit" listener="#{company.onRowEdit}" update=":form:table" immediate="#{company.stop()}"/>
-                       
-                        
-                        
+
+
+
                         <p:column headerText="Name">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
@@ -67,17 +72,27 @@
                             </p:rowEditor>
                             <p:commandLink value="Delete" action="#{company.onRowDelete(p)}" update="table"/>
                         </p:column>
-
+                        <f:facet name="footer">
+                            <p:commandButton value="add" onclick="PF('dlg1').show();"/>
+                        </f:facet>
 
                     </p:dataTable>
 
 
-                    Name: <p:inputText id="name"  value="#{company.entity.name}"/><br></br>
-                    Country: <p:inputText id="country" value="#{company.entity.country}"/><br></br>
-                    City:   <p:inputText id="city" value="#{company.entity.headquarters}"/><br></br>
+                    <p:dialog id="dial" widgetVar="dlg1" header="Basic Dialog"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            Name: <p:inputText id="name"  value="#{company.entity.name}"/><br></br>
+                            Country: <p:inputText id="country" value="#{company.entity.country}"/><br></br>
+                            City:   <p:inputText id="city" value="#{company.entity.headquarters}"/><br></br>
+                            <h:column>
+                                <p:commandButton  value="clear"   action="#{company.clear()}"  update="name country city"/>
+                                <p:commandButton  value="add"   action="#{company.submit()}"  update="dial"/> 
+                            </h:column>
+                        </h:panelGrid>
+                    </p:dialog>
 
-                    <p:commandButton value="add"   action="#{company.submit()}" update=":form:table name country city form"/>
-                    <p:commandButton value="clear"  action="#{company.clear()}" update="name country city"/>
+
+
                 </h:form>
             </ui:define>
 
