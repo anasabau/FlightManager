@@ -1,5 +1,6 @@
 package ro.uvt.boundry;
 
+import com.sun.javafx.scene.control.SelectedCellsMap;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -8,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
+import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import ro.uvt.controller.beans.CompanyBean;
 
@@ -46,11 +48,14 @@ public class Company implements Serializable {
 
     }
 
-    public void onRowEdit(RowEditEvent event) {
-        companyBean.update((ro.uvt.entity.Company) event.getObject());
+    public void onCellEdit(CellEditEvent event) {
+        companyBean.update((ro.uvt.entity.Company) companyList.get(event.getRowIndex()));
     }
 
-    public void onRowDelete(ro.uvt.entity.Company company) {
-        companyBean.removeById(company.getId());
+    public void onRowDelete() {
+        if(selctedCompany != null){
+            companyList.remove(selctedCompany);
+            companyBean.removeById(selctedCompany.getId());
+        }
     }
 }

@@ -21,9 +21,10 @@
                     <p:dataTable id="table"
                                  var="p"
                                  value="#{company.companyList}" 
+                                 editMode="cell"
                                  editable="true"
-                                 lazy="false"
-                                 selectionMode="single" selection="#{company.selctedCompany}"
+                                 selectionMode="single"
+                                 selection="#{company.selctedCompany}"
                                  rows="10"
                                  rowKey="#{p.id}"
                                  rowsPerPageTemplate="10,20,30"
@@ -33,8 +34,7 @@
                         </f:facet>
 
 
-                        <p:ajax event="rowEdit" listener="#{company.onRowEdit}" update=":form:table" immediate="#{company.stop()}"/>
-
+                        <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="table" />
 
 
                         <p:column headerText="Name">
@@ -70,11 +70,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Edit" action="#{company.onRowDelete(p)}" update="table"/>
-                            </h:column>
-
-                            <h:column>
-                                <p:commandButton value="Delete" action="#{company.onRowDelete(p)}" update="table"/>
+                                <p:commandButton value="Delete" action="#{company.onRowDelete()}" update="form"/>
                             </h:column>
 
                         </f:facet>
@@ -89,13 +85,12 @@
                             City:   <p:inputText id="city" value="#{company.entity.headquarters}"/>
                             <h:column>
                                 <p:commandButton  value="Clear"   action="#{company.clear()}"  update="name country city"/>
-                                <p:commandButton  value="Add"   action="#{company.submit()}"  update="dial"/> 
+                                <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('dlg1').hide();"/> 
                             </h:column>
                         </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
                     </p:dialog>
-
-
-
                 </h:form>
             </ui:define>
 
