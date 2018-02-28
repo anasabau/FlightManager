@@ -3,6 +3,7 @@ package ro.uvt.boundry;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +16,7 @@ import ro.uvt.controller.beans.CompanyBean;
  */
 @Named("company")
 @Data
-@SessionScoped
+@RequestScoped
 public class Company implements Serializable {
 
     @Inject
