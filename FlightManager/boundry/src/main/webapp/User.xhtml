@@ -15,7 +15,6 @@
             </ui:define>
             <ui:define name="content">
                 <h:form id="form">
-                    <p:poll interval="3" listener="#{user.init()}" update=":form :form:table" />
                     Total items: #{user.userList.size()}
 
                     <p:dataTable id="table"

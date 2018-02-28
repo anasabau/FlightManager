@@ -16,7 +16,6 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                    <p:poll interval="3" listener="#{company.init()}" update=":form:table" />
                     Total items: #{company.companyList.size()}
 
                     <p:dataTable id="table"

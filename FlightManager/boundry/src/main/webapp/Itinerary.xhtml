@@ -16,7 +16,6 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                    <p:poll interval="3" listener="#{itinerary.init()}" update=":form:table" />
                     Total items: #{itinerary.itineraryList.size()}
 
                     <p:dataTable id="table"

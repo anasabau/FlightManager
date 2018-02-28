@@ -18,7 +18,6 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                    <p:poll interval="3" listener="#{airport.init()}" update=":form:table" />
                     Total items: #{airport.airportList.size()}
 
                     <p:dataTable id="table"

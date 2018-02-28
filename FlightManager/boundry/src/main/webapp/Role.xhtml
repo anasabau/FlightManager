@@ -16,7 +16,6 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                    <p:poll interval="3" listener="#{role.init()}" update=":form:table" />
                     Total items: #{role.roleList.size()}
 
                     <p:dataTable id="table"
