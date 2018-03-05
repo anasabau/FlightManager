@@ -3,50 +3,57 @@ package ro.uvt.boundry;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
-import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.RoleBean;
 
 /**
  *
  * @author Anastasia
  */
-
 @Named("role")
 @Data
-@SessionScoped
-public class Role implements Serializable{
-    
+@RequestScoped
+public class Role implements Serializable {
+
     @Inject
     private RoleBean roleBean;
-    
-    private ro.uvt.entity.Roles entity = new ro.uvt.entity.Roles();
-    
+
     List<ro.uvt.entity.Roles> roleList;
+
+    private ro.uvt.entity.Roles entity = new ro.uvt.entity.Roles();
+
+    private ro.uvt.entity.Roles selectedRole;
+
+    @PostConstruct
+    public void init() {
+        
+        roleList = roleBean.findAll();
+    }
+
+    public void clear() {
+        entity.setName("");
+    }
     
     public void submit() {
         roleBean.create(entity);
         entity = new ro.uvt.entity.Roles();
     }
+
     
-     public void clear() {
-        entity.setName("");
-     }
-     
-     @PostConstruct
-    public void init() {
-       roleList = roleBean.findAll();
-    }
-    
-     public void onRowEdit(RowEditEvent event) {
-        roleBean.update((ro.uvt.entity.Roles) event.getObject());
+
+    public void onCellEdit(CellEditEvent event) {
+        roleBean.update((ro.uvt.entity.Roles) roleList.get(event.getRowIndex()));
     }
 
-    public void onRowDelete(ro.uvt.entity.Roles role) {
-        roleBean.setActive(role, false);
+    public void onRowDelete() {
+        if(selectedRole != null){
+            roleList.remove(selectedRole);
+            roleBean.setActive(selectedRole, false);
+        }
     }
-    
+
 }

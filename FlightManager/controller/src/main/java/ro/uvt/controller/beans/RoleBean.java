@@ -25,7 +25,7 @@ public class RoleBean {
     }
     
     public void update(Roles role){
-        dao.create(role);
+        dao.update(role);
     }
     
     /*
