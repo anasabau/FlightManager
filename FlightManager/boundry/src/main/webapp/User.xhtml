@@ -20,12 +20,18 @@
                     <p:dataTable id="table"
                                  var="p"
                                  value="#{user.userList}" 
+                                 editMode="cell"
                                  editable="true"
-                                 lazy="false" >
+                                 selectionMode="single"
+                                 selection="#{user.selectedUser}"
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
                         <f:facet name="header">
                             Users
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{user.onRowEdit}" update=":form:table"/>
+                        <p:ajax event="cellEdit" listener="#{user.onCellEdit}" update="table" />
 
                         <p:column headerText="Username">
                             <p:cellEditor>
@@ -80,33 +86,40 @@
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
-
-                        <p:column headerText="Edit">
-                            <p:rowEditor/>
-                            <p:commandLink value="Delete" action="#{user.onRowDelete(p)}" update="table"/>
-                        </p:column>
-
-
+                        <f:facet name="footer">
+                            <h:column>
+                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                            </h:column>
+                            <h:column>
+                                <p:commandButton value="Delete" action="#{user.onRowDelete()}" update="form"/>
+                            </h:column>
+                        </f:facet>
                     </p:dataTable>
 
+                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            Username  <p:inputText id="username"  value="#{user.entity.username}"/><br></br>
+                            Password <p:inputText id="password" value="#{user.entity.password}"/><br></br>
+                            First Name <p:inputText id="first_name" value="#{user.entity.first_name}"/><br></br>
+                            Last Name <p:inputText id="last_name" value="#{user.entity.last_name}"/><br></br>
+                            Company id              
+                            <p:selectOneMenu id="company_id" value="#{user.companySelectedId}" style="width:150px">
+                                <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{user.companies}" />
+                            </p:selectOneMenu><br></br>
+                            Role id              
+                            <p:selectOneMenu id="role_id" value="#{user.roleSelectedId}" style="width:150px">
+                                <f:selectItem itemLabel="Select Role" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{user.roles}" />
+                            </p:selectOneMenu><br></br>
 
-                    Username  <p:inputText id="username"  value="#{user.entity.username}"/><br></br>
-                    Password <p:inputText id="password" value="#{user.entity.password}"/><br></br>
-                    First Name <p:inputText id="first_name" value="#{user.entity.first_name}"/><br></br>
-                    Last Name <p:inputText id="last_name" value="#{user.entity.last_name}"/><br></br>
-                    Company id              
-                    <p:selectOneMenu id="company_id" value="#{user.companySelectedId}" style="width:150px">
-                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{user.companies}" />
-                    </p:selectOneMenu><br></br>
-                    Role id              
-                    <p:selectOneMenu id="role_id" value="#{user.roleSelectedId}" style="width:150px">
-                        <f:selectItem itemLabel="Select Role" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{user.companies}" />
-                    </p:selectOneMenu><br></br>
-
-                    <p:commandButton value="add"   action="#{user.submit()}" update=":form:table username password first_name last_name company_id role_id form"/>
-                    <p:commandButton value="clear"  action="#{user.clear()}" update=" username password first_name last_name company_id role_id"/>
+                            <h:column>
+                                <p:commandButton  value="Clear"   action="#{user.clear()}"  update="username password first_name last_name company_id role_id"/>
+                                <p:commandButton  value="Add"   action="#{user.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                            </h:column>  
+                        </h:panelGrid>
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
                 </h:form>
 
             </ui:define>
