@@ -53,6 +53,7 @@ public class Role implements Serializable {
         if(selectedRole != null){
             roleList.remove(selectedRole);
             roleBean.setActive(selectedRole, false);
+            selectedRole = null;
         }
     }
 

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
@@ -54,9 +55,9 @@ public class DAO implements DAOInterface {
 
     @Override
     public <E extends Persistent> List<E> findAll(Class<E> type) {
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(type));
-        return em.createQuery(cq).getResultList();
+       // CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+       //  return em.createQuery(cq).getResultList(); 
+       return em.createQuery("SELECT t FROM " + type.getSimpleName() + " t").getResultList();
     }
 
     @Override
