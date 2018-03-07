@@ -83,6 +83,7 @@ public class User implements Serializable {
         if (selectedUser != null) {
             userList.remove(selectedUser);
             userBean.setActive(selectedUser, false);
+            selectedUser = null;
         }
     }
 
