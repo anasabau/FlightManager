@@ -22,13 +22,20 @@
 
                     <p:dataTable id="table"
                                  var="p"
-                                 value="#{airport.airportList}" 
+                                 value="#{airport.airportList}"
+                                 editMode="cell"
                                  editable="true"
-                                 lazy="false" >
+                                 selectionMode="single"
+                                 selection="#{airport.selectedAirport}"
+                                 lazy="false" 
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
                         <f:facet name="header">
                             Airport
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{airport.onRowEdit}" update=":form:table"/>
+                        <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update=":form:table"/>
 
                         <p:column headerText="Name">
                             <p:cellEditor>
@@ -58,21 +65,36 @@
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="Edit">
-                            <p:rowEditor/>
-                            <p:commandLink value="Delete" action="#{airport.onRowDelete(p)}" update="table"/>
-                        </p:column>
 
+                        <f:facet name="footer">
+                            <h:column>
+                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                            </h:column>
 
+                            <h:column>
+                                <p:commandButton value="Delete" action="#{airport.onRowDelete()}" update="form"/>
+                            </h:column>
+
+                        </f:facet>
                     </p:dataTable>
 
 
-                    Name: <p:inputText id="name"  value="#{airport.entity.name}"/><br></br>
-                    Country: <p:inputText id="country" value="#{airport.entity.country}"/><br></br>
-                    City:   <p:inputText id="city" value="#{airport.entity.city}"/><br></br>
 
-                    <p:commandButton value="add"   action="#{airport.submit()}" update=":form:table name country city form"/>
-                    <p:commandButton value="clear"  action="#{airport.clear()}" update="name country city"/>
+                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            Name: <p:inputText id="name"  value="#{airport.entity.name}"/>
+                            Country: <p:inputText id="country" value="#{airport.entity.country}"/>
+                            City:   <p:inputText id="city" value="#{airport.entity.city}"/>
+                            <h:column>
+                                <p:commandButton  value="Clear"   action="#{airport.clear()}"  update="name country city"/>
+                                <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                            </h:column>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
+
+
                 </h:form>
             </ui:define>
 
