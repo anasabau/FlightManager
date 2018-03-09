@@ -9,7 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
-import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.CompanyBean;
 import ro.uvt.controller.beans.PlaneBean;
 
@@ -35,6 +35,8 @@ public class Plane implements Serializable {
     private Map<String,Long> companies = new HashMap<>();
     
     private String selectedId;
+    
+    private ro.uvt.entity.Plane selectedPlane;
         
     public void submit() {
         entity.setCompany_id(companyBean.findById(Long.decode(selectedId)));
@@ -58,14 +60,15 @@ public class Plane implements Serializable {
         }
     }
 
-    public void onRowEdit(RowEditEvent event) {
-        planeBean.update((ro.uvt.entity.Plane) event.getObject());
+    public void onCellEdit(CellEditEvent event) {
+        planeBean.update((ro.uvt.entity.Plane) planeList.get(event.getRowIndex()));
     }
 
-    public void onRowDelete(ro.uvt.entity.Plane plane) {
-        planeBean.removeById(plane.getId());
+    public void onRowDelete() {
+        if(selectedPlane != null){
+            planeBean.setActive(selectedPlane, false);
+            planeList.remove(selectedPlane);
+        }
     }
     
-  
-
 }

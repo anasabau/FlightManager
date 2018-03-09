@@ -56,7 +56,10 @@ public class Airport implements Serializable {
         airportBean.update( (ro.uvt.entity.Airport) airportList.get(event.getRowIndex()));
      }
     
-    public void onRowDelete(ro.uvt.entity.Airport airport){
-        airportBean.removeById(airport.getId());
+    public void onRowDelete(){
+        if(selectedAirport != null){
+        airportBean.setActive(selectedAirport, false);
+        airportList.remove(selectedAirport);
+        }
      }
 }

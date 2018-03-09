@@ -21,12 +21,19 @@
                     <p:dataTable id="table"
                                  var="p"
                                  value="#{plane.planeList}" 
+                                 editMode="cell"
                                  editable="true"
-                                 lazy="false" >
+                                 selectionMode="single"
+                                 selection="#{plane.selectedPlane}"
+                                 lazy="false" 
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
                         <f:facet name="header">
                             Planes
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{plane.onRowEdit}" update=":form:table"/>
+                        <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
 
                         <p:column headerText="Model">
                             <p:cellEditor>
@@ -66,26 +73,41 @@
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="Edit">
-                            <p:rowEditor/>
-                            <p:commandLink value="Delete" action="#{plane.onRowDelete(p)}" update="table"/>
-                        </p:column>
 
+                        <f:facet name="footer">
+                            <h:column>
+                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                            </h:column>
 
+                            <h:column>
+                                <p:commandButton value="Delete" action="#{plane.onRowDelete()}" update="form"/>
+                            </h:column>
+
+                        </f:facet>
                     </p:dataTable>
 
 
-                    Model: <p:inputText id="model"  value="#{plane.entity.model}"/><br></br>
-                    Nr of Sits <p:inputText id="sits" value="#{plane.entity.nr_sits}"/><br></br>
-                    Registration id   <p:inputText id="registration_id" value="#{plane.entity.registration_id}"/><br></br>
-                    Company id              
-                    <p:selectOneMenu id="company_id" value="#{plane.selectedId}" style="width:150px">
-                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{plane.companies}" />
-                    </p:selectOneMenu><br></br>
 
-                    <p:commandButton value="add"   action="#{plane.submit()}" update=":form:table model sits registration_id company_id form"/>
-                    <p:commandButton value="clear"  action="#{plane.clear()}" update=" model sits registration_id company_id"/>
+                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            Model: <p:inputText id="model"  value="#{plane.entity.model}"/>
+                            Nr of Sits <p:inputText id="sits" value="#{plane.entity.nr_sits}"/>
+                            Registration id   <p:inputText id="registration_id" value="#{plane.entity.registration_id}"/>
+                            Company id              
+                            <p:selectOneMenu id="company_id" value="#{plane.selectedId}" style="width:150px">
+                                <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{plane.companies}" />
+                            </p:selectOneMenu>
+                            <h:column>
+                                <p:commandButton  value="Clear"   action="#{plane.clear()}"  update="model sits registration_id company_id"/>
+                                <p:commandButton  value="Add"   action="#{plane.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                            </h:column>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
+
+
                 </h:form>
             </ui:define>
 
