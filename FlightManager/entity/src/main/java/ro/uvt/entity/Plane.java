@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.uvt.entity.dao.Activable;
+import ro.uvt.entity.dao.Changeable;
 
 /**
  *
@@ -18,7 +18,7 @@ import ro.uvt.entity.dao.Activable;
 @Entity
 @Data
 @NoArgsConstructor
-public class Plane implements Activable {
+public class Plane implements Changeable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

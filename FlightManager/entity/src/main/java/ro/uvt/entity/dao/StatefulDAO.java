@@ -13,10 +13,10 @@ import javax.enterprise.context.Dependent;
  * @author dan
  */
 @Dependent
-public class ActiveDAO extends DAO implements  Active{
+public class StatefulDAO extends BaseDAO implements  Stateful{
 
     @Override
-    public <E extends Activable> void setActive(Class<E> type, E entity, boolean isActive) {
+    public <E extends Changeable> void setActive(Class<E> type, E entity, boolean isActive) {
        entity.setActive(isActive);
        em.persist(em.merge(entity));
        

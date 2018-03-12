@@ -4,7 +4,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import ro.uvt.entity.Users;
-import ro.uvt.entity.dao.Active;
+import ro.uvt.entity.dao.Stateful;
 
 /**
  *
@@ -15,7 +15,7 @@ import ro.uvt.entity.dao.Active;
 public class UserBean {
     
     @Inject
-    private Active dao;
+    private Stateful dao;
     
     private final Class<Users> type = Users.class;
     

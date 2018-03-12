@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.uvt.entity.dao.Activable;
+import ro.uvt.entity.dao.Changeable;
 
 /**
  *
@@ -17,7 +17,7 @@ import ro.uvt.entity.dao.Activable;
 @Entity
 @Data
 @NoArgsConstructor
-public class Roles implements Activable {
+public class Roles implements Changeable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

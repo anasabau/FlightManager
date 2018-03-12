@@ -4,9 +4,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import ro.uvt.entity.Roles;
-import ro.uvt.entity.dao.Active;
+import ro.uvt.entity.dao.Stateful;
 
 /**
+ *
  *
  * @author dan
  */
@@ -16,7 +17,7 @@ import ro.uvt.entity.dao.Active;
 public class RoleBean {
     
     @Inject
-    private Active dao;
+    private Stateful dao;
     
     private final Class<Roles> type = Roles.class;
     

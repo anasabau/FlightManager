@@ -9,7 +9,7 @@ package ro.uvt.entity.dao;
  *
  * @author dan
  */
-public interface Activable extends Persistent{
+public interface Changeable extends Persistent{
     
     void setActive(boolean is_active);
 }

@@ -8,11 +8,11 @@
     </parent>
 
     <groupId>ro.uvt</groupId>
-    <artifactId>boundry</artifactId>
+    <artifactId>boundary</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>boundry</name>
+    <name>boundary</name>
 
     <dependencies>
         <dependency>

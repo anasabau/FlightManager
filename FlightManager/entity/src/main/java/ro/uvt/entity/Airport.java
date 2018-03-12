@@ -11,7 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.uvt.entity.dao.Activable;
+import ro.uvt.entity.dao.Changeable;
 
 /**
  *
@@ -21,7 +21,7 @@ import ro.uvt.entity.dao.Activable;
 @Entity
 @Data
 @NoArgsConstructor
-public  class Airport implements Activable{
+public  class Airport implements Changeable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

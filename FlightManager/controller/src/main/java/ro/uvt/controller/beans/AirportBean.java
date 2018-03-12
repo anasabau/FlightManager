@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import ro.uvt.entity.Airport;
 import ro.uvt.entity.Company;
-import ro.uvt.entity.dao.Active;
+import ro.uvt.entity.dao.Stateful;
 
 /**
  *
@@ -15,7 +15,7 @@ import ro.uvt.entity.dao.Active;
 public class AirportBean {
 
     @Inject
-    private Active dao;
+    private Stateful dao;
 
     private final Class<Airport> TYPE = Airport.class;
 

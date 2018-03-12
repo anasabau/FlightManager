@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import ro.uvt.entity.Itinerary;
-import ro.uvt.entity.dao.DAOInterface;
+import ro.uvt.entity.dao.DAO;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ItineraryBean {
     
     @Inject
     @Named("BaseDAO")
-    private DAOInterface dao;
+    private DAO dao;
     
     // The type of the entity we are dealing with
     // private final constant, known at compile time
