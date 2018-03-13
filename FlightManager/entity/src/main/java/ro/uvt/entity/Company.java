@@ -55,4 +55,5 @@ public class Company implements Changeable {
         this.is_active = is_active;
     }
     
+    
 }

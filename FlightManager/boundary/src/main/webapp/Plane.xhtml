@@ -94,10 +94,13 @@
                             Nr of Sits <p:inputText id="sits" value="#{plane.entity.nr_sits}"/>
                             Registration id   <p:inputText id="registration_id" value="#{plane.entity.registration_id}"/>
                             Company id              
-                            <p:selectOneMenu id="company_id" value="#{plane.selectedId}" style="width:150px">
+                            <p:selectOneMenu id="company_id" value="#{plane.selectedCompany}" style="width:150px">
                                 <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{plane.companies}" />
+
+                                <p:ajax event="change" listener="#{plane.onCompanyChange}" />
                             </p:selectOneMenu>
+                             <p:message for="company_id" />
                             <h:column>
                                 <p:commandButton  value="Clear"   action="#{plane.clear()}"  update="model sits registration_id company_id"/>
                                 <p:commandButton  value="Add"   action="#{plane.submit()}" oncomplete="PF('dlg1').hide();"/> 

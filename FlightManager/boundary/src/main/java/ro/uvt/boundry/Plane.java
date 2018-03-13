@@ -24,22 +24,23 @@ public class Plane implements Serializable {
 
     @Inject
     private PlaneBean planeBean;
-    
+
     @Inject
     private CompanyBean companyBean;
 
     private ro.uvt.entity.Plane entity = new ro.uvt.entity.Plane();
 
     private List<ro.uvt.entity.Plane> planeList;
-    
-    private Map<String,Long> companies = new HashMap<>();
-    
-    private String selectedId;
-    
+
+    private Map<String, Long> companies = new HashMap<>();
+
+    private String selectedCompany;
+
     private ro.uvt.entity.Plane selectedPlane;
-        
+
     public void submit() {
-        entity.setCompany_id(companyBean.findById(Long.decode(selectedId)));
+        //entity.setCompany_id(companyBean.findById(Long.decode(selectedCompany)));
+
         planeBean.create(entity);
         entity = new ro.uvt.entity.Plane();
     }
@@ -55,7 +56,7 @@ public class Plane implements Serializable {
     @PostConstruct
     public void init() {
         planeList = planeBean.findAll();
-        for(ro.uvt.entity.Company comp :companyBean.findAll()){
+        for (ro.uvt.entity.Company comp : companyBean.findAll()) {
             companies.put(comp.getName() + " (id " + comp.getId() + " )", comp.getId());
         }
     }
@@ -65,10 +66,15 @@ public class Plane implements Serializable {
     }
 
     public void onRowDelete() {
-        if(selectedPlane != null){
+        if (selectedPlane != null) {
             planeBean.setActive(selectedPlane, false);
             planeList.remove(selectedPlane);
         }
     }
-    
+
+    public void onCompanyChange() {
+        Long id = Long.decode(selectedCompany);
+        ro.uvt.entity.Company comp = companyBean.findById(id);
+        entity.setCompany_id(comp);
+    }
 }
