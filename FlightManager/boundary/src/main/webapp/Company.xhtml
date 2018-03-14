@@ -85,11 +85,11 @@
                             Headquarters:   <p:inputText id="city" value="#{company.entity.headquarters}"/>
                             <h:column>
                                 <p:commandButton  value="Clear"   action="#{company.clear()}"  update="name country city"/>
-                                <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                                <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('dlg1').hide();" update=""/> 
                             </h:column>
                         </h:panelGrid>
 
-                        <p:ajax event="close" update="form"/>
+                        <p:ajax event="close"  update="table" form="@form"/>
                     </p:dialog>
                 </h:form>
             </ui:define>

@@ -68,7 +68,12 @@
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.company_id}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.company_id}"/>
+                                    <p:selectOneMenu value="#{plane.selectedCompany}" style="width:150px">
+                                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{plane.companies}" />
+
+                                        <p:ajax event="change" listener="#{plane.onCompanyChange(p)}" />
+                                    </p:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -100,7 +105,7 @@
 
                                 <p:ajax event="change" listener="#{plane.onCompanyChange}" />
                             </p:selectOneMenu>
-                             <p:message for="company_id" />
+                            <p:message for="company_id" />
                             <h:column>
                                 <p:commandButton  value="Clear"   action="#{plane.clear()}"  update="model sits registration_id company_id"/>
                                 <p:commandButton  value="Add"   action="#{plane.submit()}" oncomplete="PF('dlg1').hide();"/> 

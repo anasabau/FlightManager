@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
@@ -19,7 +19,7 @@ import ro.uvt.controller.beans.PlaneBean;
  */
 @Named("plane")
 @Data
-@RequestScoped
+@ViewScoped
 public class Plane implements Serializable {
 
     @Inject
@@ -76,5 +76,11 @@ public class Plane implements Serializable {
         Long id = Long.decode(selectedCompany);
         ro.uvt.entity.Company comp = companyBean.findById(id);
         entity.setCompany_id(comp);
+    }
+
+    public void onCompanyChange(ro.uvt.entity.Plane plane) {
+        Long id = Long.decode(selectedCompany);
+        ro.uvt.entity.Company comp = companyBean.findById(id);
+        plane.setCompany_id(comp);
     }
 }
