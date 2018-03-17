@@ -11,6 +11,7 @@
         <class>ro.uvt.entity.Users</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/init.sql" />
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
     </persistence-unit>
