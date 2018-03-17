@@ -14,9 +14,9 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import lombok.Data;
 import javax.inject.Inject;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.AirportBean;
 import ro.uvt.controller.beans.FlightBean;
 import ro.uvt.controller.beans.PlaneBean;
@@ -27,7 +27,7 @@ import ro.uvt.controller.beans.UserBean;
  */
 @Named("flight")
 @Data
-@SessionScoped
+@ViewScoped
 public class Flight implements Serializable {
 
     private ro.uvt.entity.Flight entity = new ro.uvt.entity.Flight();
@@ -54,20 +54,19 @@ public class Flight implements Serializable {
 
     private String planeSelectedId;
 
-    private String departurePlaneSelectedId;
+    private String departureAirportSelectedId;
 
-    private String arivalPlaneSelectedId;
-    
-    
-    public String formater(Date date){
+    private String arivalAirportSelectedId;
+
+    private ro.uvt.entity.Flight selectedFlight;
+
+    public String formater(Date date) {
         SimpleDateFormat formater = new SimpleDateFormat("HH:mm");
         return formater.format(date);
     }
-    
+
     public void submit() {
-        entity.setPlane_id(planeBean.findById(Long.decode(planeSelectedId)));
-        entity.setDeparture_airport(airportBean.findById(Long.decode(departurePlaneSelectedId)));
-        entity.setArival_airport(airportBean.findById(Long.decode(arivalPlaneSelectedId)));
+        flightList.add(entity);
         flightBean.create(entity);
         entity = new ro.uvt.entity.Flight();
     }
@@ -92,17 +91,55 @@ public class Flight implements Serializable {
             planes.put(plane.getRegistration_id() + " (id " + plane.getId() + ")", plane.getId());
         }
 
-        for (ro.uvt.entity.Users user : userBean.findAll()  ) {
+        for (ro.uvt.entity.Users user : userBean.findAll()) {
             users.put(user.getFirst_name() + " " + user.getLast_name() + " (id " + user.getId() + ")", user.getId());
         }
     }
 
-    public void onRowEdit(RowEditEvent event) {
-        flightBean.update((ro.uvt.entity.Flight) event.getObject());
+    public void onCellEdit(CellEditEvent event) {
+        flightBean.update(flightList.get(event.getRowIndex()));
     }
 
-    public void onRowDelete(ro.uvt.entity.Flight flight) {
-        flightBean.removeById(flight.getId());
+    public void onRowDelete() {
+        if (selectedFlight != null) {
+            flightBean.removeById(selectedFlight.getId());
+            flightList.remove(selectedFlight);
+        }
     }
 
+    public void onPlaneChange(ro.uvt.entity.Flight flight) {
+        Long id = Long.decode(planeSelectedId);
+        ro.uvt.entity.Plane plane = planeBean.findById(id);
+        flight.setPlane_id(plane);
+    }
+
+    public void onPlaneChange() {
+        Long id = Long.decode(planeSelectedId);
+        ro.uvt.entity.Plane plane = planeBean.findById(id);
+        entity.setPlane_id(plane);
+    }
+
+    public void onDepartureChange(ro.uvt.entity.Flight flight) {
+        Long id = Long.decode(departureAirportSelectedId);
+        ro.uvt.entity.Airport airport = airportBean.findById(id);
+        flight.setDeparture_airport(airport);
+    }
+
+    public void onDepartureChange() {
+        Long id = Long.decode(departureAirportSelectedId);
+        ro.uvt.entity.Airport airport = airportBean.findById(id);
+        entity.setDeparture_airport(airport);
+    }
+
+    public void onArivalChange(ro.uvt.entity.Flight flight) {
+        Long id = Long.decode(arivalAirportSelectedId);
+        ro.uvt.entity.Airport airport = airportBean.findById(id);
+        flight.setArival_airport(airport);
+    }
+
+    public void onArivalChange() {
+        Long id = Long.decode(arivalAirportSelectedId);
+        ro.uvt.entity.Airport airport = airportBean.findById(id);
+        entity.setArival_airport(airport);
+    }
 }

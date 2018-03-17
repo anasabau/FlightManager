@@ -41,8 +41,9 @@ public class Company implements Serializable {
 
     public void submit() {
         companyBean.create(entity);
+        companyList.add(entity);
         entity = new ro.uvt.entity.Company();
-
+ 
     }
 
     public void onCellEdit(CellEditEvent event) {

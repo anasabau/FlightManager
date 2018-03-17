@@ -3,7 +3,7 @@ package ro.uvt.boundry;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
@@ -16,7 +16,7 @@ import ro.uvt.controller.beans.RoleBean;
  */
 @Named("role")
 @Data
-@RequestScoped
+@ViewScoped
 public class Role implements Serializable {
 
     @Inject

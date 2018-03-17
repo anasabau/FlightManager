@@ -21,18 +21,31 @@
                     <p:dataTable id="table"
                                  var="p"
                                  value="#{flight.flightList}" 
+                                 editMode="cell"
                                  editable="true"
-                                 lazy="false" >
+                                 selectionMode="single"
+                                 selection="#{flight.selectedFlight}"
+                                 lazy="false"
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
                         <f:facet name="header">
                             Planes
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{flight.onRowEdit()}" update=":form:table"/>
+                        <p:ajax event="cellEdit" listener="#{flight.onCellEdit}" update=":form:table"/>
 
                         <p:column headerText="Plane">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.plane_id}" /></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.plane_id}"/>
+                                    <p:selectOneMenu value="#{flight.planeSelectedId}" style="width:150px">
+                                        <f:selectItem itemLabel="Select Plane" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{flight.planes}" />
+
+                                        <p:ajax event="change" listener="#{flight.onPlaneChange(p)}" />
+
+                                    </p:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -41,7 +54,13 @@
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.departure_airport}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.departure_airport}" />
+                                    <p:selectOneMenu  value="#{flight.departureAirportSelectedId}" style="width:150px">
+                                        <f:selectItem itemLabel="Select Departure Airport" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{flight.airports}" />
+
+                                        <p:ajax event="change" listener="#{flight.onDepartureChange(p)}" />
+
+                                    </p:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -51,7 +70,13 @@
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.arival_airport}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.arival_airport}"/>
+                                    <p:selectOneMenu id="arivalAirport" value="#{flight.arivalAirportSelectedId}" style="width:150px">
+                                        <f:selectItem itemLabel="Select Arival Airport" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{flight.airports}" />
+
+
+                                        <p:ajax event="change" listener="#{flight.onArivalChange(p)}" />
+                                    </p:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>
@@ -95,42 +120,63 @@
                             </p:cellEditor>
                         </p:column>
 
-                        <p:column headerText="Edit">
-                            <p:rowEditor/>
-                            <p:commandLink value="Delete" action="#{flight.onRowDelete(p)}" update="table"/>
-                        </p:column>
+                        <f:facet name="footer">
+                            <h:column>
+                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                            </h:column>
 
+                            <h:column>
+                                <p:commandButton value="Delete" action="#{flight.onRowDelete}" update="form"/>
+                            </h:column>
+
+                        </f:facet>
 
                     </p:dataTable>
 
 
+                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            <p:selectOneMenu id="plane" value="#{flight.planeSelectedId}" style="width:150px">
+                                <f:selectItem itemLabel="Select Plane" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{flight.planes}" />
 
-                    <p:selectOneMenu id="plane" value="#{flight.planeSelectedId}" style="width:150px">
-                        <f:selectItem itemLabel="Select Plane" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{flight.planes}" />
-                    </p:selectOneMenu>
+                                <p:ajax event="change" listener="#{flight.onPlaneChange}" />
 
-                    <p:selectOneMenu id="departureAirport" value="#{flight.departurePlaneSelectedId}" style="width:150px">
-                        <f:selectItem itemLabel="Select Departure Airport" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{flight.airports}" />
-                    </p:selectOneMenu>
+                            </p:selectOneMenu>
 
-                    <p:selectOneMenu id="arivalAirport" value="#{flight.arivalPlaneSelectedId}" style="width:150px">
-                        <f:selectItem itemLabel="Select Arival Airport" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{flight.airports}" />
-                    </p:selectOneMenu>
+                            <p:selectOneMenu id="departureAirport" value="#{flight.departureAirportSelectedId}" style="width:150px">
+                                <f:selectItem itemLabel="Select Departure Airport" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{flight.airports}" />
 
-                    <p:calendar id="arivalTime" value="#{flight.entity.arival_time}" pattern="HH:mm" timeOnly="true">
-                    </p:calendar>
-                    
-                    
-                   
-                    <p:calendar id="departureTime" value="#{flight.entity.departure_time}" pattern="HH:mm" timeOnly="true"  />
-    
-                    
-                    <p:commandButton value="add"   action="#{flight.submit()}" update=":form:table plane arivalAirport  departureAirport arivalTime departureTime "/>
-                    <p:commandButton value="clear"  action="#{flight.clear()}" update=" plane arivalAirport  departureAirport arivalTime departureTime  "/>
-                    
+
+                                <p:ajax event="change" listener="#{flight.onDepartureChange}" />
+
+                            </p:selectOneMenu>
+
+                            <p:selectOneMenu id="arivalAirport" value="#{flight.arivalAirportSelectedId}" style="width:150px">
+                                <f:selectItem itemLabel="Select Arival Airport" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{flight.airports}" />
+
+                                <p:ajax event="change" listener="#{flight.onArivalChange}" />
+                            </p:selectOneMenu>
+
+                            <p:calendar id="arivalTime" value="#{flight.entity.arival_time}" pattern="HH:mm" timeOnly="true">
+                            </p:calendar>
+
+
+
+                            <p:calendar id="departureTime" value="#{flight.entity.departure_time}" pattern="HH:mm" timeOnly="true"  />
+
+
+                            <h:column>
+                                <p:commandButton  value="Clear"   action="#{flight.clear()}"  update="plane arivalAirport  departureAirport arivalTime departureTime  "/>
+                                <p:commandButton  value="Add"   action="#{flight.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                            </h:column>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
+
                 </h:form>
             </ui:define>
 

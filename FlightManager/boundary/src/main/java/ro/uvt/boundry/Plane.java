@@ -42,8 +42,9 @@ public class Plane implements Serializable {
         //entity.setCompany_id(companyBean.findById(Long.decode(selectedCompany)));
 
         planeBean.create(entity);
+        planeList.add(entity);
         entity = new ro.uvt.entity.Plane();
-    }
+     }
 
     public void clear() {
         entity.setModel("");
