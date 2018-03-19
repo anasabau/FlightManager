@@ -69,9 +69,8 @@ public class User implements Serializable {
     }
 
     public void submit() {
-        entity.setCompany_id(companyBean.findById(Long.decode(companySelectedId)));
-        entity.setRole_id(roleBean.findById(Long.decode(roleSelectedId)));
         userBean.create(entity);
+        userList.add(entity);
         entity = new ro.uvt.entity.Users();
     }
 
@@ -85,6 +84,30 @@ public class User implements Serializable {
             userBean.setActive(selectedUser, false);
             selectedUser = null;
         }
+    }
+
+    public void onCompanyChange() {
+        Long id = Long.decode(companySelectedId);
+        ro.uvt.entity.Company comp = companyBean.findById(id);
+        entity.setCompany_id(comp);
+    }
+
+    public void onCompanyChange(ro.uvt.entity.Users user) {
+        Long id = Long.decode(companySelectedId);
+        ro.uvt.entity.Company comp = companyBean.findById(id);
+        user.setCompany_id(comp);
+    }
+
+    public void onRoleChange() {
+        Long id = Long.decode(roleSelectedId);
+        ro.uvt.entity.Roles role = roleBean.findById(id);
+        entity.setRole_id(role);
+    }
+
+    public void onRoleChange(ro.uvt.entity.Users user) {
+        Long id = Long.decode(roleSelectedId);
+        ro.uvt.entity.Roles role = roleBean.findById(id);
+        user.setRole_id(role);
     }
 
 }

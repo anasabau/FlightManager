@@ -40,6 +40,7 @@ public class Role implements Serializable {
     
     public void submit() {
         roleBean.create(entity);
+        roleList.add(entity);
         entity = new ro.uvt.entity.Roles();
     }
 
