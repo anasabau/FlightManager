@@ -14,9 +14,12 @@
                 Flight
             </ui:define>
 
+            <ui:define name="counter">
+                Total items: #{flight.flightList.size()}
+            </ui:define>
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{flight.flightList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -31,7 +34,7 @@
                                  rowsPerPageTemplate="10,20,30"
                                  paginator="true">
                         <f:facet name="header">
-                            Planes
+                            Flight
                         </f:facet>
                         <p:ajax event="cellEdit" listener="#{flight.onCellEdit}" update=":form:table"/>
 
