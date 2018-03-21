@@ -123,9 +123,150 @@ insert into company (id, name, country, headquarters, is_active) values (100, 'V
 
 
 /*
- *           ----------------- AIRPORT---------------------------------
+ *       --------------------------------- ROLES -------------------------------
 */
 
+
+
+create table roles (
+	id INT,
+	name VARCHAR(50),
+	is_active INT
+);
+insert into roles (id, name, is_active) values (1, 'Web Designer I', 1);
+insert into roles (id, name, is_active) values (2, 'Safety Technician I', 1);
+insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
+
+
+
+
+
+/*
+ *   ----------------------------------- USERS -------------------------------------------
+ */
+
+
+create table users (
+	id INT,
+	username VARCHAR(50),
+	password VARCHAR(50),
+	company_id_id INT,
+	role_id_id INT,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	is_active INT
+);
+
+
+
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (1, 'trobertz0', 'LyKrZW', 21, 1, 'Tyne', 'Robertz', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (2, 'bgoff1', 'uQ5AGd33j', 48, 1, 'Brnaby', 'Goff', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (3, 'bocannavan2', 'e82WYovF', 21, 1, 'Bucky', 'O''Cannavan', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (4, 'gmartine3', 'dEz2qh10e', 45, 1, 'Gay', 'Martine', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (5, 'dcondy4', 'UfKpST5', 16, 1, 'Dill', 'Condy', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (6, 'cgrissett5', 'gJr8K6WzF', 42, 1, 'Cullen', 'Grissett', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (7, 'ccable6', 'bxKPMwrO2pYi', 31, 1, 'Casi', 'Cable', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (8, 'rhassur7', 'cjXvMWkkK', 50, 1, 'Robbie', 'Hassur', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (9, 'varon8', 'HX7Xq8', 24, 1, 'Vidovic', 'Aron', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (10, 'abedminster9', 'RK0yiz6', 59, 1, 'Arlee', 'Bedminster', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (11, 'nshuttlea', 'Ml6Wj7j', 5, 1, 'Nannie', 'Shuttle', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (12, 'sferenczb', '1MBjooz5h', 44, 1, 'Sumner', 'Ferencz', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (13, 'gsamwayesc', 'cG8M9TAv0h', 50, 1, 'Glynnis', 'Samwayes', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (14, 'cegelld', 'WdLMZ1bVV', 47, 1, 'Clair', 'Egell', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (15, 'rfaveye', 'LZTuQIFQ', 28, 1, 'Rockwell', 'Favey', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (16, 'lbissettf', 'sodjLR', 71, 1, 'Lazarus', 'Bissett', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (17, 'gwarkupg', 'meWxa9', 66, 1, 'Garvy', 'Warkup', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (18, 'gcawsonh', 'XWiKripBJ', 47, 1, 'Gaylord', 'Cawson', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (19, 'grootei', 'ZEP5cIKx6J2r', 4, 1, 'Gregoire', 'Roote', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (20, 'bloutheanej', 'yIpLolbh', 99, 1, 'Bendicty', 'Loutheane', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (21, 'gfigguresk', 'V5nGw9A', 98, 1, 'Giselbert', 'Figgures', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (22, 'bmessittl', 'DhImN7hjZyTj', 33, 1, 'Bette', 'Messitt', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (23, 'alawlingm', 'Ecc0uHA2Yai', 78, 1, 'Anallese', 'Lawling', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (24, 'mevittsn', '7NWpp2TNQSi', 71, 1, 'Margaretta', 'Evitts', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (25, 'bquarleso', 'ktBeKpX', 21, 1, 'Berton', 'Quarles', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (26, 'dbenwellp', 'kkqr9vcsdXv', 28, 1, 'Darryl', 'Benwell', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (27, 'egarletteq', 'kslu7i', 79, 1, 'Ermengarde', 'Garlette', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (28, 'ododmanr', 'C1dLGOZ', 61, 1, 'Ossie', 'Dodman', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (29, 'foloughanes', 'gNFXKM5WjCcB', 69, 1, 'Florence', 'O''Loughane', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (30, 'bjelkt', 'euTBfA', 2, 1, 'Bren', 'Jelk', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (31, 'rskadeu', 'Ax8kpqVCBK', 36, 1, 'Rad', 'Skade', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (32, 'jpaddisonv', 'JbY0RpyawfH', 44, 1, 'Jeana', 'Paddison', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (33, 'nellertonw', 'qcNCzw6BAUZA', 1, 1, 'Niel', 'Ellerton', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (34, 'nschiesterlx', 'mFtXNryy', 50, 1, 'Nertie', 'Schiesterl', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (35, 'mramsteady', 'xxmdYwfFONW', 61, 1, 'Marjorie', 'Ramstead', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (36, 'averryanz', 'Fa411oe', 81, 1, 'Aube', 'Verryan', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (37, 'ykersting10', '9l4LWx7Oeh', 41, 1, 'Yves', 'Kersting', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (38, 'lhurry11', 'hlzJi7m', 22, 1, 'Lou', 'Hurry', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (39, 'cloncaster12', 'GxTJDISerqlw', 17, 1, 'Corine', 'Loncaster', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (40, 'rlenormand13', '9r3Nck', 21, 1, 'Roana', 'Lenormand', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (41, 'btebboth14', 'CqZMAnW6F', 32, 1, 'Blanch', 'Tebboth', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (42, 'kcoker15', 'fvbWfq2', 6, 1, 'Krissie', 'Coker', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (43, 'jdorsett16', 'CgE2dw', 30, 1, 'Jo', 'Dorsett', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (44, 'skobu17', 'CQLjL2LnU4m', 51, 1, 'Sibeal', 'Kobu', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (45, 'mpettis18', 'zknKC0YX', 53, 1, 'Miriam', 'Pettis', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (46, 'kdallison19', 'C2G2pvDB', 64, 1, 'Kerry', 'Dallison', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (47, 'nrubinowitz1a', 'HRMT2Q3xk', 86, 1, 'Norry', 'Rubinowitz', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (48, 'jcortes1b', '2OZMUgQR', 80, 1, 'Janeczka', 'Cortes', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (49, 'cscoyles1c', 'mXnDBIA', 39, 1, 'Cosimo', 'Scoyles', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (50, 'ktownshend1d', '0zCdNnNgfAQ', 85, 1, 'Kiel', 'Townshend', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (51, 'mdruett1e', '87OZeD1', 27, 1, 'Mathe', 'Druett', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (52, 'pdengel1f', 'xIyawHcgbz', 76, 1, 'Patrice', 'Dengel', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (53, 'epinnigar1g', 'Hv8aMNqy8P', 5, 1, 'Em', 'Pinnigar', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (54, 'ivivian1h', 'XtRvEm', 87, 1, 'Imogene', 'Vivian', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (55, 'jurion1i', 'tvMrENoF', 31, 1, 'Jane', 'Urion', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (56, 'jbullas1j', 'zGdP2jH3LP', 76, 1, 'Joelly', 'Bullas', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (57, 'gmclaren1k', '4bxXb9Kb1aU', 80, 1, 'Giavani', 'McLaren', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (58, 'aesslement1l', 'xxpzDmlN', 87, 1, 'Aube', 'Esslement', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (59, 'dmoggie1m', 'ASsUPi2', 66, 1, 'Domenico', 'Moggie', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (60, 'lbrager1n', 'DAViKt', 24, 1, 'Lief', 'Brager', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (61, 'slochead1o', 'BwKbOCEQh', 90, 1, 'Sadye', 'Lochead', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (62, 'cplank1p', 'tdKkONIRIb', 82, 1, 'Christin', 'Plank', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (63, 'nglasser1q', 'sANWmPrQ', 13, 1, 'Nap', 'Glasser', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (64, 'gshottin1r', 'vTMGrh', 24, 1, 'Gregoire', 'Shottin', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (65, 'gfarnill1s', 'jktfRw4', 77, 1, 'Gabby', 'Farnill', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (66, 'obrisard1t', 'FrW66U0go', 22, 1, 'Ophelie', 'Brisard', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (67, 'lmargerison1u', '1jzvYb', 77, 1, 'Lusa', 'Margerison', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (68, 'lgwyn1v', 'XrGErl', 80, 1, 'Larissa', 'Gwyn', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (69, 'cjacson1w', 'c8QI6AypSO', 1, 1, 'Cameron', 'Jacson', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (70, 'kbodicam1x', 'PmbLD1yJZVB6', 16, 1, 'Kevan', 'Bodicam', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (71, 'twyldish1y', 'tqOQNVKMJeKu', 44, 1, 'Taylor', 'Wyldish', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (72, 'fclaque1z', 'MCFtxrnU', 75, 1, 'Fiann', 'Claque', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (73, 'smosdell20', '2zwDUOcEW', 42, 1, 'Sterne', 'Mosdell', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (74, 'btimmons21', 'Ql9DR9uamw', 52, 1, 'Bone', 'Timmons', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (75, 'akwietak22', 'wSt3gdDqUg', 36, 1, 'Adorne', 'Kwietak', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (76, 'khindmoor23', 'x5ugrziSj1jr', 80, 1, 'Kania', 'Hindmoor', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (77, 'cberic24', 'tp4bsI', 17, 1, 'Claybourne', 'Beric', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (78, 'eingry25', 'tpxD7RYte', 61, 1, 'Ernie', 'Ingry', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (79, 'worteau26', 'a21uRneC', 61, 1, 'Waverly', 'Orteau', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (80, 'vjewel27', 'OVngJoA', 68, 1, 'Vivi', 'Jewel', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (81, 'ccanto28', 'raKNKiNv4S', 3, 1, 'Carlota', 'Canto', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (82, 'rhuygen29', 'ADHvTVz8', 94, 1, 'Romeo', 'Huygen', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (83, 'ntrett2a', 'jlvbMnT8Qde0', 22, 1, 'Nelly', 'Trett', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (84, 'cgerault2b', 'aMuMr3', 74, 1, 'Claudianus', 'Gerault', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (85, 'npress2c', 'c4qO6RUTS', 65, 1, 'Noelani', 'Press', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (86, 'tgabel2d', 'ksJTh0bipxCe', 72, 1, 'Tonye', 'Gabel', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (87, 'kcoyett2e', 'OOyTR0bDO0Z', 88, 1, 'Kissiah', 'Coyett', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (88, 'dpendrich2f', 'TdNtksTf2', 85, 1, 'Donnamarie', 'Pendrich', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (89, 'bletchmore2g', 'a4gOEh1', 94, 1, 'Bernetta', 'Letchmore', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (90, 'eburgess2h', 'FyBihkr4LSx', 13, 1, 'Elliot', 'Burgess', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (91, 'preiner2i', 'Ge7nWV4', 61, 1, 'Pinchas', 'Reiner', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (92, 'mmcquaide2j', '9LVFu0NLi', 13, 1, 'Melony', 'McQuaide', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (93, 'eduplain2k', 'Gc1S7Un', 61, 1, 'Ellary', 'Duplain', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (94, 'vmocker2l', 'rzl3en', 42, 1, 'Vance', 'Mocker', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (95, 'blartice2m', 'hB0EIk0hYIJ', 77, 1, 'Basia', 'Lartice', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (96, 'acaulfield2n', 'YszldGgn', 23, 1, 'Adelaide', 'Caulfield', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (97, 'ksantorini2o', 'GuC1neZ', 12, 1, 'Kala', 'Santorini', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (98, 'rgiamo2p', 'wiG07or', 26, 1, 'Rabbi', 'Giamo', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (99, 'sseabrocke2q', 'HkMNpwsPxY', 88, 1, 'Selby', 'Seabrocke', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (100, 'lfollit2r', 'lLqYlXveZO9q', 0, 1, 'Law', 'Follit', 1);
+
+
+
+
+
+/*
+ *           ----------------- AIRPORT---------------------------------
+*/
 
 create table airport (
 	id INT,
@@ -350,3 +491,233 @@ insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active
 insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active) values (98, 'F350', 'f8a7492f-c208-4f4a-94b0-0951350b8923', 98, 98, 1);
 insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active) values (99, 'SRX', '6c144061-2996-472d-94bf-f3fa76b3079e', 99, 99, 1);
 insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active) values (100, 'Range Rover', '033988e6-3a4f-4551-9ada-e67ffffb7329', 100, 0, 1);
+
+
+
+/*
+ *        --------------------   FLIGHT TABLE
+*/
+
+create table flight (
+	id INT,
+	plane_id_id INT,
+	departure_airport_id INT,
+	arival_airport_id INT,
+	departure_time VARCHAR(50),
+	arival_time VARCHAR(50),
+	pilot_id INT
+);
+
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (1, 1, 1, 1, '12:12', '2:30', 1);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (2, 2, 2, 2, '10:02', '1:56', 2);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (3, 3, 3, 3, '2:41', '21:59', 3);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (4, 4, 4, 4, '10:36', '10:22', 4);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (5, 5, 5, 5, '8:16', '13:41', 5);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (6, 6, 6, 6, '3:30', '23:18', 6);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (7, 7, 7, 7, '4:49', '23:38', 7);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (8, 8, 8, 8, '19:11', '20:31', 8);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (9, 9, 9, 9, '21:16', '14:37', 9);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (10, 10, 10, 10, '15:26', '2:50', 10);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (11, 11, 11, 11, '10:30', '23:49', 11);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (12, 12, 12, 12, '2:42', '12:07', 12);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (13, 13, 13, 13, '23:17', '20:36', 13);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (14, 14, 14, 14, '18:46', '15:10', 14);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (15, 15, 15, 15, '11:21', '22:35', 15);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (16, 16, 16, 16, '3:22', '8:21', 16);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (17, 17, 17, 17, '13:46', '20:56', 17);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (18, 18, 18, 18, '11:20', '4:14', 18);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (19, 19, 19, 19, '16:34', '0:35', 19);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (20, 20, 20, 20, '17:43', '7:02', 20);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (21, 21, 21, 21, '8:54', '15:38', 21);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (22, 22, 22, 22, '13:26', '0:07', 22);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (23, 23, 23, 23, '5:46', '5:27', 23);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (24, 24, 24, 24, '1:34', '9:26', 24);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (25, 25, 25, 25, '11:24', '14:22', 25);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (26, 26, 26, 26, '4:27', '21:29', 26);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (27, 27, 27, 27, '23:02', '16:15', 27);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (28, 28, 28, 28, '6:29', '5:42', 28);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (29, 29, 29, 29, '19:56', '0:38', 29);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (30, 30, 30, 30, '2:21', '10:00', 30);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (31, 31, 31, 31, '20:43', '10:37', 31);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (32, 32, 32, 32, '14:59', '22:44', 32);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (33, 33, 33, 33, '17:46', '9:31', 33);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (34, 34, 34, 34, '12:25', '1:14', 34);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (35, 35, 35, 35, '17:52', '16:34', 35);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (36, 36, 36, 36, '21:33', '7:40', 36);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (37, 37, 37, 37, '0:38', '19:49', 37);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (38, 38, 38, 38, '11:17', '12:04', 38);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (39, 39, 39, 39, '4:00', '19:01', 39);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (40, 40, 40, 40, '6:08', '14:54', 40);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (41, 41, 41, 41, '5:54', '9:13', 41);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (42, 42, 42, 42, '4:43', '18:48', 42);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (43, 43, 43, 43, '20:35', '12:13', 43);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (44, 44, 44, 44, '16:11', '11:55', 44);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (45, 45, 45, 45, '19:02', '0:46', 45);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (46, 46, 46, 46, '3:51', '6:15', 46);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (47, 47, 47, 47, '13:36', '10:09', 47);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (48, 48, 48, 48, '18:09', '7:16', 48);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (49, 49, 49, 49, '1:17', '12:44', 49);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (50, 50, 50, 50, '17:23', '0:19', 50);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (51, 51, 51, 51, '16:24', '4:35', 51);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (52, 52, 52, 52, '7:07', '0:28', 52);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (53, 53, 53, 53, '16:31', '13:42', 53);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (54, 54, 54, 54, '5:59', '13:54', 54);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (55, 55, 55, 55, '21:54', '20:20', 55);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (56, 56, 56, 56, '13:12', '3:03', 56);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (57, 57, 57, 57, '18:36', '11:00', 57);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (58, 58, 58, 58, '8:24', '14:01', 58);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (59, 59, 59, 59, '14:03', '10:02', 59);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (60, 60, 60, 60, '16:18', '6:27', 60);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (61, 61, 61, 61, '6:29', '15:55', 61);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (62, 62, 62, 62, '23:42', '0:50', 62);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (63, 63, 63, 63, '9:09', '19:21', 63);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (64, 64, 64, 64, '20:57', '10:07', 64);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (65, 65, 65, 65, '2:17', '17:56', 65);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (66, 66, 66, 66, '15:10', '4:24', 66);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (67, 67, 67, 67, '5:53', '4:22', 67);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (68, 68, 68, 68, '14:57', '23:29', 68);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (69, 69, 69, 69, '19:02', '12:05', 69);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (70, 70, 70, 70, '13:11', '6:02', 70);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (71, 71, 71, 71, '1:54', '22:45', 71);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (72, 72, 72, 72, '5:19', '23:29', 72);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (73, 73, 73, 73, '10:13', '12:47', 73);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (74, 74, 74, 74, '23:43', '10:55', 74);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (75, 75, 75, 75, '20:37', '20:43', 75);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (76, 76, 76, 76, '11:09', '3:14', 76);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (77, 77, 77, 77, '21:38', '12:46', 77);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (78, 78, 78, 78, '13:14', '5:40', 78);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (79, 79, 79, 79, '3:49', '11:17', 79);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (80, 80, 80, 80, '18:41', '12:36', 80);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (81, 81, 81, 81, '1:33', '5:16', 81);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (82, 82, 82, 82, '19:48', '23:36', 82);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (83, 83, 83, 83, '9:34', '7:15', 83);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (84, 84, 84, 84, '13:41', '1:24', 84);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (85, 85, 85, 85, '12:05', '8:49', 85);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (86, 86, 86, 86, '9:50', '18:32', 86);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (87, 87, 87, 87, '10:18', '5:36', 87);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (88, 88, 88, 88, '18:32', '18:15', 88);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (89, 89, 89, 89, '10:42', '20:32', 89);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (90, 90, 90, 90, '6:13', '19:49', 90);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (91, 91, 91, 91, '1:38', '3:32', 91);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (92, 92, 92, 92, '18:16', '15:21', 92);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (93, 93, 93, 93, '3:01', '4:53', 93);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (94, 94, 94, 94, '11:13', '3:26', 94);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (95, 95, 95, 95, '12:47', '14:24', 95);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (96, 96, 96, 96, '21:30', '7:02', 96);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (97, 97, 97, 97, '22:32', '17:00', 97);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (98, 98, 98, 98, '10:31', '9:15', 98);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (99, 99, 99, 99, '2:10', '4:16', 99);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (100, 0, 0, 0, '14:30', '10:54', 0);
+
+
+
+/*
+ *          ------------------------- Itinerary -----------------------------
+*/
+
+
+create table itinerary (
+	id INT,
+	name VARCHAR(50)
+);
+
+insert into itinerary (id, name) values (1, 'Moca');
+insert into itinerary (id, name) values (2, 'Xincheng Chengguanzhen');
+insert into itinerary (id, name) values (3, 'Tvrdonice');
+insert into itinerary (id, name) values (4, 'Aleksotas');
+insert into itinerary (id, name) values (5, 'Berlin');
+insert into itinerary (id, name) values (6, 'Malakwāl');
+insert into itinerary (id, name) values (7, 'Nerópolis');
+insert into itinerary (id, name) values (8, 'Longvic');
+insert into itinerary (id, name) values (9, 'Bragança');
+insert into itinerary (id, name) values (10, 'Kertorejo');
+insert into itinerary (id, name) values (11, 'Lacroix-Saint-Ouen');
+insert into itinerary (id, name) values (12, 'Qiping');
+insert into itinerary (id, name) values (13, 'Tenja');
+insert into itinerary (id, name) values (14, 'Weiyanggong');
+insert into itinerary (id, name) values (15, 'Dubrava');
+insert into itinerary (id, name) values (16, 'Nioro');
+insert into itinerary (id, name) values (17, 'Loma Bonita');
+insert into itinerary (id, name) values (18, 'North Little Rock');
+insert into itinerary (id, name) values (19, 'Patarrá');
+insert into itinerary (id, name) values (20, 'Rajapeni');
+insert into itinerary (id, name) values (21, 'Baoshan');
+insert into itinerary (id, name) values (22, 'Mādārīpur');
+insert into itinerary (id, name) values (23, 'Zakliczyn');
+insert into itinerary (id, name) values (24, 'Del Rosario');
+insert into itinerary (id, name) values (25, 'Sanzhang');
+insert into itinerary (id, name) values (26, 'Yaroslavl');
+insert into itinerary (id, name) values (27, 'Qal‘ah-ye Kūf');
+insert into itinerary (id, name) values (28, 'Marićka');
+insert into itinerary (id, name) values (29, 'Woodstock');
+insert into itinerary (id, name) values (30, 'Krzęcin');
+insert into itinerary (id, name) values (31, 'Meijiang');
+insert into itinerary (id, name) values (32, 'Keboncau');
+insert into itinerary (id, name) values (33, 'Sośnie');
+insert into itinerary (id, name) values (34, 'Mó');
+insert into itinerary (id, name) values (35, 'Krajan Gebangan');
+insert into itinerary (id, name) values (36, 'Belén de los Andaquíes');
+insert into itinerary (id, name) values (37, 'Guogan');
+insert into itinerary (id, name) values (38, 'Zabrat');
+insert into itinerary (id, name) values (39, 'Riti');
+insert into itinerary (id, name) values (40, 'Szemud');
+insert into itinerary (id, name) values (41, 'Al Ḩammāmāt');
+insert into itinerary (id, name) values (42, 'San Basilio');
+insert into itinerary (id, name) values (43, 'Granada');
+insert into itinerary (id, name) values (44, 'Xiaodukou');
+insert into itinerary (id, name) values (45, 'La Foa');
+insert into itinerary (id, name) values (46, 'Saint-Denis');
+insert into itinerary (id, name) values (47, 'Chenji');
+insert into itinerary (id, name) values (48, 'Kangping');
+insert into itinerary (id, name) values (49, 'Jaboticabal');
+insert into itinerary (id, name) values (50, 'Kudang');
+insert into itinerary (id, name) values (51, 'Biñan');
+insert into itinerary (id, name) values (52, 'Soca');
+insert into itinerary (id, name) values (53, 'Nachalovo');
+insert into itinerary (id, name) values (54, 'Venëv');
+insert into itinerary (id, name) values (55, 'Borkowice');
+insert into itinerary (id, name) values (56, 'Paltashaco');
+insert into itinerary (id, name) values (57, 'Ica');
+insert into itinerary (id, name) values (58, 'Salto');
+insert into itinerary (id, name) values (59, 'Tumu’ertai');
+insert into itinerary (id, name) values (60, 'Xiaoshi');
+insert into itinerary (id, name) values (61, 'Weda');
+insert into itinerary (id, name) values (62, 'Dolní Sloupnice');
+insert into itinerary (id, name) values (63, 'Łapsze Niżne');
+insert into itinerary (id, name) values (64, 'Mandal');
+insert into itinerary (id, name) values (65, 'Yishi');
+insert into itinerary (id, name) values (66, 'Yong’an');
+insert into itinerary (id, name) values (67, 'Gus’-Khrustal’nyy');
+insert into itinerary (id, name) values (68, 'Butou');
+insert into itinerary (id, name) values (69, 'Severobaykal’sk');
+insert into itinerary (id, name) values (70, 'Ducheng');
+insert into itinerary (id, name) values (71, 'Tubigan');
+insert into itinerary (id, name) values (72, 'Bitung');
+insert into itinerary (id, name) values (73, 'Janowiec');
+insert into itinerary (id, name) values (74, 'Wangjiaping');
+insert into itinerary (id, name) values (75, 'Antimácheia');
+insert into itinerary (id, name) values (76, 'Amphoe Sikhiu');
+insert into itinerary (id, name) values (77, 'Maishi');
+insert into itinerary (id, name) values (78, 'Sabanalarga');
+insert into itinerary (id, name) values (79, 'Kyaikkami');
+insert into itinerary (id, name) values (80, 'Konārak');
+insert into itinerary (id, name) values (81, 'Xiawa');
+insert into itinerary (id, name) values (82, 'Nawá');
+insert into itinerary (id, name) values (83, 'Yuanmou');
+insert into itinerary (id, name) values (84, 'Tanggungrejo');
+insert into itinerary (id, name) values (85, 'Ljubovija');
+insert into itinerary (id, name) values (86, 'Saint-Marcellin');
+insert into itinerary (id, name) values (87, 'Kalatongke');
+insert into itinerary (id, name) values (88, 'La Tinguiña');
+insert into itinerary (id, name) values (89, 'Cibojong');
+insert into itinerary (id, name) values (90, 'Kohtla-Järve');
+insert into itinerary (id, name) values (91, 'Sukarame');
+insert into itinerary (id, name) values (92, 'Tānk');
+insert into itinerary (id, name) values (93, 'Dolega District');
+insert into itinerary (id, name) values (94, 'Ferreiras');
+insert into itinerary (id, name) values (95, 'Yuza');
+insert into itinerary (id, name) values (96, 'Jocotenango');
+insert into itinerary (id, name) values (97, 'Suicheng');
+insert into itinerary (id, name) values (98, 'Tai Po');
+insert into itinerary (id, name) values (99, 'Quintã');
+insert into itinerary (id, name) values (100, 'Cavalões');
