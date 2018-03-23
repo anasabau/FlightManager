@@ -21,12 +21,20 @@
                     <p:dataTable id="table"
                                  var="p"
                                  value="#{itinerary.itineraryList}" 
+                                 editMode="cell"
                                  editable="true"
-                                 lazy="false" >
+                                 selectionMode="single"
+                                 selection="#{itinerary.selectedItinerary}"
+                                 lazy="false" 
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
                         <f:facet name="header">
                             Itinerary
                         </f:facet>
-                        <p:ajax event="rowEdit" listener="#{itinerary.onRowEdit}" update=":form:table"/>
+                        <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
+                        <p:ajax event="" listener="#{itinerary.rowSelectionEvent}" />
 
                         <p:column headerText="Name">
                             <p:cellEditor>
@@ -37,17 +45,46 @@
                             </p:cellEditor>
                         </p:column>            
 
-                        <p:column headerText="Edit">
-                            <p:rowEditor/>
-                            <p:commandLink value="Delete" action="#{itinerary.onRowDelete(p)}" update="table"/>
-                        </p:column>
+                        <f:facet name="footer">
+                            <h:column>
+                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                            </h:column>
+
+                            <h:column>
+                                <p:commandButton value="Delete" action="#{itinerary.onRowDelete()}" update="form"/>
+                            </h:column>
+                            <h:column>
+                                <p:commandButton value="Add flights" onclick="PF('flights').show();" disabled="#{!itinerary.selected}"/>
+                            </h:column>
+                        </f:facet>
                     </p:dataTable>
 
 
-                    Name: <p:inputText id="name"  value="#{itinerary.entity.name}"/><br></br>
+                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            Name: <p:inputText id="name"  value="#{itinerary.entity.name}"/><br></br>
 
-                    <p:commandButton value="add"   action="#{itinerary.submit()}" update=":form:table name form"/>
-                    <p:commandButton value="clear"  action="#{itinerary.clear()}" update="name"/>
+                            <h:column>
+                                <p:commandButton  value="Clear"   action="#{itinerary.clear()}"  update="name"/>
+                                <p:commandButton  value="Add"   action="#{itinerary.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                            </h:column>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
+
+                    <p:dialog id="flights" widgetVar="flights" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="0">
+                            <h:selectOneListbox  size="30">
+                                <f:selectItems value="#{itinerary.flights}"/>
+
+                            </h:selectOneListbox>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
+
+
                 </h:form>
             </ui:define>
 
