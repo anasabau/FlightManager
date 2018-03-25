@@ -1,7 +1,7 @@
 package ro.uvt.entity;
 
-import ro.uvt.entity.dao.Persistent;
 import java.util.Set;
+import ro.uvt.entity.dao.Persistent;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -34,7 +34,8 @@
                             Itinerary
                         </f:facet>
                         <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
-                        <p:ajax event="rowEdit" listener="#{itinerary.rowSelectionEvent}" />
+
+                        <p:ajax event="rowSelect" listener="#{itinerary.rowSelectionEvent}" update="addFlights showFlights" />
 
                         <p:column headerText="Name">
                             <p:cellEditor>
@@ -54,7 +55,10 @@
                                 <p:commandButton value="Delete" action="#{itinerary.onRowDelete()}" update="form"/>
                             </h:column>
                             <h:column>
-                                <p:commandButton value="Add flights" onclick="PF('flights').show();" disabled="#{!itinerary.selected}"/>
+                                <p:commandButton id="addFlights" value="Add flights" onclick="PF('flights').show();" disabled="#{!itinerary.selected}"/>
+                            </h:column>
+                            <h:column>
+                                <p:commandButton id="showFlights" value="Show flights" onclick="PF('show').show();" disabled="#{itinerary.selectedItinerary == null}"/>
                             </h:column>
                         </f:facet>
                     </p:dataTable>
@@ -75,15 +79,39 @@
 
                     <p:dialog id="flights" widgetVar="flights" header="Add Content"  minHeight="40">
                         <h:panelGrid columns="0">
-                            <h:selectOneListbox  size="30">
+                            <h:selectOneListbox  value="#{itinerary.selectedFlight}" size="10">
                                 <f:selectItems value="#{itinerary.flights}"/>
 
+                                <p:ajax event="change" update="addFlightButton"/>
                             </h:selectOneListbox>
+
+                            <p:commandButton value="Add flight" 
+                                             id="addFlightButton" 
+                                             disabled="#{itinerary.selectedFlight == null }" 
+                                             action="#{itinerary.addFlightToItinerary()}" 
+                                             oncomplete="PF('flights').hide();"/>
                         </h:panelGrid>
 
                         <p:ajax event="close" update="form"/>
                     </p:dialog>
 
+
+                    <p:dialog id="show" widgetVar="show" header="Itinerary Flights"  minHeight="40">
+                        <h:panelGrid columns="0">
+                            <h:selectOneListbox size="10">
+                                <f:selectItems value="#{itinerary.selectedItinerary.flights}"/>
+
+                            </h:selectOneListbox>
+
+                            <p:commandButton value="remove flight" 
+                                             id="removeFlightButton" 
+                                             disabled="#{itinerary.selectedItinerary.flights.size() == 0 }" 
+                                             action="#{itinerary.removeFlightFromItinerary()}" 
+                                             oncomplete="PF('show').hide();"/>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="form"/>
+                    </p:dialog>
 
                 </h:form>
             </ui:define>
