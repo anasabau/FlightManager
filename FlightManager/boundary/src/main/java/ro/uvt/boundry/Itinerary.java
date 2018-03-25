@@ -1,6 +1,7 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -85,14 +86,39 @@ public class Itinerary implements Serializable {
 
     public void removeFlightFromItinerary() {
         if (!selectedItinerary.getFlights().isEmpty()) {
-            ro.uvt.entity.Flight lastFlight = null;
-            for (Iterator<ro.uvt.entity.Flight> iter = selectedItinerary.getFlights().iterator(); iter.hasNext();) {
-                lastFlight = iter.next();
-            }
+            ro.uvt.entity.Flight lastFlight = getLastFlightForSelectedItinerary();
             if (lastFlight != null) {
                 selectedItinerary.getFlights().remove(lastFlight);
                 itineraryBean.update(selectedItinerary);
             }
         }
+    }
+
+    private ro.uvt.entity.Flight getLastFlightForSelectedItinerary() {
+        ro.uvt.entity.Flight lastFlight = null;
+
+        if (selectedItinerary != null) {
+            for (Iterator<ro.uvt.entity.Flight> iter = selectedItinerary.getFlights().iterator(); iter.hasNext();) {
+                lastFlight = iter.next();
+            }
+        } else {
+            throw new RuntimeException("No Itinerary is selected, cannot get latest flight");
+
+        }
+        return lastFlight;
+    }
+
+    public Map<String, Long> getFilteredFlights() {
+        if (selectedItinerary != null && selectedItinerary.getFlights().size() > 0) {
+            Map<String, Long> filteredFlights = new HashMap<>();
+
+            for (ro.uvt.entity.Flight flight : flightBean.findAll()) {
+                if (flight.getDeparture_airport().getId().equals(getLastFlightForSelectedItinerary().getArival_airport().getId())) {
+                    filteredFlights.put(flight.toString(), flight.getId());
+                }
+            }
+            return filteredFlights;
+        }
+        return flights;
     }
 }

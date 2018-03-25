@@ -78,8 +78,8 @@
 
                     <p:dialog id="flights" widgetVar="flights" header="Add Content"  minHeight="40">
                         <h:panelGrid columns="0">
-                            <h:selectOneListbox  value="#{itinerary.selectedFlight}" size="10">
-                                <f:selectItems value="#{itinerary.flights}"/>
+                            <h:selectOneListbox   value="#{itinerary.selectedFlight}" size="10">
+                                <f:selectItems value="#{itinerary.filteredFlights}"/>
 
                                 <p:ajax event="change" update="addFlightButton"/>
                             </h:selectOneListbox>
