@@ -60,4 +60,9 @@ public class Flight implements Persistent {
         this.arival_time = arival_time;
         this.pilot = pilot;
     }
+    
+    @Override
+    public String toString(){
+        return departure_airport.getCity() + " - " + arival_airport.getCity() + " (id) " + id;
+    }
 }

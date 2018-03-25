@@ -1,7 +1,10 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -30,11 +33,13 @@ public class Itinerary implements Serializable {
 
     List<ro.uvt.entity.Itinerary> itineraryList;
 
-    List<ro.uvt.entity.Flight> flights;
-
     private ro.uvt.entity.Itinerary selectedItinerary;
 
     private boolean isSelected = selectedItinerary != null;
+
+    private Map<String, Long> flights = new HashMap<>();
+
+    private String selectedFlight;
 
     public void submit() {
         itineraryBean.create(entity);
@@ -49,7 +54,9 @@ public class Itinerary implements Serializable {
     public void init() {
         itineraryList = itineraryBean.findAll();
 
-        flights = flightBean.findAll();
+        for (ro.uvt.entity.Flight flight : flightBean.findAll()) {
+            flights.put(flight.toString(), flight.getId());
+        }
 
     }
 
@@ -64,7 +71,28 @@ public class Itinerary implements Serializable {
         }
     }
 
-    private void rowSelectionEvent() {
+    public void rowSelectionEvent() {
         isSelected = selectedItinerary != null;
+    }
+
+    public void addFlightToItinerary() {
+        if (selectedItinerary != null && selectedFlight != null) {
+            ro.uvt.entity.Flight flight = flightBean.findById(Long.decode(selectedFlight));
+            selectedItinerary.getFlights().add(flight);
+            itineraryBean.update(selectedItinerary);
+        }
+    }
+
+    public void removeFlightFromItinerary() {
+        if (!selectedItinerary.getFlights().isEmpty()) {
+            ro.uvt.entity.Flight lastFlight = null;
+            for (Iterator<ro.uvt.entity.Flight> iter = selectedItinerary.getFlights().iterator(); iter.hasNext();) {
+                lastFlight = iter.next();
+            }
+            if (lastFlight != null) {
+                selectedItinerary.getFlights().remove(lastFlight);
+                itineraryBean.update(selectedItinerary);
+            }
+        }
     }
 }
