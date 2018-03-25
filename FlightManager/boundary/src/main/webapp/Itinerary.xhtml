@@ -34,7 +34,7 @@
                             Itinerary
                         </f:facet>
                         <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
-                        <p:ajax event="" listener="#{itinerary.rowSelectionEvent}" />
+                        <p:ajax event="rowEdit" listener="#{itinerary.rowSelectionEvent}" />
 
                         <p:column headerText="Name">
                             <p:cellEditor>
