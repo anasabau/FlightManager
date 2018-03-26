@@ -21,6 +21,7 @@ import ro.uvt.controller.beans.AirportBean;
 import ro.uvt.controller.beans.FlightBean;
 import ro.uvt.controller.beans.PlaneBean;
 import ro.uvt.controller.beans.UserBean;
+import ro.uvt.entity.FlightState;
 
 /*
  * @author dan
@@ -51,6 +52,9 @@ public class Flight implements Serializable {
     private Map<String, Long> planes = new HashMap<String, Long>();
 
     private Map<String, Long> users = new HashMap<String, Long>();
+    
+    private Map<String, FlightState> states = new HashMap<>();
+
 
     private String planeSelectedId;
 
@@ -97,6 +101,10 @@ public class Flight implements Serializable {
 
         for (ro.uvt.entity.Users user : userBean.findAll()) {
             users.put(user.toString(), user.getId());
+        }
+        
+        for(ro.uvt.entity.FlightState state : ro.uvt.entity.FlightState.values()){
+             states.put(state.name(), state);
         }
     }
 

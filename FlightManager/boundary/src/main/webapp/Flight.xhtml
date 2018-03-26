@@ -107,9 +107,15 @@
 
                         <p:column headerText="State">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.state}"/></f:facet>
+                                <f:facet name="output"><h:outputText  value="#{p.FlightStateName()}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.state}"/>
+                                    <p:selectOneMenu  value="#{p.flightState}"  style="width:150px">
+                                        <f:selectItem itemLabel="Select State" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{flight.states}" />
+
+                                        <p:ajax event="change"  update="form"  />
+
+                                    </p:selectOneMenu>
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>

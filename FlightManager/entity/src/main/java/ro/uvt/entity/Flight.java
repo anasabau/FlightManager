@@ -44,7 +44,7 @@ public class Flight implements Persistent {
     @Temporal(TemporalType.TIME)
     private Date arival_time;
     
-    private FlightState state = FlightState.SATIONED;    
+    private FlightState flightState;
     
     @OneToOne
     private Users pilot;
@@ -59,10 +59,17 @@ public class Flight implements Persistent {
         this.departure_time = departure_time;
         this.arival_time = arival_time;
         this.pilot = pilot;
+        
+        this.flightState = FlightState.SATIONED;  
     }
     
     @Override
     public String toString(){
         return departure_airport.getName() + "(" + departure_airport.getCity() + ")" + " - " + arival_airport.getName() + "(" + arival_airport.getCity() + ")" + " (id) " + id;
+    }
+    
+    public String FlightStateName(){
+        if(flightState == null) return flightState.SATIONED.name();
+        return flightState.name();
     }
 }
