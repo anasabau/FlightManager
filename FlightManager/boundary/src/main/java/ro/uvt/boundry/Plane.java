@@ -44,6 +44,7 @@ public class Plane implements Serializable {
         planeBean.create(entity);
         planeList.add(entity);
         entity = new ro.uvt.entity.Plane();
+        clear();
      }
 
     public void clear() {
@@ -51,7 +52,7 @@ public class Plane implements Serializable {
         entity.setNr_sits(0);
         entity.setRegistration_id("");
         entity.setCompany_id(null);
-
+        selectedCompany = "";
     }
 
     @PostConstruct

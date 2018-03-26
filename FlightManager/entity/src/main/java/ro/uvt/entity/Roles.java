@@ -20,7 +20,7 @@ import ro.uvt.entity.dao.Changeable;
 public class Roles implements Changeable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(nullable = false)

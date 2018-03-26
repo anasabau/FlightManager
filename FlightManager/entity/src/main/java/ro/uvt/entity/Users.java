@@ -21,7 +21,7 @@ import ro.uvt.entity.dao.Changeable;
 public class Users implements Changeable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(nullable = false)
@@ -58,6 +58,9 @@ public class Users implements Changeable {
         this.is_active = is_active;
     }
     
-    
+    @Override
+    public String toString(){
+        return username + " (id) " + id; 
+    }
     
 }

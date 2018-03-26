@@ -24,7 +24,7 @@ import ro.uvt.entity.dao.Changeable;
 public  class Airport implements Changeable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(nullable = false)
@@ -61,5 +61,9 @@ public  class Airport implements Changeable{
         this.is_active = is_active;
     }
 
+    @Override
+    public String toString(){
+        return name + " (citiy) " + city + " (country) " + country;
+    }
   
 }

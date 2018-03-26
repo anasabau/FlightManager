@@ -50,11 +50,11 @@ public class User implements Serializable {
     public void init() {
         userList = userBean.findAll();
         for (ro.uvt.entity.Company comp : companyBean.findAll()) {
-            companies.put(comp.getName() + " (id " + comp.getId() + " )", comp.getId());
+            companies.put(comp.toString(), comp.getId());
         }
 
         for (ro.uvt.entity.Roles role : roleBean.findAll()) {
-            roles.put(role.getName() + " (id " + role.getId() + " )", role.getId());
+            roles.put(role.toString(), role.getId());
         }
     }
 

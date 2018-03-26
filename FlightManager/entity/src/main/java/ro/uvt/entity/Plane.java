@@ -21,7 +21,7 @@ import ro.uvt.entity.dao.Changeable;
 public class Plane implements Changeable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
             
     @Column(nullable = false)
@@ -49,5 +49,8 @@ public class Plane implements Changeable {
             this.is_active = is_active;
     }
     
-    
+    @Override
+    public String toString(){
+        return registration_id + " (id)" + id;
+    }
 }

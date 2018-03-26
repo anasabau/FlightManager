@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class Flight implements Persistent {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @OneToOne
@@ -63,6 +63,6 @@ public class Flight implements Persistent {
     
     @Override
     public String toString(){
-        return departure_airport.getCity() + " - " + arival_airport.getCity() + " (id) " + id;
+        return departure_airport.getName() + "(" + departure_airport.getCity() + ")" + " - " + arival_airport.getName() + "(" + arival_airport.getCity() + ")" + " (id) " + id;
     }
 }

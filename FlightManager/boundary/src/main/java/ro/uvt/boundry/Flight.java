@@ -69,6 +69,7 @@ public class Flight implements Serializable {
         flightList.add(entity);
         flightBean.create(entity);
         entity = new ro.uvt.entity.Flight();
+        clear();
     }
 
     public void clear() {
@@ -77,6 +78,9 @@ public class Flight implements Serializable {
         entity.setArival_airport(null);
         entity.setDeparture_time(null);
         entity.setArival_time(null);
+        planeSelectedId = "";
+        departureAirportSelectedId = "";
+        arivalAirportSelectedId = "";
     }
 
     @PostConstruct
@@ -84,15 +88,15 @@ public class Flight implements Serializable {
         flightList = flightBean.findAll();
 
         for (ro.uvt.entity.Airport airport : airportBean.findAll()) {
-            airports.put(airport.getName() + " (id " + airport.getId() + ")", airport.getId());
+            airports.put(airport.toString(), airport.getId());
         }
 
         for (ro.uvt.entity.Plane plane : planeBean.findAll()) {
-            planes.put(plane.getRegistration_id() + " (id " + plane.getId() + ")", plane.getId());
+            planes.put(plane.toString(), plane.getId());
         }
 
         for (ro.uvt.entity.Users user : userBean.findAll()) {
-            users.put(user.getFirst_name() + " " + user.getLast_name() + " (id " + user.getId() + ")", user.getId());
+            users.put(user.toString(), user.getId());
         }
     }
 
