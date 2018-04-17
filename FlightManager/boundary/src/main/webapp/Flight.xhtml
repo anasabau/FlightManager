@@ -26,7 +26,6 @@
                                  value="#{flight.flightList}" 
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{flight.selectedFlight}"
                                  lazy="false"
                                  rows="10"
@@ -36,6 +35,10 @@
                         <f:facet name="header">
                             Flight
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
+                        
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
                         <p:ajax event="cellEdit" listener="#{flight.onCellEdit}" update=":form:table"/>
 
                         <p:column headerText="Plane">
@@ -135,7 +138,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Delete" action="#{flight.onRowDelete}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{flight.selectedFlight==null}" action="#{flight.onRowDelete}" update="form"/>
                             </h:column>
 
                         </f:facet>

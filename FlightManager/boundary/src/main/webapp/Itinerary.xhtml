@@ -23,7 +23,6 @@
                                  value="#{itinerary.itineraryList}" 
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{itinerary.selectedItinerary}"
                                  lazy="false" 
                                  rows="10"
@@ -33,10 +32,12 @@
                         <f:facet name="header">
                             Itinerary
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
                         <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
+                        <p:ajax  event="rowSelectRadio" listener="#{itinerary.rowSelectionEvent}"  update="deleteButton addFlights showFlights" />
 
-                        <p:ajax event="rowSelect" listener="#{itinerary.rowSelectionEvent}" update="addFlights showFlights" />
-
+                        
                         <p:column headerText="Name">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
@@ -52,7 +53,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Delete" action="#{itinerary.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" action="#{itinerary.onRowDelete()}" update="form"/>
                             </h:column>
                             <h:column>
                                 <p:commandButton id="addFlights" value="Add flights" onclick="PF('flights').show();" disabled="#{!itinerary.selected}"/>

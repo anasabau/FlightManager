@@ -23,7 +23,6 @@
                                  value="#{role.roleList}" 
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{role.selectedRole}"
                                  rows="10"
                                  rowKey="#{p.id}"
@@ -32,6 +31,8 @@
                         <f:facet name="header">
                             Role
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                        
                         <p:ajax event="cellEdit" listener="#{role.onCellEdit}" update="table" />
 
                         <p:column headerText="Name">

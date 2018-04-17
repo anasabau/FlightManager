@@ -23,7 +23,6 @@
                                  value="#{plane.planeList}" 
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{plane.selectedPlane}"
                                  lazy="false" 
                                  rows="10"
@@ -33,6 +32,8 @@
                         <f:facet name="header">
                             Planes
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                                                
                         <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
 
                         <p:column headerText="Model">

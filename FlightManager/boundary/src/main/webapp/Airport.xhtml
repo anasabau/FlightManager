@@ -23,7 +23,6 @@
                                  value="#{airport.airportList}"
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{airport.selectedAirport}"
                                  lazy="false" 
                                  rows="10"
@@ -33,6 +32,9 @@
                         <f:facet name="header">
                             Airport
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
                         <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update=":form:table"/>
 
                         <p:column headerText="Name">
@@ -70,12 +72,12 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Delete" action="#{airport.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" action="#{airport.onRowDelete()}" update="form"/>
                             </h:column>
 
                         </f:facet>
                     </p:dataTable>
-                    
+
 
 
                     <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">

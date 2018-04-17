@@ -23,7 +23,6 @@
                                  value="#{company.companyList}" 
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{company.selctedCompany}"
                                  rows="10"
                                  rowKey="#{p.id}"
@@ -32,9 +31,10 @@
                         <f:facet name="header">
                             Companies
                         </f:facet>
-
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
                         <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="table" />
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
 
 
                         <p:column headerText="Name">
@@ -70,7 +70,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Delete" action="#{company.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" action="#{company.onRowDelete()}" update="form"/>
                             </h:column>
 
                         </f:facet>

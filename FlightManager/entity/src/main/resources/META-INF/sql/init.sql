@@ -8,6 +8,12 @@
  * Created: Mar 17, 2018
  */
 
+------------- VIEW -------------------------
+create view user_group as
+select username, name roles, role_id_id user_role
+from roles r, users u;
+----------------- VIEW ----------------
+
 /*
 *           --------------------- COMPANY ------------------
 */
@@ -133,7 +139,7 @@ create table roles (
 	name VARCHAR(50),
 	is_active INT
 );
-insert into roles (id, name, is_active) values (1, 'Web Designer I', 1);
+insert into roles (id, name, is_active) values (1, 'admin', 1);
 insert into roles (id, name, is_active) values (2, 'Safety Technician I', 1);
 insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
 
@@ -159,7 +165,9 @@ create table users (
 
 
 
-insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (1, 'trobertz0', 'LyKrZW', 21, 1, 'Tyne', 'Robertz', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 21, 1, 'Tyne', 'Robertz', 1);
+
+
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (2, 'bgoff1', 'uQ5AGd33j', 48, 1, 'Brnaby', 'Goff', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (3, 'bocannavan2', 'e82WYovF', 21, 1, 'Bucky', 'O''Cannavan', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (4, 'gmartine3', 'dEz2qh10e', 45, 1, 'Gay', 'Martine', 1);

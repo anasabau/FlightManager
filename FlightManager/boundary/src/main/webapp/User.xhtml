@@ -22,7 +22,6 @@
                                  value="#{user.userList}" 
                                  editMode="cell"
                                  editable="true"
-                                 selectionMode="single"
                                  selection="#{user.selectedUser}"
                                  rows="10"
                                  rowKey="#{p.id}"
@@ -31,6 +30,8 @@
                         <f:facet name="header">
                             Users
                         </f:facet>
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
                         <p:ajax event="cellEdit" listener="#{user.onCellEdit}" update="table" />
 
                         <p:column headerText="Username">

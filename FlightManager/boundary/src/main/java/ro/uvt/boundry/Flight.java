@@ -154,4 +154,8 @@ public class Flight implements Serializable {
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         entity.setArival_airport(airport);
     }
+    
+    public void test(){
+        System.out.println("ajunge!");
+    }
 }
