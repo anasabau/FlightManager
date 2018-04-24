@@ -6,6 +6,7 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,10 +27,10 @@ import ro.uvt.entity.FlightState;
 /*
  * @author dan
  */
-@Named("flight")
+@Named("flightView")
 @Data
 @ViewScoped
-public class Flight implements Serializable {
+public class FlightView implements Serializable {
 
     private ro.uvt.entity.Flight entity = new ro.uvt.entity.Flight();
 
@@ -52,9 +53,8 @@ public class Flight implements Serializable {
     private Map<String, Long> planes = new HashMap<String, Long>();
 
     private Map<String, Long> users = new HashMap<String, Long>();
-    
-    private Map<String, FlightState> states = new HashMap<>();
 
+    private Map<String, FlightState> states = new HashMap<>();
 
     private String planeSelectedId;
 
@@ -64,9 +64,34 @@ public class Flight implements Serializable {
 
     private ro.uvt.entity.Flight selectedFlight;
 
+    private String tmpDate;
+
     public String formater(Date date) {
-        SimpleDateFormat formater = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         return formater.format(date);
+    }
+
+    public void onArivalTimeChange(ro.uvt.entity.Flight flight) throws ParseException {
+        SimpleDateFormat formater = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
+        Date newDate = formater.parse(tmpDate);
+        /*
+        formater.applyPattern("dd.MM.yyyy HH:mm");
+        tmpDate = formater.format(newDate);
+        newDate = formater.parse(tmpDate);
+        */
+        flight.setArival_time(newDate);
+    }
+
+    public void onDepartureTimeChange(ro.uvt.entity.Flight flight) throws ParseException {
+        SimpleDateFormat formater = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
+        Date newDate = formater.parse(tmpDate);
+        
+        /*
+        formater.applyPattern("dd.MM.yyyy HH:mm");
+        tmpDate = formater.format(newDate);
+        newDate = formater.parse(tmpDate);
+        */
+        flight.setDeparture_time(newDate);
     }
 
     public void submit() {
@@ -102,13 +127,13 @@ public class Flight implements Serializable {
         for (ro.uvt.entity.Users user : userBean.findAll()) {
             users.put(user.toString(), user.getId());
         }
-        
-        for(ro.uvt.entity.FlightState state : ro.uvt.entity.FlightState.values()){
-             states.put(state.name(), state);
+
+        for (ro.uvt.entity.FlightState state : ro.uvt.entity.FlightState.values()) {
+            states.put(state.name(), state);
         }
     }
 
-    public void onCellEdit(CellEditEvent event) {
+   public void onCellEdit(CellEditEvent event) {
         flightBean.update(flightList.get(event.getRowIndex()));
     }
 
@@ -153,9 +178,5 @@ public class Flight implements Serializable {
         Long id = Long.decode(arivalAirportSelectedId);
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         entity.setArival_airport(airport);
-    }
-    
-    public void test(){
-        System.out.println("ajunge!");
     }
 }
