@@ -14,9 +14,12 @@
                 Roles
             </ui:define>
 
+            <ui:define name="counter">
+                    Total items: #{role.roleList.size()}
+            </ui:define>
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{role.roleList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -32,8 +35,9 @@
                             Role
                         </f:facet>
                         <p:column selectionMode="single" style="width:16px;text-align:center"/>
-                        
+
                         <p:ajax event="cellEdit" listener="#{role.onCellEdit}" update="table" />
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
 
                         <p:column headerText="Name">
                             <p:cellEditor>
@@ -49,7 +53,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Delete" action="#{role.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{role.selectedRole == null}" action="#{role.onRowDelete()}" update="form"/>
                             </h:column>
                         </f:facet>
                     </p:dataTable>
@@ -57,7 +61,7 @@
                     <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
                         <h:panelGrid columns="2">
                             Name: <p:inputText id="name"  value="#{role.entity.name}"/><br></br>
-                             <h:column>
+                            <h:column>
                                 <p:commandButton  value="Clear"   action="#{role.clear()}"  update="name"/>
                                 <p:commandButton  value="Add"   action="#{role.submit()}" oncomplete="PF('dlg1').hide();"/> 
                             </h:column>

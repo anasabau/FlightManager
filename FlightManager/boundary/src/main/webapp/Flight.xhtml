@@ -40,7 +40,7 @@
 
                         <p:ajax event="rowSelectRadio" update="deleteButton" />
                         <p:ajax event="cellEdit"  update="table"/>
-                         <p:column headerText="Plane">
+                        <p:column headerText="Plane">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.plane_id}" /></f:facet>
                                 <f:facet name="input">
@@ -132,7 +132,13 @@
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.pilot}"/></f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{p.pilot}"/>
+                                    <p:selectOneMenu  value="#{flightView.selectedPilot}"  style="width:150px">
+                                        <f:selectItem itemLabel="Select Pilot" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{flightView.users}" />
+
+                                        <p:ajax event="change"  update="form" listener="#{flightView.onPilotChange(p)}" />
+
+                                    </p:selectOneMenu>                                
                                 </f:facet>
                             </p:cellEditor>
                         </p:column>

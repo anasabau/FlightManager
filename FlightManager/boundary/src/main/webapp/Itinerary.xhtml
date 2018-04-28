@@ -14,9 +14,12 @@
                 Itinerary
             </ui:define>
 
+            <ui:define name="counter">
+                Total items: #{itinerary.itineraryList.size()}
+            </ui:define>
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{itinerary.itineraryList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -37,7 +40,7 @@
                         <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
                         <p:ajax  event="rowSelectRadio" listener="#{itinerary.rowSelectionEvent}"  update="deleteButton addFlights showFlights" />
 
-                        
+
                         <p:column headerText="Name">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
@@ -53,7 +56,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton id="deleteButton" value="Delete" action="#{itinerary.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{itinerary.selectedItinerary == null}" action="#{itinerary.onRowDelete()}" update="form"/>
                             </h:column>
                             <h:column>
                                 <p:commandButton id="addFlights" value="Add flights" onclick="PF('flights').show();" disabled="#{!itinerary.selected}"/>
@@ -99,7 +102,7 @@
 
                     <p:dialog id="show" widgetVar="show" header="Itinerary Flights"  minHeight="40">
                         <h:panelGrid columns="0">
-                            <h:selectOneListbox size="10">
+                            <h:selectOneListbox id="list" size="10">
                                 <f:selectItems value="#{itinerary.selectedItinerary.flights}"/>
 
                             </h:selectOneListbox>
@@ -108,7 +111,7 @@
                                              id="removeFlightButton" 
                                              disabled="#{itinerary.selectedItinerary.flights.size() == 0 }" 
                                              action="#{itinerary.removeFlightFromItinerary()}" 
-                                             oncomplete="PF('show').hide();"/>
+                                             update="list"/>
                         </h:panelGrid>
 
                         <p:ajax event="close" update="form"/>

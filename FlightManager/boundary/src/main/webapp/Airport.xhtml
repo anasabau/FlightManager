@@ -14,9 +14,12 @@
                 Airport
             </ui:define>
 
+            <ui:define name="counter">
+                    Total items: #{airport.airportList.size()}
+            </ui:define>
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{airport.airportList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -72,7 +75,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton id="deleteButton" value="Delete" action="#{airport.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="form"/>
                             </h:column>
 
                         </f:facet>

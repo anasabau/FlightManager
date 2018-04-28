@@ -22,6 +22,7 @@ import ro.uvt.controller.beans.AirportBean;
 import ro.uvt.controller.beans.FlightBean;
 import ro.uvt.controller.beans.PlaneBean;
 import ro.uvt.controller.beans.UserBean;
+import ro.uvt.entity.Flight;
 import ro.uvt.entity.FlightState;
 
 /*
@@ -61,6 +62,8 @@ public class FlightView implements Serializable {
     private String departureAirportSelectedId;
 
     private String arivalAirportSelectedId;
+    
+    private String selectedPilot;
 
     private ro.uvt.entity.Flight selectedFlight;
 
@@ -154,6 +157,12 @@ public class FlightView implements Serializable {
         Long id = Long.decode(planeSelectedId);
         ro.uvt.entity.Plane plane = planeBean.findById(id);
         entity.setPlane_id(plane);
+    }
+    
+    public void onPilotChange(Flight flight) {
+        Long id = Long.decode(selectedPilot);
+        ro.uvt.entity.Users user = userBean.findById(id);
+        flight.setPilot(user);
     }
 
     public void onDepartureChange(ro.uvt.entity.Flight flight) {

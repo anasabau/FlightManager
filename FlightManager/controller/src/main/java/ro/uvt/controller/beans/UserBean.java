@@ -45,6 +45,10 @@ public class UserBean {
         return dao.findAll(type);
     }
     
+    public Users findById(Long id){
+        return dao.findById(type, id);
+    }
+    
     public void setActive(Users user, boolean is_active){
         dao.setActive(type, user, is_active);
     }

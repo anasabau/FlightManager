@@ -14,9 +14,14 @@
                 Plane
             </ui:define>
 
+
+            <ui:define name="counter">
+                    Total items: #{plane.planeList.size()}
+            </ui:define>
+
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{plane.planeList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -33,8 +38,9 @@
                             Planes
                         </f:facet>
                         <p:column selectionMode="single" style="width:16px;text-align:center"/>
-                                                
+
                         <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update=":form:table"/>
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
 
                         <p:column headerText="Model">
                             <p:cellEditor>
@@ -86,7 +92,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton value="Delete" action="#{plane.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{plane.selectedPlane == null}" action="#{plane.onRowDelete()}" update="form"/>
                             </h:column>
 
                         </f:facet>

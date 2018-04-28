@@ -14,9 +14,13 @@
                 Company
             </ui:define>
 
+
+            <ui:define name="counter">
+                Total items: #{company.companyList.size()}
+            </ui:define>
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{company.companyList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -70,7 +74,7 @@
                             </h:column>
 
                             <h:column>
-                                <p:commandButton id="deleteButton" value="Delete" action="#{company.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selctedCompany == null}" action="#{company.onRowDelete()}" update="form"/>
                             </h:column>
 
                         </f:facet>

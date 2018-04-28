@@ -38,10 +38,10 @@ public class Flight implements Persistent {
     @OneToOne
     private Airport arival_airport;
     
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date departure_time;
     
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date arival_time;
     
     private FlightState flightState;

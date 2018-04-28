@@ -13,9 +13,15 @@
             <ui:define name="title">
                 User
             </ui:define>
+
+
+            <ui:define name="counter">
+                Total items: #{user.userList.size()}
+            </ui:define>
+
+
             <ui:define name="content">
                 <h:form id="form">
-                    Total items: #{user.userList.size()}
 
                     <p:dataTable id="table"
                                  var="p"
@@ -33,6 +39,7 @@
                         <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
                         <p:ajax event="cellEdit" listener="#{user.onCellEdit}" update="table" />
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
 
                         <p:column headerText="Username">
                             <p:cellEditor>
@@ -103,7 +110,7 @@
                                 <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
                             </h:column>
                             <h:column>
-                                <p:commandButton value="Delete" action="#{user.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{user.selectedUser == null}" action="#{user.onRowDelete()}" update="form"/>
                             </h:column>
                         </f:facet>
                     </p:dataTable>
