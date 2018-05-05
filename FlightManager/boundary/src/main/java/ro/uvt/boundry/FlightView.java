@@ -152,47 +152,56 @@ public class FlightView implements Serializable {
         Long id = Long.decode(planeSelectedId);
         ro.uvt.entity.Plane plane = planeBean.findById(id);
         flight.setPlane_id(plane);
+        planeSelectedId = null;
     }
 
     public void onPlaneChange() {
         Long id = Long.decode(planeSelectedId);
         ro.uvt.entity.Plane plane = planeBean.findById(id);
         entity.setPlane_id(plane);
+        planeSelectedId = null;
     }
 
     public void onPilotChange(Flight flight) {
         Long id = Long.decode(selectedPilot);
         ro.uvt.entity.Users user = userBean.findById(id);
         flight.setPilot(user);
+        selectedPilot = null;
     }
 
     public void onPilotChange() {
         Long id = Long.decode(selectedPilot);
         ro.uvt.entity.Users user = userBean.findById(id);
         entity.setPilot(user);
+        selectedPilot = null;
     }
 
     public void onDepartureChange(ro.uvt.entity.Flight flight) {
         Long id = Long.decode(departureAirportSelectedId);
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         flight.setDeparture_airport(airport);
+        departureAirportSelectedId = null;
     }
 
     public void onDepartureChange() {
         Long id = Long.decode(departureAirportSelectedId);
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         entity.setDeparture_airport(airport);
+        departureAirportSelectedId = null;
     }
+
 
     public void onArivalChange(ro.uvt.entity.Flight flight) {
         Long id = Long.decode(arivalAirportSelectedId);
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         flight.setArival_airport(airport);
+        arivalAirportSelectedId = null;
     }
 
     public void onArivalChange() {
         Long id = Long.decode(arivalAirportSelectedId);
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         entity.setArival_airport(airport);
+        arivalAirportSelectedId = null;
     }
 }
