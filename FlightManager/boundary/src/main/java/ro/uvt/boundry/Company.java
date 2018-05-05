@@ -25,7 +25,7 @@ public class Company implements Serializable {
 
     private ro.uvt.entity.Company entity = new ro.uvt.entity.Company();
     
-    private ro.uvt.entity.Company selctedCompany;
+    private ro.uvt.entity.Company selectedCompany;
 
     @PostConstruct
     public void init() {
@@ -51,9 +51,10 @@ public class Company implements Serializable {
     }
 
     public void onRowDelete() {
-        if(selctedCompany != null){
-            companyList.remove(selctedCompany);
-            companyBean.setActive(selctedCompany, false);
+        if(selectedCompany != null){
+            companyList.remove(selectedCompany);
+            companyBean.setActive(selectedCompany, false);
+            selectedCompany = null;
         }
     }
 }

@@ -8,20 +8,12 @@
 
     <body>
 
-        <ui:composition template="./templates/MasterTemplate.xhtml">
 
-            <ui:define name="title">
-                User
-            </ui:define>
-
-
-            <ui:define name="counter">
+        <ui:composition>
                 Total items: #{user.userList.size()}
-            </ui:define>
 
 
-            <ui:define name="content">
-                <h:form id="form">
+                <h:form id="Uform">
 
                     <p:dataTable id="table"
                                  var="p"
@@ -107,15 +99,15 @@
                         </p:column>
                         <f:facet name="footer">
                             <h:column>
-                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                                <p:commandButton value="Add" onclick="PF('Udialog').show();"/>
                             </h:column>
                             <h:column>
-                                <p:commandButton id="deleteButton" value="Delete" disabled="#{user.selectedUser == null}" action="#{user.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{user.selectedUser == null}" action="#{user.onRowDelete()}" update=":Tview:Uform deleteButton"/>
                             </h:column>
                         </f:facet>
                     </p:dataTable>
 
-                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                    <p:dialog id="dial" widgetVar="Udialog" header="Add Content"  minHeight="40">
                         <h:panelGrid columns="2">
                             Username  <p:inputText id="username"  value="#{user.entity.username}"/><br></br>
                             Password <p:password id="password" value="#{user.entity.password}"/><br></br>
@@ -141,16 +133,12 @@
 
                             <h:column>
                                 <p:commandButton  value="Clear"   action="#{user.clear()}"  update="username password first_name last_name company_id role_id"/>
-                                <p:commandButton  value="Add"   action="#{user.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                                <p:commandButton  value="Add"   action="#{user.submit()}" oncomplete="PF('Udialog').hide();"/> 
                             </h:column>  
                         </h:panelGrid>
-                        <p:ajax event="close" update="form"/>
+                        <p:ajax event="close" update="Uform"/>
                     </p:dialog>
                 </h:form>
-
-            </ui:define>
-
-        </ui:composition>
-
+                </ui:composition>
     </body>
 </html>

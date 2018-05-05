@@ -1,7 +1,6 @@
 package ro.uvt.boundry;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -69,6 +68,7 @@ public class Itinerary implements Serializable {
         if (selectedItinerary != null) {
             itineraryBean.removeById(selectedItinerary.getId());
             itineraryList.remove(selectedItinerary);
+            selectedItinerary = null;
         }
     }
 

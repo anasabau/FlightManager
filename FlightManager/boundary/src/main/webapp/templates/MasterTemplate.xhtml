@@ -13,43 +13,39 @@
     </h:head>
 
     <h:body>
-        <h:form>
-            <p:menubar>
-                <p:menuitem action="Company.xhtml">
-                    <p:outputLabel value="Company"/>
-                </p:menuitem>
+        <p:tabView id="Tview">
 
-                <p:menuitem action="User.xhtml">
-                    <p:outputLabel value="User"/>
-                </p:menuitem>
 
-                <p:menuitem action="Role.xhtml">
-                    <p:outputLabel value="Role"/>
-                </p:menuitem>
+            <p:tab title="Flight">
+                <ui:include src="/Flight.xhtml"></ui:include>
+            </p:tab>
 
-                <p:menuitem action="Airport.xhtml">
-                    <p:outputLabel value="Airport"/>
-                </p:menuitem>
+            <p:tab title="Company">
+                <ui:include src="/Company.xhtml"></ui:include>
+            </p:tab>
 
-                <p:menuitem action="Flight.xhtml">
-                    <p:outputLabel value="Flight"/>
-                </p:menuitem>
+            <p:tab title="User">
+                <ui:include src="/User.xhtml"></ui:include>
+            </p:tab>
 
-                <p:menuitem action="Itinerary.xhtml">
-                    <p:outputLabel value="Itinerary"/>
-                </p:menuitem>
+            <p:tab title="Role">
+                <ui:include src="/Role.xhtml"></ui:include>
+            </p:tab>
 
-                <p:menuitem action="Plane.xhtml">
-                    <p:outputLabel value="Plane"/>
-                </p:menuitem>
 
-                <p:menuitem>
-                    <ui:insert name="counter">
-                    </ui:insert>
-                </p:menuitem>
+            <p:tab title="Airport">
+                <ui:include src="/Airport.xhtml"></ui:include>
+            </p:tab>
 
-            </p:menubar>
-        </h:form>
+
+            <p:tab title="Itinerary">
+                <ui:include src="/Itinerary.xhtml"></ui:include>
+            </p:tab>
+
+            <p:tab title="Plane">
+                <ui:include src="/Plane.xhtml"></ui:include>
+            </p:tab>
+        </p:tabView>
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
         </div>       

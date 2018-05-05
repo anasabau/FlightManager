@@ -60,6 +60,7 @@ public class Airport implements Serializable {
         if(selectedAirport != null){
         airportBean.setActive(selectedAirport, false);
         airportList.remove(selectedAirport);
+        selectedAirport = null;
         }
      }
 }

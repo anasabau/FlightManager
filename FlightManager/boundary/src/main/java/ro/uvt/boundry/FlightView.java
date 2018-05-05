@@ -144,6 +144,7 @@ public class FlightView implements Serializable {
         if (selectedFlight != null) {
             flightBean.removeById(selectedFlight.getId());
             flightList.remove(selectedFlight);
+            selectedFlight = null;
         }
     }
 

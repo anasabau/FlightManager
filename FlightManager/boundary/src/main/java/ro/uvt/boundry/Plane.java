@@ -71,6 +71,7 @@ public class Plane implements Serializable {
         if (selectedPlane != null) {
             planeBean.setActive(selectedPlane, false);
             planeList.remove(selectedPlane);
+            selectedPlane = null;
         }
     }
 

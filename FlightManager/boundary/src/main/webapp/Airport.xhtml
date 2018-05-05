@@ -8,18 +8,11 @@
 
     <body>
 
-        <ui:composition template="./templates/MasterTemplate.xhtml">
 
-            <ui:define name="title">
-                Airport
-            </ui:define>
-
-            <ui:define name="counter">
+        <ui:composition>
                     Total items: #{airport.airportList.size()}
-            </ui:define>
 
-            <ui:define name="content">
-                <h:form id="form">
+                <h:form id="Aform">
 
                     <p:dataTable id="table"
                                  var="p"
@@ -38,7 +31,7 @@
                         <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
                         <p:ajax event="rowSelectRadio" update="deleteButton" />
-                        <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update=":form:table"/>
+                        <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update=":Tview:Aform:table"/>
 
                         <p:column headerText="Name">
                             <p:cellEditor>
@@ -71,11 +64,11 @@
 
                         <f:facet name="footer">
                             <h:column>
-                                <p:commandButton value="Add" onclick="PF('dlg1').show();"/>
+                                <p:commandButton value="Add" onclick="PF('Adialog').show();"/>
                             </h:column>
 
                             <h:column>
-                                <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="form"/>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update=":Tview:Aform deleteButton"/>
                             </h:column>
 
                         </f:facet>
@@ -83,25 +76,23 @@
 
 
 
-                    <p:dialog id="dial" widgetVar="dlg1" header="Add Content"  minHeight="40">
+                    <p:dialog id="dial" widgetVar="Adialog" header="Add Content"  minHeight="40">
                         <h:panelGrid columns="2">
                             Name: <p:inputText id="name"  value="#{airport.entity.name}"/>
                             Country: <p:inputText id="country" value="#{airport.entity.country}"/>
                             City:   <p:inputText id="city" value="#{airport.entity.city}"/>
                             <h:column>
                                 <p:commandButton  value="Clear"   action="#{airport.clear()}"  update="name country city"/>
-                                <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="PF('dlg1').hide();"/> 
+                                <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="PF('Adialog').hide();"/> 
                             </h:column>
                         </h:panelGrid>
 
-                        <p:ajax event="close" update="form"/>
+                        <p:ajax event="close" update="Aform"/>
                     </p:dialog>
 
 
                 </h:form>
-            </ui:define>
-
-        </ui:composition>
+                    </ui:composition>
 
     </body>
 </html>
