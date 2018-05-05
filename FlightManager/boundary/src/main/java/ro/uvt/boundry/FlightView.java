@@ -62,7 +62,7 @@ public class FlightView implements Serializable {
     private String departureAirportSelectedId;
 
     private String arivalAirportSelectedId;
-    
+
     private String selectedPilot;
 
     private ro.uvt.entity.Flight selectedFlight;
@@ -81,19 +81,19 @@ public class FlightView implements Serializable {
         formater.applyPattern("dd.MM.yyyy HH:mm");
         tmpDate = formater.format(newDate);
         newDate = formater.parse(tmpDate);
-        */
+         */
         flight.setArival_time(newDate);
     }
 
     public void onDepartureTimeChange(ro.uvt.entity.Flight flight) throws ParseException {
         SimpleDateFormat formater = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
         Date newDate = formater.parse(tmpDate);
-        
+
         /*
         formater.applyPattern("dd.MM.yyyy HH:mm");
         tmpDate = formater.format(newDate);
         newDate = formater.parse(tmpDate);
-        */
+         */
         flight.setDeparture_time(newDate);
     }
 
@@ -136,7 +136,7 @@ public class FlightView implements Serializable {
         }
     }
 
-   public void onCellEdit(CellEditEvent event) {
+    public void onCellEdit(CellEditEvent event) {
         flightBean.update(flightList.get(event.getRowIndex()));
     }
 
@@ -159,14 +159,14 @@ public class FlightView implements Serializable {
         ro.uvt.entity.Plane plane = planeBean.findById(id);
         entity.setPlane_id(plane);
     }
-    
+
     public void onPilotChange(Flight flight) {
         Long id = Long.decode(selectedPilot);
         ro.uvt.entity.Users user = userBean.findById(id);
         flight.setPilot(user);
     }
-    
-        public void onPilotChange() {
+
+    public void onPilotChange() {
         Long id = Long.decode(selectedPilot);
         ro.uvt.entity.Users user = userBean.findById(id);
         entity.setPilot(user);

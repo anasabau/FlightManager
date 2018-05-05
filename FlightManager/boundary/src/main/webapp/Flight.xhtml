@@ -197,11 +197,11 @@
 
 
                         <h:column>
-                            <p:selectOneMenu id="pilor" value="#{flightView.selectedPilot}" style="width:150px">
+                            <p:selectOneMenu id="pilot" value="#{flightView.selectedPilot}" style="width:150px">
                                 <f:selectItem itemLabel="Select Pilot" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{flightView.users}" />
 
-                                <p:ajax event="change" listener="#{flightView.onPilotChange}" />
+                                <p:ajax event="change" listener="#{flightView.onPilotChange()}" />
 
                             </p:selectOneMenu>
                         </h:column>
