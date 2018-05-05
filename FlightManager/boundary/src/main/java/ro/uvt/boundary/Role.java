@@ -1,4 +1,4 @@
-package ro.uvt.boundry;
+package ro.uvt.boundary;
 
 import java.io.Serializable;
 import java.util.List;

@@ -9,7 +9,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <ui:insert name="title">Title</ui:insert>
+        <ui:insert name="title">
+           <title>Flight Manager</title>
+        </ui:insert>>
     </h:head>
 
     <h:body>
@@ -37,17 +39,17 @@
                 <ui:include src="/Airport.xhtml"></ui:include>
             </p:tab>
 
+            <p:tab title="Plane">
+                <ui:include src="/Plane.xhtml"></ui:include>
+            </p:tab>
 
             <p:tab title="Itinerary">
                 <ui:include src="/Itinerary.xhtml"></ui:include>
             </p:tab>
-
-            <p:tab title="Plane">
-                <ui:include src="/Plane.xhtml"></ui:include>
-            </p:tab>
+            
         </p:tabView>
         <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+            
         </div>       
     </h:body>
 

@@ -11,7 +11,9 @@
 
         <ui:composition>
             Total items: #{flightView.flightList.size()}
-
+            <ui:define name="title">
+                <title>Flight</title>
+            </ui:define>
             <h:form id="Fform">
 
                 <p:dataTable id="table"

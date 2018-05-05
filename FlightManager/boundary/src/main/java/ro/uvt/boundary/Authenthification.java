@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.uvt.boundry;
+package ro.uvt.boundary;
 
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
