@@ -79,11 +79,13 @@ public class Plane implements Serializable {
         Long id = Long.decode(selectedCompany);
         ro.uvt.entity.Company comp = companyBean.findById(id);
         entity.setCompany_id(comp);
+        selectedCompany = null;
     }
 
     public void onCompanyChange(ro.uvt.entity.Plane plane) {
         Long id = Long.decode(selectedCompany);
         ro.uvt.entity.Company comp = companyBean.findById(id);
         plane.setCompany_id(comp);
+        selectedCompany = null;
     }
 }
