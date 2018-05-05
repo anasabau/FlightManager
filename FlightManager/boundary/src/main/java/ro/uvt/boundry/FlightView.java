@@ -165,6 +165,12 @@ public class FlightView implements Serializable {
         ro.uvt.entity.Users user = userBean.findById(id);
         flight.setPilot(user);
     }
+    
+        public void onPilotChange() {
+        Long id = Long.decode(selectedPilot);
+        ro.uvt.entity.Users user = userBean.findById(id);
+        entity.setPilot(user);
+    }
 
     public void onDepartureChange(ro.uvt.entity.Flight flight) {
         Long id = Long.decode(departureAirportSelectedId);

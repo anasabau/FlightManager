@@ -187,13 +187,23 @@
                         </h:column>
 
                         <h:column>
-
-                            Arival Time: <p:calendar id="arivalTime" value="#{flightView.entity.arival_time}" pattern="HH:mm" timeOnly="true">
+                            Arival Time: <p:calendar id="arivalTime" value="#{flightView.entity.arival_time}" pattern="MM.dd.yyyy HH:mm">
                             </p:calendar>
                         </h:column>
 
                         <h:column>
-                            Departure Time: <p:calendar id="departureTime" value="#{flightView.entity.departure_time}" pattern="HH:mm" timeOnly="true"  />
+                            Departure Time: <p:calendar id="departureTime" value="#{flightView.entity.departure_time}" pattern="MM.dd.yyyy HH:mm" />
+                        </h:column>
+
+
+                        <h:column>
+                            <p:selectOneMenu id="pilor" value="#{flightView.selectedPilot}" style="width:150px">
+                                <f:selectItem itemLabel="Select Pilot" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{flightView.users}" />
+
+                                <p:ajax event="change" listener="#{flightView.onPilotChange}" />
+
+                            </p:selectOneMenu>
                         </h:column>
 
                         <h:column>
