@@ -10,8 +10,9 @@
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <ui:insert name="title">
-           <title>Flight Manager</title>
-        </ui:insert>>
+            <title>Flight Manager</title>
+        </ui:insert>
+        <link rel="shortcut icon" style="background: transparent; background-color: transparent;" href="#{request.contextPath}/resources/Logo1.png"/>   
     </h:head>
 
     <h:body>
@@ -46,10 +47,10 @@
             <p:tab title="Itinerary">
                 <ui:include src="/Itinerary.xhtml"></ui:include>
             </p:tab>
-            
+
         </p:tabView>
         <div id="content" class="center_content">
-            
+
         </div>       
     </h:body>
 
