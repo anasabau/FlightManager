@@ -57,7 +57,7 @@ public class Company implements Changeable {
     
     @Override
     public String toString(){
-        return name + " (id)" + id;
+        return name;
     }
     
 }

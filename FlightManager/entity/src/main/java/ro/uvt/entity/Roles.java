@@ -37,5 +37,9 @@ public class Roles implements Changeable {
     public void setActive(boolean is_active) {
         this.is_active = is_active;
     }
-        
+     
+   @Override
+    public String toString(){
+        return name;
+    }
 }

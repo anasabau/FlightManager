@@ -60,7 +60,7 @@ public class Users implements Changeable {
     
     @Override
     public String toString(){
-        return username + " (id) " + id; 
+        return username; 
     }
     
 }
