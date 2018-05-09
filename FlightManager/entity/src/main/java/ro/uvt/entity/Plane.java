@@ -51,6 +51,6 @@ public class Plane implements Changeable {
     
     @Override
     public String toString(){
-        return registration_id + " (id)" + id;
+        return registration_id;
     }
 }
