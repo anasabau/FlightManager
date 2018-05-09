@@ -33,7 +33,15 @@
                     <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="table" />
                     <p:ajax event="rowSelectRadio" update="deleteButton" />
 
-
+                    <p:column headerText="Company ID">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText  value="#{p.comp_id}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{p.comp_id}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
                     <p:column headerText="Name">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
@@ -77,11 +85,12 @@
 
                 <p:dialog id="dial" widgetVar="Cdialog" header="Add Content"  minHeight="40">
                     <h:panelGrid columns="2">
+                        Company ID: <p:inputText id="comp_id"  value="#{company.entity.comp_id}"/>
                         Name: <p:inputText id="name"  value="#{company.entity.name}"/>
                         Country: <p:inputText id="country" value="#{company.entity.country}"/>
                         Headquarters:   <p:inputText id="city" value="#{company.entity.headquarters}"/>
                         <h:column>
-                            <p:commandButton  value="Clear"   action="#{company.clear()}"  update="name country city"/>
+                            <p:commandButton  value="Clear"   action="#{company.clear()}"  update="comp_id name country city"/>
                             <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('Cdialog').hide();" update="table"/> 
                         </h:column>
                     </h:panelGrid>

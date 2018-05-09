@@ -59,7 +59,7 @@ public class Plane implements Serializable {
     public void init() {
         planeList = planeBean.findAll();
         for (ro.uvt.entity.Company comp : companyBean.findAll()) {
-            companies.put(comp.getName() + " (id " + comp.getId() + " )", comp.getId());
+            companies.put(comp.getComp_id(),comp.getId());
         }
     }
 

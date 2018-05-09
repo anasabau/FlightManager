@@ -26,6 +26,9 @@ public class Company implements Changeable {
     private Long id;
     
     @Column(nullable = false)
+    private String comp_id;
+    
+    @Column(nullable = false)
     private String name;
     
     @Column(nullable = false)
@@ -44,7 +47,7 @@ public class Company implements Changeable {
     @ManyToMany(mappedBy = "companies")
     private Set<Airport> airports;
 
-    public Company(String name, String country, String headquarters) {
+    public Company(String comp_id, String name, String country, String headquarters) {
         this.name = name;
         this.country = country;
         this.headquarters = headquarters;
@@ -57,7 +60,7 @@ public class Company implements Changeable {
     
     @Override
     public String toString(){
-        return name;
+        return comp_id;
     }
     
 }

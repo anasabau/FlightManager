@@ -1,43 +1,37 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- * Author:  dan
- * Created: Mar 17, 2018
- */
+
 
 ------------- VIEW -------------------------
 create view user_group as
 select username, name roles, role_id_id user_role
 from roles r, users u;
------------------ VIEW ----------------
+-- ----------------- VIEW ----------------
 
-/*
-*           --------------------- COMPANY ------------------
-*/
+
+           --------------------- COMPANY ------------------
+
 
 create table company (
 	id INT,
+        
+        comp_id VARCHAR(30)
 	name VARCHAR(50),
 	country VARCHAR(50),
 	headquarters VARCHAR(50),
 	is_active INT
 );
-insert into company (id, name, country, headquarters, is_active) values (1, 'Avavee', 'China', 'Sunzhuang', 1);
-insert into company (id, name, country, headquarters, is_active) values (2, 'Gabspot', 'Bangladesh', 'Saidpur', 1);
-insert into company (id, name, country, headquarters, is_active) values (3, 'Jaxspan', 'Yemen', 'Aa Salw', 1);
-insert into company (id, name, country, headquarters, is_active) values (4, 'Edgeify', 'Bangladesh', 'Tangail', 1);
-insert into company (id, name, country, headquarters, is_active) values (5, 'Katz', 'Mexico', 'San Agustin', 1);
-insert into company (id, name, country, headquarters, is_active) values (6, 'Meedoo', 'Kazakhstan', 'Aksu', 1);
-insert into company (id, name, country, headquarters, is_active) values (7, 'Thoughtworks', 'France', 'Tours', 1);
-insert into company (id, name, country, headquarters, is_active) values (8, 'Skipfire', 'Indonesia', 'Tiyingtali Kelod', 1);
-insert into company (id, name, country, headquarters, is_active) values (9, 'Twitternation', 'Nigeria', 'Udi', 1);
-insert into company (id, name, country, headquarters, is_active) values (10, 'Eabox', 'Portugal', 'Picoto', 1);
-insert into company (id, name, country, headquarters, is_active) values (11, 'Mynte', 'China', 'Qilong', 1);
-insert into company (id, name, country, headquarters, is_active) values (12, 'Livetube', 'Brazil', 'Caninde', 1);
-insert into company (id, name, country, headquarters, is_active) values (13, 'Yamia', 'Argentina', 'Santo Tome', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (1,'123as2', 'Avavee', 'China', 'Sunzhuang', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (2,'942kg2', 'Gabspot', 'Bangladesh', 'Saidpur', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (3,'732q7', 'Jaxspan', 'Yemen', 'Aa Salw', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (4,'120yy3', 'Edgeify', 'Bangladesh', 'Tangail', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (5,'816fq5', 'Katz', 'Mexico', 'San Agustin', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (6,'092ow7', 'Meedoo', 'Kazakhstan', 'Aksu', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (7,'293nf', 'Thoughtworks', 'France', 'Tours', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (8,'085vf2', 'Skipfire', 'Indonesia', 'Tiyingtali Kelod', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (9,'092dj3', 'Twitternation', 'Nigeria', 'Udi', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (10,'653gs7', 'Eabox', 'Portugal', 'Picoto', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (11,'097vd1', 'Mynte', 'China', 'Qilong', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (12,'746fk4', 'Livetube', 'Brazil', 'Caninde', 1);
+insert into company (id, comp_id, name, country, headquarters, is_active) values (13,'653ql9', 'Yamia', 'Argentina', 'Santo Tome', 1);
 -- insert into company (id, name, country, headquarters, is_active) values (14, 'Demimbu', 'China', 'Daduo', 1);
 -- insert into company (id, name, country, headquarters, is_active) values (15, 'Mita', 'Brazil', 'Paraguaçu Paulista', 1);
 -- insert into company (id, name, country, headquarters, is_active) values (16, 'Fivebridge', 'Bosnia and Herzegovina', 'Donja Dubica', 1);
@@ -128,9 +122,9 @@ insert into company (id, name, country, headquarters, is_active) values (13, 'Ya
 
 
 
-/*
- *       --------------------------------- ROLES -------------------------------
-*/
+
+       --------------------------------- ROLES -------------------------------
+
 
 
 
@@ -147,9 +141,9 @@ insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
 
 
 
-/*
- *   ----------------------------------- USERS -------------------------------------------
- */
+
+    ----------------------------------- USERS -------------------------------------------
+ 
 
 
 create table users (
@@ -272,9 +266,9 @@ insert into users (id, username, password, company_id_id, role_id_id, first_name
 
 
 
-/*
- *           ----------------- AIRPORT---------------------------------
-*/
+
+           ----------------- AIRPORT---------------------------------
+
 
 create table airport (
 	id INT,
@@ -385,9 +379,9 @@ insert into airport (id, name, city, country, is_active) values (10, 'Manufactur
 -- insert into airport (id, name, city, country, is_active) values (100, '3rd', 'Sedziszow', 'Poland', 1);
 -- -- 
 
-/*
- *           ----------------- Plane---------------------------------
-*/
+
+           ----------------- Plane---------------------------------
+
 
 create table plane (
 	id INT,
@@ -502,9 +496,9 @@ insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active
 
 
 
-/*
- *        --------------------   FLIGHT TABLE
-*/
+
+        --------------------   FLIGHT TABLE  --------------------------------
+
 
 create table flight (
 	id INT,
@@ -617,9 +611,9 @@ insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, de
 
 
 
-/*
- *          ------------------------- Itinerary -----------------------------
-*/
+
+          ------------------------- Itinerary -----------------------------
+
 
 
 create table itinerary (

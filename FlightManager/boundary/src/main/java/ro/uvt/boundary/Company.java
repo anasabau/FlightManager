@@ -34,6 +34,7 @@ public class Company implements Serializable {
     }
 
     public void clear() {
+        entity.setComp_id("");
         entity.setName("");
         entity.setCountry("");
         entity.setHeadquarters("");
