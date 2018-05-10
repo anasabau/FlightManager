@@ -6,139 +6,145 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Flight Manager</title>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
+    </h:head>
     <body>
 
 
-        <ui:composition>
-                Total items: #{user.userList.size()}
+        Total items: #{user.userList.size()}
 
 
-                <h:form id="Uform">
+        <h:form id="Uform">
 
-                    <p:dataTable id="table"
-                                 var="p"
-                                 value="#{user.userList}" 
-                                 editMode="cell"
-                                 editable="true"
-                                 selection="#{user.selectedUser}"
-                                 rows="10"
-                                 rowKey="#{p.id}"
-                                 rowsPerPageTemplate="10,20,30"
-                                 paginator="true">
-                        <f:facet name="header">
-                            Users
+            <p:dataTable id="table"
+                         var="p"
+                         value="#{user.userList}" 
+                         editMode="cell"
+                         editable="true"
+                         selection="#{user.selectedUser}"
+                         rows="10"
+                         rowKey="#{p.id}"
+                         rowsPerPageTemplate="10,20,30"
+                         paginator="true">
+                <f:facet name="header">
+                    Users
+                </f:facet>
+                <p:column selectionMode="single" style="width:16px;text-align:center"/>
+
+                <p:ajax event="cellEdit" listener="#{user.onCellEdit}" update="table" />
+                <p:ajax event="rowSelectRadio" update="deleteButton" />
+
+                <p:column headerText="Username">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.username}" /></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.username}"/>
                         </f:facet>
-                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                    </p:cellEditor>
+                </p:column>
 
-                        <p:ajax event="cellEdit" listener="#{user.onCellEdit}" update="table" />
-                        <p:ajax event="rowSelectRadio" update="deleteButton" />
-
-                        <p:column headerText="Username">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.username}" /></f:facet>
-                                <f:facet name="input">
-                                    <p:inputText value="#{p.username}"/>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-
-                        <p:column headerText="Password">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.password}" /></f:facet>
-                                <f:facet name="input">
-                                    <p:password value="#{p.password}"/>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-
-                        <p:column headerText="First Name">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.first_name}" /></f:facet>
-                                <f:facet name="input">
-                                    <p:inputText value="#{p.first_name}"/>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-
-                        <p:column headerText="Last Name">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.last_name}" /></f:facet>
-                                <f:facet name="input">
-                                    <p:inputText value="#{p.last_name}"/>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-
-                        <p:column headerText="Company id">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.company_id}"/></f:facet>
-                                <f:facet name="input">
-                                    <p:selectOneMenu  value="#{user.companySelectedId}" style="width:150px">
-                                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
-                                        <f:selectItems value="#{user.companies}" />
-
-                                        <p:ajax event="change" listener="#{user.onCompanyChange(p)}" />
-
-                                    </p:selectOneMenu>           
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-
-                        <p:column headerText="Role">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{p.role_id}"/></f:facet>
-                                <f:facet name="input">
-                                    <p:selectOneMenu value="#{user.roleSelectedId}" style="width:150px">
-                                        <f:selectItem itemLabel="Select Role" itemValue="" noSelectionOption="true" />
-                                        <f:selectItems value="#{user.roles}" />
-
-                                        <p:ajax event="change" listener="#{user.onRoleChange(p)}" />
-                                    </p:selectOneMenu>              
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-                        <f:facet name="footer">
-                            <h:column>
-                                <p:commandButton value="Add" onclick="PF('Udialog').show();"/>
-                            </h:column>
-                            <h:column>
-                                <p:commandButton id="deleteButton" value="Delete" disabled="#{user.selectedUser == null}" action="#{user.onRowDelete()}" update=":Tview:Uform deleteButton"/>
-                            </h:column>
+                <p:column headerText="Password">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.password}" /></f:facet>
+                        <f:facet name="input">
+                            <p:password value="#{p.password}"/>
                         </f:facet>
-                    </p:dataTable>
+                    </p:cellEditor>
+                </p:column>
 
-                    <p:dialog id="dial" widgetVar="Udialog" header="Add Content"  minHeight="40">
-                        <h:panelGrid columns="2">
-                            Username  <p:inputText id="username"  value="#{user.entity.username}"/><br></br>
-                            Password <p:password id="password" value="#{user.entity.password}"/><br></br>
-                            First Name <p:inputText id="first_name" value="#{user.entity.first_name}"/><br></br>
-                            Last Name <p:inputText id="last_name" value="#{user.entity.last_name}"/><br></br>
-                            Company id              
-                            <p:selectOneMenu id="company_id" value="#{user.companySelectedId}" style="width:150px">
+                <p:column headerText="First Name">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.first_name}" /></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.first_name}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Last Name">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.last_name}" /></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.last_name}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Company id">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.company_id}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu  value="#{user.companySelectedId}" style="width:150px">
                                 <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{user.companies}" />
 
+                                <p:ajax event="change" listener="#{user.onCompanyChange(p)}" />
 
-                                <p:ajax event="change" listener="#{user.onCompanyChange}" />
+                            </p:selectOneMenu>           
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
-                            </p:selectOneMenu><br></br>
-                            Role id              
-                            <p:selectOneMenu id="role_id" value="#{user.roleSelectedId}" style="width:150px">
+                <p:column headerText="Role">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.role_id}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{user.roleSelectedId}" style="width:150px">
                                 <f:selectItem itemLabel="Select Role" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{user.roles}" />
 
+                                <p:ajax event="change" listener="#{user.onRoleChange(p)}" />
+                            </p:selectOneMenu>              
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <f:facet name="footer">
+                    <h:column>
+                        <p:commandButton value="Add" onclick="PF('Udialog').show();"/>
+                    </h:column>
+                    <h:column>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{user.selectedUser == null}" action="#{user.onRowDelete()}" update="Uform deleteButton"/>
+                    </h:column>
+                </f:facet>
+            </p:dataTable>
 
-                                <p:ajax event="change" listener="#{user.onRoleChange}" />
-                            </p:selectOneMenu><br></br>
+            <p:dialog id="dial" widgetVar="Udialog" header="Add Content"  minHeight="40">
+                <h:panelGrid columns="2">
+                    Username  <p:inputText id="username"  value="#{user.entity.username}"/><br></br>
+                    Password <p:password id="password" value="#{user.entity.password}"/><br></br>
+                    First Name <p:inputText id="first_name" value="#{user.entity.first_name}"/><br></br>
+                    Last Name <p:inputText id="last_name" value="#{user.entity.last_name}"/><br></br>
+                    Company id              
+                    <p:selectOneMenu id="company_id" value="#{user.companySelectedId}" style="width:150px">
+                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{user.companies}" />
 
-                            <h:column>
-                                <p:commandButton  value="Clear"   action="#{user.clear()}"  update="username password first_name last_name company_id role_id"/>
-                                <p:commandButton  value="Add"   action="#{user.submit()}" oncomplete="PF('Udialog').hide();"/> 
-                            </h:column>  
-                        </h:panelGrid>
-                        <p:ajax event="close" update="Uform"/>
-                    </p:dialog>
-                </h:form>
-                </ui:composition>
+
+                        <p:ajax event="change" listener="#{user.onCompanyChange}" />
+
+                    </p:selectOneMenu><br></br>
+                    Role id              
+                    <p:selectOneMenu id="role_id" value="#{user.roleSelectedId}" style="width:150px">
+                        <f:selectItem itemLabel="Select Role" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{user.roles}" />
+
+
+                        <p:ajax event="change" listener="#{user.onRoleChange}" />
+                    </p:selectOneMenu><br></br>
+
+                    <h:column>
+                        <p:commandButton  value="Clear"   action="#{user.clear()}"  update="username password first_name last_name company_id role_id"/>
+                        <p:commandButton  value="Add"   action="#{user.submit()}" oncomplete="PF('Udialog').hide();"/> 
+                    </h:column>  
+                </h:panelGrid>
+                <p:ajax event="close" update="Uform"/>
+            </p:dialog>
+        </h:form>
     </body>
 </html>

@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.List;
+import javafx.beans.binding.StringBinding;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -19,6 +21,7 @@ import org.apache.commons.csv.CSVPrinter;
  */
 public class CSVwriter<T> {
     
+    private final Class<T> type;
     
     private final StringBuilder builder = new StringBuilder();
     
@@ -26,12 +29,23 @@ public class CSVwriter<T> {
     
     public  CSVwriter(File path,Class<T> type) throws FileNotFoundException{
         output = new FileOutputStream(path);
+        this.type = type;
+    }
+    
+    
+    private CSVFormat format(){
+        StringBuilder header = new StringBuilder();
+        for(Field field : type.getFields() ){
+                header.append(field.getName());
+                header.append(" ");
+            }
+        return CSVFormat.DEFAULT.withHeader(header.toString());
     }
     
     
     public void writeRecords(List<T> records) throws IOException{
     
-        CSVPrinter printer = new CSVPrinter(builder, CSVFormat.DEFAULT);
+        CSVPrinter printer = new CSVPrinter(builder, format());
         
         printer.printRecords(records);
         
