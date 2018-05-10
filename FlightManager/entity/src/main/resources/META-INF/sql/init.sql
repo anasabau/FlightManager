@@ -1,6 +1,7 @@
 
 
-------------- VIEW -------------------------
+
+-- ----------- VIEW -------------------------
 create view user_group as
 select username, name roles, role_id_id user_role
 from roles r, users u;
@@ -123,7 +124,9 @@ insert into company (id, comp_id, name, country, headquarters, is_active) values
 
 
 
-       --------------------------------- ROLES -------------------------------
+
+      -- ------------------------------- ROLES -------------------------------
+
 
 
 
@@ -131,8 +134,7 @@ insert into company (id, comp_id, name, country, headquarters, is_active) values
 create table roles (
 	id INT,
 	name VARCHAR(50),
-	is_active INT
-);
+	is_active INT);
 insert into roles (id, name, is_active) values (1, 'admin', 1);
 insert into roles (id, name, is_active) values (2, 'Safety Technician I', 1);
 insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
@@ -142,20 +144,21 @@ insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
 
 
 
-    ----------------------------------- USERS -------------------------------------------
- 
+
+  -- ----------------------------------- USERS -------------------------------------------
+
+
 
 
 create table users (
 	id INT,
 	username VARCHAR(50),
-	password VARCHAR(50),
+	password VARCHAR(500),
 	company_id_id INT,
 	role_id_id INT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
-	is_active INT
-);
+	is_active INT);
 
 
 
@@ -261,13 +264,11 @@ insert into users (id, username, password, company_id_id, role_id_id, first_name
 -- insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (98, 'rgiamo2p', 'wiG07or', 26, 1, 'Rabbi', 'Giamo', 1);
 -- insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (99, 'sseabrocke2q', 'HkMNpwsPxY', 88, 1, 'Selby', 'Seabrocke', 1);
 -- insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (100, 'lfollit2r', 'lLqYlXveZO9q', 0, 1, 'Law', 'Follit', 1);
--- 
 
 
 
 
-
-           ----------------- AIRPORT---------------------------------
+-- AIRPORT---------------------------------
 
 
 create table airport (
@@ -275,8 +276,7 @@ create table airport (
 	name VARCHAR(50),
 	city VARCHAR(50),
 	country VARCHAR(50),
-	is_active INT
-);
+	is_active INT);
 insert into airport (id, name, city, country, is_active) values (1, 'Menomonie', 'Huangmei', 'China', 1);
 insert into airport (id, name, city, country, is_active) values (2, 'Wayridge', 'Eiriz', 'Portugal', 1);
 insert into airport (id, name, city, country, is_active) values (3, 'Debra', 'Vittel', 'France', 1);
@@ -380,7 +380,8 @@ insert into airport (id, name, city, country, is_active) values (10, 'Manufactur
 -- -- 
 
 
-           ----------------- Plane---------------------------------
+
+  -- Plane---------------------------------
 
 
 create table plane (
@@ -495,9 +496,7 @@ insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active
 -- insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active) values (100, 'Range Rover', '033988e6-3a4f-4551-9ada-e67ffffb7329', 100, 0, 1);
 
 
-
-
-        --------------------   FLIGHT TABLE  --------------------------------
+        --   FLIGHT TABLE ------------------------------
 
 
 create table flight (
@@ -612,7 +611,8 @@ insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, de
 
 
 
-          ------------------------- Itinerary -----------------------------
+    -- Itinerary -----------------------------
+
 
 
 

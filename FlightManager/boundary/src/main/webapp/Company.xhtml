@@ -6,11 +6,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-  
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Flight Manager</title>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
+    </h:head>
 
     <body>
-
-        <ui:composition>
             Total items: #{company.companyList.size()}
 
             <h:form id="Cform">
@@ -75,7 +79,7 @@
                         </h:column>
 
                         <h:column>
-                            <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selectedCompany == null}" action="#{company.onRowDelete()}" update=":Tview:Cform deleteButton"/>
+                            <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selectedCompany == null}" action="#{company.onRowDelete()}" update="Cform deleteButton"/>
                         </h:column>
 
                     </f:facet>
@@ -98,7 +102,6 @@
                     <p:ajax event="close"  update="Cform"/>
                 </p:dialog>
             </h:form>
-        </ui:composition>
 
     </body>
 </html>

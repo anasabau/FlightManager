@@ -6,14 +6,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Flight Manager</title>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
+    </h:head>
+
     <body>
-
-
-        <ui:composition>
-
-            <ui:define name="title">
-                <title>Airport</title>
-            </ui:define>
             Total items: #{airport.airportList.size()}
 
             <h:form id="Aform">
@@ -35,7 +37,7 @@
                     <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
                     <p:ajax event="rowSelectRadio" update="deleteButton" />
-                    <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update=":Tview:Aform:table"/>
+                    <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update="Aform:table"/>
 
                     <p:column headerText="Name">
                         <p:cellEditor>
@@ -72,7 +74,7 @@
                         </h:column>
 
                         <h:column>
-                            <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update=":Tview:Aform deleteButton"/>
+                            <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="Aform deleteButton"/>
                         </h:column>
 
                     </f:facet>
@@ -96,7 +98,5 @@
 
 
             </h:form>
-        </ui:composition>
-
     </body>
 </html>
