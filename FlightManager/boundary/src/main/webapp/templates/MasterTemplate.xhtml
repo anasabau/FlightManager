@@ -14,44 +14,45 @@
     </h:head>
 
     <h:body>
+        <h:form>
+            <h:graphicImage value="/resources/logo_text.png"/>
+            <p:commandButton value="Download CSV" action="#{airport.download()}"  />
+            <p:tabView dynamic="true" cache="false" >
+                <p:ajax event="tabChange"/>
+                <p:tab id="Ftab" title="Flight">
+                    <iframe src="Flight.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
-        <h:graphicImage value="/resources/logo_text.png"/>
-        <p:commandButton value="Download CSV" action="#{airport.download()}"  />
-        <p:tabView dynamic="true" cache="false" >
-            <p:ajax event="tabChange"/>
-            <p:tab id="Ftab" title="Flight">
-                <iframe src="Flight.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
+                <p:tab title="Company">
+                    <iframe src="Company.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
-            <p:tab title="Company">
-                <iframe src="Company.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
+                <p:tab title="User">
+                    <iframe src="User.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
-            <p:tab title="User">
-                <iframe src="User.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
-
-            <p:tab title="Role">
-                <iframe src="Role.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
+                <p:tab title="Role">
+                    <iframe src="Role.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
 
-            <p:tab title="Airport">
-                <iframe src="Airport.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
+                <p:tab title="Airport">
+                    <iframe src="Airport.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
-            <p:tab title="Plane">
-                <iframe src="Plane.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
+                <p:tab title="Plane">
+                    <iframe src="Plane.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
-            <p:tab title="Itinerary">
-                <iframe src="Itinerary.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
-            </p:tab>
+                <p:tab title="Itinerary">
+                    <iframe src="Itinerary.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                </p:tab>
 
-        </p:tabView>
-        <div id="content" class="center_content">
+            </p:tabView>
+            <div id="content" class="center_content">
 
-        </div>       
+            </div>    
+        </h:form>
     </h:body>
 
 </html>

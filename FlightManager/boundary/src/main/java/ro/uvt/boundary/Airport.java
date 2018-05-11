@@ -73,7 +73,7 @@ public class Airport implements Serializable {
     public void download(){
         Class<ro.uvt.entity.Airport> type = ro.uvt.entity.Airport.class;
         try {
-            CSVwriter writer = new CSVwriter( new File("C:\\Users\\dan\\Desktop\\file.csv"),type);
+            CSVwriter writer = new CSVwriter( new File("C:\\Users\\stoian\\Desktop\\file.csv"),type);
             writer.writeRecords(airportList);
         } catch (IOException ex) {
             Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
