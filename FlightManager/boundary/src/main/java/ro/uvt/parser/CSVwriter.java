@@ -42,8 +42,8 @@ public class CSVwriter<T> {
     public void init() {
         for (Field field : type.getDeclaredFields()) {
             String name = field.getName();
-            if (!name.startsWith("_") && name != "serialVersionUID" && 
-                 name != "is_active"  && isSafe(field) && name != "id" ) {
+            if (!name.startsWith("_") && name != "serialVersionUID"
+                    && name != "is_active" && isSafe(field) && name != "id") {
                 classFields.add(field);
             }
         }
@@ -53,9 +53,9 @@ public class CSVwriter<T> {
         Annotation[] annotations = field.getAnnotations();
         for (Annotation annotation : annotations) {
             String name = annotation.toString();
-            if (name.contains("OneToMany") || name.contains("ManyToOne") ||
-                name.contains("OneToOne") || name.contains("ManyToMany")) {
-                return false;
+            if (name.contains("OneToMany") || name.contains("ManyToOne")
+                    || name.contains("OneToOne") || name.contains("ManyToMany")) {
+                return true;
             }
         }
         return true;
@@ -77,7 +77,13 @@ public class CSVwriter<T> {
             for (Field f : classFields) {
                 if (!f.isAccessible()) {
                     f.setAccessible(true);
-                    rec.add(f.get(record).toString());
+                    Object val = f.get(record);
+                    if (val != null) {
+                        rec.add(f.get(record).toString());
+                    } else {
+                        rec.add("empty");
+
+                    }
                     f.setAccessible(false);
                 } else {
                     rec.add(f.get(record).toString());

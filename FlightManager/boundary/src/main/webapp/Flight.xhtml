@@ -14,8 +14,8 @@
         <title>Flight Manager</title>
         <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
     </h:head>
-    
-    
+
+
     <body>
 
 
@@ -152,7 +152,11 @@
                     <h:column>
                         <p:commandButton id="deleteButton" value="Delete" disabled="#{flightView.selectedFlight==null}" action="#{flightView.onRowDelete}" update="Fform deleteButton"/>
                     </h:column>
-
+                    <h:column>
+                        <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+                            <p:fileDownload value="#{flightView.download()}" />
+                        </p:commandButton>
+                    </h:column>
                 </f:facet>
 
             </p:dataTable>

@@ -5,6 +5,9 @@
  */
 package ro.uvt.boundary;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,18 +15,24 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import lombok.Data;
 import javax.inject.Inject;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import ro.uvt.controller.beans.AirportBean;
 import ro.uvt.controller.beans.FlightBean;
 import ro.uvt.controller.beans.PlaneBean;
 import ro.uvt.controller.beans.UserBean;
 import ro.uvt.entity.Flight;
 import ro.uvt.entity.FlightState;
+import ro.uvt.parser.CSVwriter;
 
 /*
  * @author dan
@@ -46,6 +55,8 @@ public class FlightView implements Serializable {
 
     @Inject
     private UserBean userBean;
+    
+    private StreamedContent file;
 
     private List<ro.uvt.entity.Flight> flightList;
 
@@ -190,7 +201,6 @@ public class FlightView implements Serializable {
         departureAirportSelectedId = null;
     }
 
-
     public void onArivalChange(ro.uvt.entity.Flight flight) {
         Long id = Long.decode(arivalAirportSelectedId);
         ro.uvt.entity.Airport airport = airportBean.findById(id);
@@ -203,5 +213,23 @@ public class FlightView implements Serializable {
         ro.uvt.entity.Airport airport = airportBean.findById(id);
         entity.setArival_airport(airport);
         arivalAirportSelectedId = null;
+    }
+
+    public StreamedContent download() {
+        System.out.println("asdda");
+        Class<ro.uvt.entity.Flight> type = ro.uvt.entity.Flight.class;
+        String basePath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+        try {
+            CSVwriter writer = new CSVwriter(new File(basePath + "/resources/flight.csv"), type);
+            writer.writeRecords(flightList);
+
+            InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/flight.csv");
+            file = new DefaultStreamedContent(stream, "text/csv", "flight.csv");
+
+            return file;
+        } catch (IOException ex) {
+            Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        throw new RuntimeException("Could not download file");
     }
 }
