@@ -16,87 +16,92 @@
     </h:head>
 
     <body>
-            Total items: #{airport.airportList.size()}
+        Total items: #{airport.airportList.size()}
 
-            <h:form id="Aform">
+        <h:form id="Aform">
 
-                <p:dataTable id="table"
-                             var="p"
-                             value="#{airport.airportList}"
-                             editMode="cell"
-                             editable="true"
-                             selection="#{airport.selectedAirport}"
-                             lazy="false" 
-                             rows="10"
-                             rowKey="#{p.id}"
-                             rowsPerPageTemplate="10,20,30"
-                             paginator="true">
-                    <f:facet name="header">
-                        Airport
-                    </f:facet>
-                    <p:column selectionMode="single" style="width:16px;text-align:center"/>
+            <p:dataTable id="table"
+                         var="p"
+                         value="#{airport.airportList}"
+                         editMode="cell"
+                         editable="true"
+                         selection="#{airport.selectedAirport}"
+                         lazy="false" 
+                         rows="10"
+                         rowKey="#{p.id}"
+                         rowsPerPageTemplate="10,20,30"
+                         paginator="true">
+                <f:facet name="header">
+                    Airport
+                </f:facet>
+                <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
-                    <p:ajax event="rowSelectRadio" update="deleteButton" />
-                    <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update="Aform:table"/>
+                <p:ajax event="rowSelectRadio" update="deleteButton" />
+                <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update="Aform:table"/>
 
-                    <p:column headerText="Name">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.name}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                <p:column headerText="Name">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.name}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
-                    <p:column headerText="Country">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.country}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-
-                    <p:column headerText="City">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.city}"/></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.city}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                <p:column headerText="Country">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.country}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
 
-                    <f:facet name="footer">
-                        <h:column>
-                            <p:commandButton value="Add" onclick="PF('Adialog').show();"/>
-                        </h:column>
-
-                        <h:column>
-                            <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="Aform deleteButton"/>
-                        </h:column>
-
-                    </f:facet>
-                </p:dataTable>
+                <p:column headerText="City">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.city}"/></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.city}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
 
+                <f:facet name="footer">
+                    <h:column>
+                        <p:commandButton value="Add" onclick="PF('Adialog').show();"/>
+                    </h:column>
 
-                <p:dialog id="dial" widgetVar="Adialog" header="Add Content"  minHeight="40">
-                    <h:panelGrid columns="2">
-                        Name: <p:inputText id="name"  value="#{airport.entity.name}"/>
-                        Country: <p:inputText id="country" value="#{airport.entity.country}"/>
-                        City:   <p:inputText id="city" value="#{airport.entity.city}"/>
-                        <h:column>
-                            <p:commandButton  value="Clear"   action="#{airport.clear()}"  update="name country city"/>
-                            <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="PF('Adialog').hide();"/> 
-                        </h:column>
-                    </h:panelGrid>
+                    <h:column>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="Aform deleteButton"/>
+                    </h:column>
 
-                    <p:ajax event="close" update="Aform"/>
-                </p:dialog>
+                    <h:column>
+                        <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+                            <p:fileDownload value="#{airport.download()}" />
+                        </p:commandButton>
+                    </h:column>
+                </f:facet>
+            </p:dataTable>
 
 
-            </h:form>
+
+            <p:dialog id="dial" widgetVar="Adialog" header="Add Content"  minHeight="40">
+                <h:panelGrid columns="2">
+                    Name: <p:inputText id="name"  value="#{airport.entity.name}"/>
+                    Country: <p:inputText id="country" value="#{airport.entity.country}"/>
+                    City:   <p:inputText id="city" value="#{airport.entity.city}"/>
+                    <h:column>
+                        <p:commandButton  value="Clear"   action="#{airport.clear()}"  update="name country city"/>
+                        <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="PF('Adialog').hide();"/> 
+                    </h:column>
+                </h:panelGrid>
+
+                <p:ajax event="close" update="Aform"/>
+            </p:dialog>
+
+
+        </h:form>
     </body>
 </html>

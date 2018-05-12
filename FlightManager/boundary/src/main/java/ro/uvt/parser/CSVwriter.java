@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,10 +42,23 @@ public class CSVwriter<T> {
     public void init() {
         for (Field field : type.getDeclaredFields()) {
             String name = field.getName();
-            if (!name.startsWith("_") && name != "serialVersionUID" && name != "is_active") {
+            if (!name.startsWith("_") && name != "serialVersionUID" && 
+                 name != "is_active"  && isSafe(field) && name != "id" ) {
                 classFields.add(field);
             }
         }
+    }
+
+    private boolean isSafe(Field field) {
+        Annotation[] annotations = field.getAnnotations();
+        for (Annotation annotation : annotations) {
+            String name = annotation.toString();
+            if (name.contains("OneToMany") || name.contains("ManyToOne") ||
+                name.contains("OneToOne") || name.contains("ManyToMany")) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private CSVFormat format() {
