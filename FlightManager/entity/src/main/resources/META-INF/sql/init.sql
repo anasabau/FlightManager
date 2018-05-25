@@ -2,24 +2,16 @@
 
 
 -- ----------- VIEW -------------------------
-create view user_group as
-select username, name roles, role_id_id user_role
-from roles r, users u;
+-- create OR REPLACE view  user_group as select username, name roles, from roles, users;
 -- ----------------- VIEW ----------------
 
 
-           --------------------- COMPANY ------------------
+--     --------------------- COMPANY ------------------
 
 
-create table company (
-	id INT,
-        
-        comp_id VARCHAR(30)
-	name VARCHAR(50),
-	country VARCHAR(50),
-	headquarters VARCHAR(50),
-	is_active INT
-);
+-- create OR REPLACE table  company ( id INT, comp_id VARCHAR(30), name VARCHAR(50), country VARCHAR(50), headquarters VARCHAR(50), is_active INT );
+
+
 insert into company (id, comp_id, name, country, headquarters, is_active) values (1,'123as2', 'Avavee', 'China', 'Sunzhuang', 1);
 insert into company (id, comp_id, name, country, headquarters, is_active) values (2,'942kg2', 'Gabspot', 'Bangladesh', 'Saidpur', 1);
 insert into company (id, comp_id, name, country, headquarters, is_active) values (3,'732q7', 'Jaxspan', 'Yemen', 'Aa Salw', 1);
@@ -131,10 +123,9 @@ insert into company (id, comp_id, name, country, headquarters, is_active) values
 
 
 
-create table roles (
-	id INT,
-	name VARCHAR(50),
-	is_active INT);
+-- create OR REPLACE table roles (id INT, name VARCHAR(50), is_active INT);
+
+
 insert into roles (id, name, is_active) values (1, 'admin', 1);
 insert into roles (id, name, is_active) values (2, 'Safety Technician I', 1);
 insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
@@ -150,15 +141,7 @@ insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
 
 
 
-create table users (
-	id INT,
-	username VARCHAR(50),
-	password VARCHAR(500),
-	company_id_id INT,
-	role_id_id INT,
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	is_active INT);
+-- create OR REPLACE table users (id INT, username VARCHAR(50), password VARCHAR(500), company_id_id INT, role_id_id INT, first_name VARCHAR(50),last_name VARCHAR(50),is_active INT);
 
 
 
@@ -168,7 +151,7 @@ insert into users (id, username, password, company_id_id, role_id_id, first_name
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (2, 'bgoff1', 'uQ5AGd33j', 8, 1, 'Brnaby', 'Goff', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (3, 'bocannavan2', 'e82WYovF', 2, 1, 'Bucky', 'O''Cannavan', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (4, 'gmartine3', 'dEz2qh10e', 4, 1, 'Gay', 'Martine', 1);
-insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (5, 'dcondy4', 'UfKpST5', 16, 1, 'Dill', 'Condy', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (5, 'dcondy4', 'UfKpST5', 6, 1, 'Dill', 'Condy', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (6, 'cgrissett5', 'gJr8K6WzF', 2, 1, 'Cullen', 'Grissett', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (7, 'ccable6', 'bxKPMwrO2pYi', 3, 1, 'Casi', 'Cable', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (8, 'rhassur7', 'cjXvMWkkK', 5, 1, 'Robbie', 'Hassur', 1);
@@ -271,12 +254,9 @@ insert into users (id, username, password, company_id_id, role_id_id, first_name
 -- AIRPORT---------------------------------
 
 
-create table airport (
-	id INT,
-	name VARCHAR(50),
-	city VARCHAR(50),
-	country VARCHAR(50),
-	is_active INT);
+--  create OR REPLACE table airport (id INT, name VARCHAR(50), city VARCHAR(50), country VARCHAR(50), is_active INT);
+
+
 insert into airport (id, name, city, country, is_active) values (1, 'Menomonie', 'Huangmei', 'China', 1);
 insert into airport (id, name, city, country, is_active) values (2, 'Wayridge', 'Eiriz', 'Portugal', 1);
 insert into airport (id, name, city, country, is_active) values (3, 'Debra', 'Vittel', 'France', 1);
@@ -384,14 +364,7 @@ insert into airport (id, name, city, country, is_active) values (10, 'Manufactur
   -- Plane---------------------------------
 
 
-create table plane (
-	id INT,
-	model VARCHAR(50),
-	registration_id VARCHAR(40),
-	company_id_id INT,
-	nr_sits INT,
-	is_active INT
-);
+-- create OR REPLACE table plane (id INT,model VARCHAR(50),registration_id VARCHAR(40),company_id_id INT,nr_sits INT,is_active INT);
 
 
 insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active) values (1, '944', 'c0e28513-0a55-48a8-9038-79f145fc4d6e', 1, 1, 1);
@@ -499,15 +472,7 @@ insert into plane (id, model, registration_id, company_id_id, nr_sits, is_active
         --   FLIGHT TABLE ------------------------------
 
 
-create table flight (
-	id INT,
-	plane_id_id INT,
-	departure_airport_id INT,
-	arival_airport_id INT,
-	departure_time VARCHAR(50),
-	arival_time VARCHAR(50),
-	pilot_id INT
-);
+-- create OR REPLACE table flight (id INT,plane_id_id INT,departure_airport_id INT,arival_airport_id INT,departure_time VARCHAR(50),arival_time VARCHAR(50),pilot_id INT);
 
 insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (1, 1, 2, 8, '2017-07-11 17:18:56', '2017-05-04 10:42:10', 1);
 insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (2, 2, 8, 2, '2018-01-01 00:18:54', '2018-04-14 00:26:24', 2);
@@ -518,7 +483,7 @@ insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, de
 insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (7, 7, 8, 5, '2018-03-20 15:39:54', '2017-06-03 05:40:57', 7);
 insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (8, 8, 8, 6, '2017-12-01 11:57:48', '2017-10-01 15:52:21', 8);
 insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (9, 9, 2, 3, '2017-08-23 21:22:30', '2017-07-28 10:04:15', 3);
-insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (10, 10, 10, 8, '2017-09-15 10:43:15', '2018-04-11 01:04:34', 2);
+insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (10, 4, 10, 8, '2017-09-15 10:43:15', '2018-04-11 01:04:34', 2);
 -- insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (13, 13, 13, 13, '23:17', '20:36', 13);
 -- insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (14, 14, 14, 14, '18:46', '15:10', 14);
 -- insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, departure_time, arival_time, pilot_id) values (15, 15, 15, 15, '11:21', '22:35', 15);
@@ -616,10 +581,7 @@ insert into flight (id, plane_id_id, departure_airport_id, arival_airport_id, de
 
 
 
-create table itinerary (
-	id INT,
-	name VARCHAR(50)
-);
+--  create OR REPLACE table itinerary (id INT,name VARCHAR(50));
 
 insert into itinerary (id, name) values (1, 'Moca');
 insert into itinerary (id, name) values (2, 'Xincheng Chengguanzhen');
