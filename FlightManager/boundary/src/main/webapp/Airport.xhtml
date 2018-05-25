@@ -84,24 +84,38 @@
                     </h:column>
                 </f:facet>
             </p:dataTable>
+        </h:form>
 
-
-
-            <p:dialog id="dial" widgetVar="Adialog" header="Add Content"  minHeight="40">
+        <p:dialog id="dial" widgetVar="Adialog" header="Add Content"  minHeight="40">
+            <h:form>
                 <h:panelGrid columns="2">
-                    Name: <p:inputText id="name"  value="#{airport.entity.name}"/>
-                    Country: <p:inputText id="country" value="#{airport.entity.country}"/>
-                    City:   <p:inputText id="city" value="#{airport.entity.city}"/>
+                    Name: <p:inputText id="name"  value="#{airport.entity.name}" required="true"/>
+                    Country: <p:inputText id="country" value="#{airport.entity.country}" required="true"/>
+                    City:   <p:inputText id="city" value="#{airport.entity.city}" required="true"/>
                     <h:column>
                         <p:commandButton  value="Clear"   action="#{airport.clear()}"  update="name country city"/>
-                        <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="PF('Adialog').hide();"/> 
+                        <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="dialogValidation(args)" update=" @form Aform"/> 
                     </h:column>
                 </h:panelGrid>
-
-                <p:ajax event="close" update="Aform"/>
-            </p:dialog>
+            </h:form>
 
 
-        </h:form>
+            <p:ajax event="close" update="Aform"/>
+        </p:dialog>
+
+
+
+
+        <script>
+
+            function dialogValidation(args) {
+
+                if (!args.validationFailed) {
+                    PF('Adialog').hide();
+                }
+
+            }
+        </script>
+
     </body>
 </html>
