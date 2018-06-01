@@ -2,7 +2,6 @@
 
 
 -- ----------- VIEW -------------------------
--- create OR REPLACE view  user_group as select username, name roles, from roles, users;
 -- ----------------- VIEW ----------------
 
 
@@ -683,3 +682,7 @@ insert into itinerary (id, name) values (11, 'Lacroix-Saint-Ouen');
 -- insert into itinerary (id, name) values (98, 'Tai Po');
 -- insert into itinerary (id, name) values (99, 'Quintã');
 -- insert into itinerary (id, name) values (100, 'Cavalões');
+
+
+
+create OR REPLACE view  user_group as select username, name from roles, users;

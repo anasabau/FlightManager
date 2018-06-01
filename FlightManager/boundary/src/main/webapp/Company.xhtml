@@ -10,98 +10,100 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Flight Manager</title>
-        <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
+        <meta name="viewport" content="width = device-width, initial-scale = 1"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+
     </h:head>
 
     <body>
-            Total items: #{company.companyList.size()}
+        Total items: #{company.companyList.size()}
 
-            <h:form id="Cform">
+        <h:form id="Cform">
 
-                <p:dataTable id="table"
-                             var="p"
-                             value="#{company.companyList}" 
-                             editMode="cell"
-                             editable="true"
-                             selection="#{company.selectedCompany}"
-                             rows="10"
-                             rowKey="#{p.id}"
-                             rowsPerPageTemplate="10,20,30"
-                             paginator="true">
-                    <f:facet name="header">
-                        Companies
-                    </f:facet>
-                    <p:column selectionMode="single" style="width:16px;text-align:center"/>
+            <p:dataTable class="table" style="width:100%" 
+                         id="table"
+                         var="p"
+                         value="#{company.companyList}" 
+                         editMode="cell"
+                         editable="true"
+                         selection="#{company.selectedCompany}"
+                         rows="10"
+                         rowKey="#{p.id}"
+                         rowsPerPageTemplate="10,20,30"
+                         paginator="true">
+                <f:facet name="header">
+                    Companies
+                </f:facet>
+                <p:column selectionMode="single" style="width:16px;text-align:center"/>
 
-                    <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="table" />
-                    <p:ajax event="rowSelectRadio" update="deleteButton" />
+                <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="table" />
+                <p:ajax event="rowSelectRadio" update="deleteButton" />
 
-                    <p:column headerText="Company ID">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.comp_id}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.comp_id}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    
-                    <p:column headerText="Name">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.name}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                <p:column headerText="Company ID">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.comp_id}" /></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.comp_id}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
-                    <p:column headerText="Country">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.country}" />
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
+                <p:column headerText="Name">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.name}" /></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.name}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
-
-                    <p:column headerText="Headquarters">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText  value="#{p.headquarters}"/></f:facet>
-                            <f:facet name="input">
-                                <p:inputText value="#{p.headquarters}"/>
-                            </f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <f:facet name="footer">
-                        <h:column>
-                            <p:commandButton value="Add" onclick="PF('Cdialog').show();"/>
-                        </h:column>
-
-                        <h:column>
-                            <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selectedCompany == null}" action="#{company.onRowDelete()}" update="Cform deleteButton"/>
-                        </h:column>
-
-                    </f:facet>
-
-                </p:dataTable>
+                <p:column headerText="Country">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.country}"/></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.country}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
 
 
-                <p:dialog id="dial" widgetVar="Cdialog" header="Add Content"  minHeight="40">
-                    <h:panelGrid columns="2">
-                        Company ID: <p:inputText id="comp_id"  value="#{company.entity.comp_id}"/>
-                        Name: <p:inputText id="name"  value="#{company.entity.name}"/>
-                        Country: <p:inputText id="country" value="#{company.entity.country}"/>
-                        Headquarters:   <p:inputText id="city" value="#{company.entity.headquarters}"/>
-                        <h:column>
-                            <p:commandButton  value="Clear"   action="#{company.clear()}"  update="comp_id name country city"/>
-                            <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('Cdialog').hide();" update="table"/> 
-                        </h:column>
-                    </h:panelGrid>
+                <p:column headerText="Headquarters">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{p.headquarters}"/></f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{p.headquarters}"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <f:facet name="footer">
+                    <h:column>
+                        <p:commandButton value="Add" onclick="PF('Cdialog').show();"/>
+                    </h:column>
 
-                    <p:ajax event="close"  update="Cform"/>
-                </p:dialog>
-            </h:form>
+                    <h:column>
+                        <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selectedCompany == null}" action="#{company.onRowDelete()}" update="Cform deleteButton"/>
+                    </h:column>
+
+                </f:facet>
+
+            </p:dataTable>
+
+
+            <p:dialog id="dial" widgetVar="Cdialog" header="Add Content"  minHeight="40">
+                <h:panelGrid columns="2">
+                    Company ID: <p:inputText id="comp_id"  value="#{company.entity.comp_id}"/>
+                    Name: <p:inputText id="name"  value="#{company.entity.name}"/>
+                    Country: <p:inputText id="country" value="#{company.entity.country}"/>
+                    Headquarters:   <p:inputText id="city" value="#{company.entity.headquarters}"/>
+                    <h:column>
+                        <p:commandButton  value="Clear"   action="#{company.clear()}"  update="comp_id name country city"/>
+                        <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('Cdialog').hide();" update="table"/> 
+                    </h:column>
+                </h:panelGrid>
+
+                <p:ajax event="close"  update="Cform"/>
+            </p:dialog>
+        </h:form>
 
     </body>
 </html>
