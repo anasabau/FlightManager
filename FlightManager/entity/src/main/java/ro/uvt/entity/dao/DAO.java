@@ -13,8 +13,6 @@ public interface DAO {
 
     <E extends Persistent> void update(E entity);
 
-   // To discuss if needed at all <E extends Persistent> void remove(E entity);
-
     <E extends Persistent ,K> void removeById(Class<E> type, K id);
 
     <E extends Persistent, K> E findById(Class<E> type, K id);
