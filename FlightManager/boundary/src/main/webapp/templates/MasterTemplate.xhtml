@@ -8,7 +8,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width = device-width, initial-scale = 1"/>
-        
+
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>Flight Manager</title>
@@ -19,7 +19,9 @@
     <h:body>
         <h:form>
             <h:graphicImage value="/resources/logo_text.png"/>
-
+            <h:commandLink style="float: right" action="#{common.logout()}" >
+                Logout from user: #{facesContext.externalContext.remoteUser}
+            </h:commandLink>
 
 
             <p:tabView class="" dynamic="true" cache="false" >
