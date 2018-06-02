@@ -27,10 +27,12 @@
             <web-resource-name>restriction</web-resource-name>
             <description/>
             <url-pattern>/Airport.xhtml</url-pattern>
+            
         </web-resource-collection>
         <auth-constraint>
             <role-name>test</role-name>
         </auth-constraint>
+        
     </security-constraint>
     <login-config>
         <auth-method>BASIC</auth-method>
@@ -40,4 +42,8 @@
         <description/>
         <role-name>admin</role-name>
     </security-role>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/403.xhtml</location>
+    </error-page>
 </web-app>
