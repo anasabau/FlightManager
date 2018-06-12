@@ -22,13 +22,41 @@
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     <security-constraint>
-        <display-name>Constraint1</display-name>
+        <display-name>Admin</display-name>
         <web-resource-collection>
-            <web-resource-name>airport</web-resource-name>
-            <url-pattern>*.xhtml</url-pattern>
+            <web-resource-name>admin pages</web-resource-name>
+            <description/>
+            <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
+            <description/>
             <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>User and Admin </display-name>
+        <web-resource-collection>
+            <web-resource-name>user and admin pages</web-resource-name>
+            <description/>
+            <url-pattern>/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Main</display-name>
+        <web-resource-collection>
+            <web-resource-name>main</web-resource-name>
+            <description/>
+            <url-pattern>/</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+            <role-name>user</role-name>
         </auth-constraint>
     </security-constraint>
     <login-config>
@@ -46,4 +74,8 @@
         <error-code>403</error-code>
         <location>/WEB-INF/403.xhtml</location>
     </error-page>
+    <security-role>
+        <description/>
+        <role-name>user</role-name>
+    </security-role>
 </web-app>

@@ -126,9 +126,7 @@ insert into company (id, comp_id, name, country, headquarters, is_active) values
 
 
 insert into roles (id, name, is_active) values (1, 'admin', 1);
-insert into roles (id, name, is_active) values (2, 'Safety Technician I', 1);
-insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
-
+insert into roles (id, name, is_active) values (2, 'user', 1);
 
 
 
@@ -145,9 +143,9 @@ insert into roles (id, name, is_active) values (3, 'Dental Hygienist', 1);
 
 
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 1, 'Tyne', 'Robertz', 1);
+insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (2, 'user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 8, 2, 'Brnaby', 'Goff', 1);
 
 
-insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (2, 'bgoff1', 'uQ5AGd33j', 8, 1, 'Brnaby', 'Goff', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (3, 'bocannavan2', 'e82WYovF', 2, 1, 'Bucky', 'O''Cannavan', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (4, 'gmartine3', 'dEz2qh10e', 4, 1, 'Gay', 'Martine', 1);
 insert into users (id, username, password, company_id_id, role_id_id, first_name, last_name, is_active) values (5, 'dcondy4', 'UfKpST5', 6, 1, 'Dill', 'Condy', 1);
@@ -685,4 +683,4 @@ insert into itinerary (id, name) values (11, 'Lacroix-Saint-Ouen');
 
 
 
-create OR REPLACE view  user_group as select username, name from roles, users;
+create OR REPLACE view  user_group as select username, name from roles r, users where role_id_id = r.id;
