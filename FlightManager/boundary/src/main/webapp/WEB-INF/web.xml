@@ -51,7 +51,7 @@
         <web-resource-collection>
             <web-resource-name>main</web-resource-name>
             <description/>
-            <url-pattern>/</url-pattern>
+            <url-pattern>/index.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
