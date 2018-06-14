@@ -5,21 +5,19 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <script>
-            function reload(){
-                location.reload();
-            }
-        </script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width = device-width, initial-scale = 1"/>
+    <ui:insert name="header">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width = device-width, initial-scale = 1"/>
 
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Flight Manager</title>
-        <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
-    </h:head>
+            <h:outputStylesheet name="./css/default.css"/>
+            <h:outputStylesheet name="./css/cssLayout.css"/>
+            <title>Flight Manager</title>
+            <link rel="shortcut icon" href="#{request.contextPath}/resources/logo_48.png"/>   
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+        </h:head>
+    </ui:insert>
+
 
     <h:body>
         <h:form id="main">
@@ -29,38 +27,27 @@
             </h:commandLink>
 
 
-            <p:tabView id="tabView" style="border-width: 0PX; border-bottom: 0PX" class="" dynamic="true" cache="false">
-                <p:ajax event="tabChange" update=""/>
-                <p:tab  id="ftab" title="Flight">
-                    <ui:insert name="flight"/>
-                </p:tab>
+            <p:menu  styleClass="ui-menubar" style="width: auto;">
 
-                <p:tab id="ctab" title="Company">
-                    <ui:insert name="company"/>
-                </p:tab>
+                <p:menuitem  url="/user/Flight.xhtml" value="Flight"/>
 
-                <p:tab id="utab" title="User" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
-                    <ui:insert name="user"/>
-                </p:tab>
+                <p:menuitem url="/user/Airport.xhtml" value="Airport"/>
 
-                <p:tab id="rtab" title="Role" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
-                    <ui:insert name="role"/>
-                </p:tab>
+                <p:menuitem url="/user/Company.xhtml" value="Company"/>  
 
+                <p:menuitem url="/user/Itinerary.xhtml" value="Itinerary"/>
 
-                <p:tab id="atab" title="Airport">
-                    <ui:insert name="airport"/>
-                </p:tab>
+                <p:menuitem url="/user/Plane.xhtml" value="Plane"/>
 
-                <p:tab id="ptab" title="Plane">
-                    <ui:insert name="plane"/>
-                </p:tab>
+                <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('admin')}" url="/admin/Role.xhtml" value="Role"/>
 
-                <p:tab id="itab" title="Itinerary">
-                    <ui:insert name="itinerary"/>
-                </p:tab>
+                <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('admin')}" url="/admin/User.xhtml" value="User"/>
 
-            </p:tabView> 
+            </p:menu>
+
+            <ui:insert name="content">
+                
+            </ui:insert>
         </h:form>
     </h:body>
 

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import lombok.Data;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,7 +40,7 @@ import ro.uvt.parser.CSVwriter;
  */
 @Named("flightView")
 @Data
-@RequestScoped
+@ViewScoped
 public class FlightView implements Serializable {
 
     private ro.uvt.entity.Flight entity = new ro.uvt.entity.Flight();

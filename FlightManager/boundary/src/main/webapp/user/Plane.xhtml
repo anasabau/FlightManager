@@ -5,126 +5,119 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="../templates/MasterTemplate.xhtml">
 
-    <body>
-
-        <h:head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <h:outputStylesheet name="./css/default.css"/>
-            <h:outputStylesheet name="./css/cssLayout.css"/>
-            <meta name="viewport" content="width = device-width, initial-scale = 1"/>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
-
-        </h:head>
+        <body>
+            <ui:define name="content">
+                Total items: #{plane.planeList.size()}
 
 
-        Total items: #{plane.planeList.size()}
+                <h:form id="Pform">
 
-
-        <h:form id="Pform">
-
-            <p:dataTable class="table" style="width:100%" 
-                         id="table"
-                         var="p"
-                         value="#{plane.planeList}" 
-                         editMode="cell"
-                         editable="true"
-                         selection="#{plane.selectedPlane}"
-                         lazy="false" 
-                         rows="10"
-                         rowKey="#{p.id}"
-                         rowsPerPageTemplate="10,20,30"
-                         paginator="true">
-                <f:facet name="header">
-                    Planes
-                </f:facet>
-                <p:column selectionMode="single" style="width:36px;text-align:left"/>
-
-                <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update="@form:table"/>
-                <p:ajax event="rowSelectRadio" update="deleteButton" />
-
-                <p:column headerText="Model">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText  value="#{p.model}" /></f:facet>
-                        <f:facet name="input">
-                            <p:inputText value="#{p.model}"/>
+                    <p:dataTable class="table" style="width:100%" 
+                                 id="table"
+                                 var="p"
+                                 value="#{plane.planeList}" 
+                                 editMode="cell"
+                                 editable="true"
+                                 selection="#{plane.selectedPlane}"
+                                 lazy="false" 
+                                 rows="10"
+                                 rowKey="#{p.id}"
+                                 rowsPerPageTemplate="10,20,30"
+                                 paginator="true">
+                        <f:facet name="header">
+                            Planes
                         </f:facet>
-                    </p:cellEditor>
-                </p:column>
+                        <p:column selectionMode="single" style="width:36px;text-align:left"/>
 
-                <p:column headerText="Nr of sits">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText  value="#{p.nr_sits}"/></f:facet>
-                        <f:facet name="input">
-                            <p:inputText value="#{p.nr_sits}" />
+                        <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update="@form:table"/>
+                        <p:ajax event="rowSelectRadio" update="deleteButton" />
+
+                        <p:column headerText="Model">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.model}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.model}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Nr of sits">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.nr_sits}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.nr_sits}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+
+                        <p:column headerText="Registration id">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.registration_id}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{p.registration_id}"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+
+                        <p:column headerText="Company id">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText  value="#{p.company_id}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:selectOneMenu value="#{plane.selectedCompany}" style="width:150px">
+                                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{plane.companies}" />
+
+                                        <p:ajax event="change" listener="#{plane.onCompanyChange(p)}" />
+                                    </p:selectOneMenu>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+
+                        <f:facet name="footer">
+                            <h:column>
+                                <p:commandButton value="Add" onclick="PF('Pdialog').show();"/>
+                            </h:column>
+
+                            <h:column>
+                                <p:commandButton id="deleteButton" value="Delete" disabled="#{plane.selectedPlane == null}" action="#{plane.onRowDelete()}" update="@form:table deleteButton"/>
+                            </h:column>
+
                         </f:facet>
-                    </p:cellEditor>
-                </p:column>
+                    </p:dataTable>
 
 
-                <p:column headerText="Registration id">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText  value="#{p.registration_id}"/></f:facet>
-                        <f:facet name="input">
-                            <p:inputText value="#{p.registration_id}"/>
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
 
-
-                <p:column headerText="Company id">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText  value="#{p.company_id}"/></f:facet>
-                        <f:facet name="input">
-                            <p:selectOneMenu value="#{plane.selectedCompany}" style="width:150px">
+                    <p:dialog id="dial" widgetVar="Pdialog" header="Add Content"  minHeight="40">
+                        <h:panelGrid columns="2">
+                            Model: <p:inputText id="model"  value="#{plane.entity.model}"/>
+                            Nr of Sits <p:inputText id="sits" value="#{plane.entity.nr_sits}"/>
+                            Registration id   <p:inputText id="registration_id" value="#{plane.entity.registration_id}"/>
+                            Company id              
+                            <p:selectOneMenu id="company_id" value="#{plane.selectedCompany}" style="width:150px">
                                 <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{plane.companies}" />
 
-                                <p:ajax event="change" listener="#{plane.onCompanyChange(p)}" />
+                                <p:ajax event="change" listener="#{plane.onCompanyChange}" />
                             </p:selectOneMenu>
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
+                            <p:message for="company_id" />
+                            <h:column>
+                                <p:commandButton  value="Clear"   action="#{plane.clear()}"  update="model sits registration_id company_id"/>
+                                <p:commandButton  value="Add"   action="#{plane.submit()}" oncomplete="PF('Pdialog').hide();"/> 
+                            </h:column>
+                        </h:panelGrid>
+
+                        <p:ajax event="close" update="@form:table"/>
+                    </p:dialog>
 
 
-                <f:facet name="footer">
-                    <h:column>
-                        <p:commandButton value="Add" onclick="PF('Pdialog').show();"/>
-                    </h:column>
+                </h:form>
+            </ui:define>
+        </body>
+    </ui:composition>
 
-                    <h:column>
-                        <p:commandButton id="deleteButton" value="Delete" disabled="#{plane.selectedPlane == null}" action="#{plane.onRowDelete()}" update="@form:table deleteButton"/>
-                    </h:column>
-
-                </f:facet>
-            </p:dataTable>
-
-
-
-            <p:dialog id="dial" widgetVar="Pdialog" header="Add Content"  minHeight="40">
-                <h:panelGrid columns="2">
-                    Model: <p:inputText id="model"  value="#{plane.entity.model}"/>
-                    Nr of Sits <p:inputText id="sits" value="#{plane.entity.nr_sits}"/>
-                    Registration id   <p:inputText id="registration_id" value="#{plane.entity.registration_id}"/>
-                    Company id              
-                    <p:selectOneMenu id="company_id" value="#{plane.selectedCompany}" style="width:150px">
-                        <f:selectItem itemLabel="Select Company" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{plane.companies}" />
-
-                        <p:ajax event="change" listener="#{plane.onCompanyChange}" />
-                    </p:selectOneMenu>
-                    <p:message for="company_id" />
-                    <h:column>
-                        <p:commandButton  value="Clear"   action="#{plane.clear()}"  update="model sits registration_id company_id"/>
-                        <p:commandButton  value="Add"   action="#{plane.submit()}" oncomplete="PF('Pdialog').hide();"/> 
-                    </h:column>
-                </h:panelGrid>
-
-                <p:ajax event="close" update="@form:table"/>
-            </p:dialog>
-
-
-        </h:form>
-
-    </body>
 </html>
