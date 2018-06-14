@@ -6,6 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
+        <script>
+            function reload(){
+                location.reload();
+            }
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width = device-width, initial-scale = 1"/>
 
@@ -17,48 +22,45 @@
     </h:head>
 
     <h:body>
-        <h:form>
+        <h:form id="main">
             <h:graphicImage value="/resources/logo_text.png"/>
             <h:commandLink style="float: right" action="#{common.logout()}" >
                 Logout from user: #{facesContext.externalContext.remoteUser}
             </h:commandLink>
 
 
-            <p:tabView class="" dynamic="true" cache="false" >
-                <p:ajax event="tabChange"/>
-                <p:tab id="Ftab" title="Flight">
-                    <iframe src="user/Flight.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+            <p:tabView id="tabView" style="border-width: 0PX; border-bottom: 0PX" class="" dynamic="true" cache="false">
+                <p:ajax event="tabChange" update="@form"/>
+                <p:tab  id="ftab" title="Flight">
+                    <ui:insert name="flight"/>
                 </p:tab>
 
-                <p:tab title="Company">
-                    <iframe src="user/Company.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                <p:tab id="ctab" title="Company">
+                    <ui:insert name="company"/>
                 </p:tab>
 
-                <p:tab title="User">
-                    <iframe src="admin/User.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                <p:tab id="utab" title="User" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
+                    <ui:insert name="user"/>
                 </p:tab>
 
-                <p:tab title="Role">
-                    <iframe src="admin/Role.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                <p:tab id="rtab" title="Role" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
+                    <ui:insert name="role"/>
                 </p:tab>
 
 
-                <p:tab title="Airport">
-                    <iframe src="user/Airport.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                <p:tab id="atab" title="Airport">
+                    <ui:insert name="airport"/>
                 </p:tab>
 
-                <p:tab title="Plane">
-                    <iframe src="user/Plane.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                <p:tab id="ptab" title="Plane">
+                    <ui:insert name="plane"/>
                 </p:tab>
 
-                <p:tab title="Itinerary">
-                    <iframe src="user/Itinerary.xhtml" width="100%" height="572px" style="border-width: 0PX;"></iframe>
+                <p:tab id="itab" title="Itinerary">
+                    <ui:insert name="itinerary"/>
                 </p:tab>
 
-            </p:tabView>
-            <div id="content" class="center_content">
-
-            </div>    
+            </p:tabView> 
         </h:form>
     </h:body>
 

@@ -4,11 +4,41 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
-    
+
+
     <ui:composition template="/templates/MasterTemplate.xhtml">
-        
-        
+
+        <ui:define name="flight">
+            <ui:include src="user/Flight.xhtml"/>
+        </ui:define>
+
+
+        <ui:define name="company">
+            <ui:include src="user/Company.xhtml"/>
+        </ui:define>
+
+        <ui:define  name="user">
+            <ui:include src="admin/User.xhtml" />
+        </ui:define>
+
+        <ui:define name="role">
+            <ui:include src="admin/Role.xhtml"/>
+        </ui:define>
+
+
+
+        <ui:define name="airport">
+            <ui:include src="user/Airport.xhtml"/>
+        </ui:define>
+
+
+        <ui:define name="plane">
+            <ui:include src="user/Plane.xhtml"/>
+        </ui:define>
+
+        <ui:define name="itinerary">
+            <ui:include src="user/Itinerary.xhtml"/>
+        </ui:define>
     </ui:composition>
 </html>
 

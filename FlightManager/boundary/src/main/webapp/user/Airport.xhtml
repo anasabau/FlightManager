@@ -39,7 +39,7 @@
                 <p:column selectionMode="single" style="width:36px;text-align:left"/>
 
                 <p:ajax event="rowSelectRadio" update="deleteButton" />
-                <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update="Aform:table"/>
+                <p:ajax event="cellEdit" listener="#{airport.onCellEdit}" update="@form:table"/>
 
                 <p:column headerText="Name">
                     <p:cellEditor>
@@ -76,7 +76,7 @@
                     </h:column>
 
                     <h:column>
-                        <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="Aform deleteButton"/>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{airport.selectedAirport == null}" action="#{airport.onRowDelete()}" update="@form:table deleteButton"/>
                     </h:column>
 
                     <h:column>
@@ -96,13 +96,13 @@
                     City:   <p:inputText id="city" value="#{airport.entity.city}" required="true"/>
                     <h:column>
                         <p:commandButton  value="Clear"   action="#{airport.clear()}"  update="name country city"/>
-                        <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="dialogValidation(args)" update=" @form Aform"/> 
+                        <p:commandButton  value="Add"   action="#{airport.submit()}" oncomplete="dialogValidation(args)" update="@form"/> 
                     </h:column>
                 </h:panelGrid>
             </h:form>
 
 
-            <p:ajax event="close" update="Aform"/>
+            <p:ajax event="close" update="@form"/>
         </p:dialog>
 
 
@@ -118,6 +118,5 @@
 
             }
         </script>
-
     </body>
 </html>

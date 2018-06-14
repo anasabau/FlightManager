@@ -39,7 +39,7 @@
                 </f:facet>
                 <p:column selectionMode="single" style="width:36px;text-align:left"/>
 
-                <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update="Iform:table"/>
+                <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update="@form:table"/>
                 <p:ajax  event="rowSelectRadio" listener="#{itinerary.rowSelectionEvent}"  update="deleteButton addFlights showFlights" />
 
 
@@ -58,7 +58,7 @@
                     </h:column>
 
                     <h:column>
-                        <p:commandButton id="deleteButton" value="Delete" disabled="#{itinerary.selectedItinerary == null}" action="#{itinerary.onRowDelete()}" update="Iform deleteButton"/>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{itinerary.selectedItinerary == null}" action="#{itinerary.onRowDelete()}" update="@form:table deleteButton"/>
                     </h:column>
                     <h:column>
                         <p:commandButton id="addFlights" value="Add flights" onclick="PF('flights').show();" disabled="#{!itinerary.selected}"/>
@@ -80,7 +80,7 @@
                     </h:column>
                 </h:panelGrid>
 
-                <p:ajax event="close" update="Iform"/>
+                <p:ajax event="close" update="@form:table"/>
             </p:dialog>
 
             <p:dialog id="flights" widgetVar="flights" header="Add Content"  minHeight="40">
@@ -98,7 +98,7 @@
                                      oncomplete="PF('flights').hide();"/>
                 </h:panelGrid>
 
-                <p:ajax event="close" update="Iform"/>
+                <p:ajax event="close" update="@form:table"/>
             </p:dialog>
 
 
@@ -116,7 +116,7 @@
                                      update="list"/>
                 </h:panelGrid>
 
-                <p:ajax event="close" update="Iform"/>
+                <p:ajax event="close" update="@form:table"/>
             </p:dialog>
 
         </h:form>

@@ -23,7 +23,8 @@
         <p:outputLabel>Total items: #{flightView.flightList.size()}</p:outputLabel>  
         <h:form id="Fform">
 
-            <p:dataTable class="table" style="width:100%" 
+            <p:dataTable
+                        class="table" style="width:100%" 
                         id="table"
                          var="p"
                          value="#{flightView.flightList}" 
@@ -83,7 +84,7 @@
                                 <f:selectItems value="#{flightView.airports}" />
 
 
-                                <p:ajax event="change"  update="Fform:table" listener="#{flightView.onArivalChange(p)}" />
+                                <p:ajax event="change"  update="@form:table" listener="#{flightView.onArivalChange(p)}" />
                             </p:selectOneMenu>
                         </f:facet>
                     </p:cellEditor>
@@ -124,7 +125,7 @@
                                 <f:selectItem itemLabel="Select State" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{flightView.states}" />
 
-                                <p:ajax event="change"  update="Fform"  />
+                                <p:ajax event="change"  update="@form"  />
 
                             </p:selectOneMenu>
                         </f:facet>
@@ -139,7 +140,7 @@
                                 <f:selectItem itemLabel="Select Pilot" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{flightView.users}" />
 
-                                <p:ajax event="change"  update="Fform" listener="#{flightView.onPilotChange(p)}" />
+                                <p:ajax event="change"  update="@form" listener="#{flightView.onPilotChange(p)}" />
 
                             </p:selectOneMenu>                                
                         </f:facet>
@@ -152,7 +153,7 @@
                     </h:column>
 
                     <h:column>
-                        <p:commandButton id="deleteButton" value="Delete" disabled="#{flightView.selectedFlight==null}" action="#{flightView.onRowDelete}" update="Fform deleteButton"/>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{flightView.selectedFlight==null}" action="#{flightView.onRowDelete}" update="@form deleteButton"/>
                     </h:column>
                     <h:column>
                         <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
@@ -222,13 +223,13 @@
 
                     <h:column>
                         <p:commandButton  value="Clear"   action="#{flightView.clear()}"  update="plane arivalAirport  departureAirport arivalTime departureTime  "/>
-                        <p:commandButton  value="Add"   action="#{flightView.submit()}" oncomplete="PF('Fdialog').hide();"> 
+                        <p:commandButton  value="Add"   action="#{flightView.submit()}" oncomplete="PF('Fdialog').hide();" update="@form:table"> 
                             <p:resetInput target="dial" />
                         </p:commandButton>
                     </h:column>
                 </h:panelGrid>
 
-                <p:ajax event="close" update="Fform"/>
+                <p:ajax event="close" update="@form:table"/>
             </p:dialog>
 
         </h:form>

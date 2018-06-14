@@ -40,7 +40,7 @@
                 </f:facet>
                 <p:column selectionMode="single" style="width:36px;text-align:left"/>
 
-                <p:ajax event="cellEdit" listener="#{role.onCellEdit}" update="table" />
+                <p:ajax event="cellEdit" listener="#{role.onCellEdit}" update="@form:table" />
                 <p:ajax event="rowSelectRadio" update="deleteButton" />
 
                 <p:column headerText="Name">
@@ -57,7 +57,7 @@
                     </h:column>
 
                     <h:column>
-                        <p:commandButton id="deleteButton" value="Delete" disabled="#{role.selectedRole == null}" action="#{role.onRowDelete()}" update="Rform deleteButton"/>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{role.selectedRole == null}" action="#{role.onRowDelete()}" update="@form:table deleteButton"/>
                     </h:column>
                 </f:facet>
             </p:dataTable>
@@ -71,7 +71,7 @@
                     </h:column>
                 </h:panelGrid>
 
-                <p:ajax event="close" update="Rform"/>
+                <p:ajax event="close" update="@form:table"/>
             </p:dialog>
         </h:form>
     </body>

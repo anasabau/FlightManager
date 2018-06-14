@@ -36,7 +36,7 @@
                 </f:facet>
                 <p:column selectionMode="single" style="width:36px;text-align:left"/>
 
-                <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="table" />
+                <p:ajax event="cellEdit" listener="#{company.onCellEdit}" update="@form:table" />
                 <p:ajax event="rowSelectRadio" update="deleteButton" />
 
                 <p:column headerText="Company ID">
@@ -81,7 +81,7 @@
                     </h:column>
 
                     <h:column>
-                        <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selectedCompany == null}" action="#{company.onRowDelete()}" update="Cform deleteButton"/>
+                        <p:commandButton id="deleteButton"  value="Delete" disabled="#{company.selectedCompany == null}" action="#{company.onRowDelete()}" update="@form:table deleteButton"/>
                     </h:column>
 
                 </f:facet>
@@ -97,11 +97,11 @@
                     Headquarters:   <p:inputText id="city" value="#{company.entity.headquarters}"/>
                     <h:column>
                         <p:commandButton  value="Clear"   action="#{company.clear()}"  update="comp_id name country city"/>
-                        <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('Cdialog').hide();" update="table"/> 
+                        <p:commandButton  value="Add"   action="#{company.submit()}" oncomplete="PF('Cdialog').hide();" update="@form:table"/> 
                     </h:column>
                 </h:panelGrid>
 
-                <p:ajax event="close"  update="Cform"/>
+                <p:ajax event="close"  update="@form:table"/>
             </p:dialog>
         </h:form>
 

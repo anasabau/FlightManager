@@ -40,7 +40,7 @@
                 </f:facet>
                 <p:column selectionMode="single" style="width:36px;text-align:left"/>
 
-                <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update="Pform:table"/>
+                <p:ajax event="cellEdit" listener="#{plane.onCellEdit}" update="@form:table"/>
                 <p:ajax event="rowSelectRadio" update="deleteButton" />
 
                 <p:column headerText="Model">
@@ -93,7 +93,7 @@
                     </h:column>
 
                     <h:column>
-                        <p:commandButton id="deleteButton" value="Delete" disabled="#{plane.selectedPlane == null}" action="#{plane.onRowDelete()}" update="Pform deleteButton"/>
+                        <p:commandButton id="deleteButton" value="Delete" disabled="#{plane.selectedPlane == null}" action="#{plane.onRowDelete()}" update="@form:table deleteButton"/>
                     </h:column>
 
                 </f:facet>
@@ -120,7 +120,7 @@
                     </h:column>
                 </h:panelGrid>
 
-                <p:ajax event="close" update="Pform"/>
+                <p:ajax event="close" update="@form:table"/>
             </p:dialog>
 
 
