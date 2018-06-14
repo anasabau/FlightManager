@@ -18,10 +18,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import lombok.Data;
 import javax.inject.Inject;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -39,7 +39,7 @@ import ro.uvt.parser.CSVwriter;
  */
 @Named("flightView")
 @Data
-@ViewScoped
+@RequestScoped
 public class FlightView implements Serializable {
 
     private ro.uvt.entity.Flight entity = new ro.uvt.entity.Flight();

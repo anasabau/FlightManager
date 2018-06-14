@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
@@ -19,7 +19,7 @@ import ro.uvt.controller.beans.PlaneBean;
  */
 @Named("plane")
 @Data
-@ViewScoped
+@RequestScoped
 public class Plane implements Serializable {
 
     @Inject

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
@@ -20,7 +20,7 @@ import ro.uvt.controller.beans.ItineraryBean;
  */
 @Named("itinerary")
 @Data
-@ViewScoped
+@RequestScoped
 public class Itinerary implements Serializable {
 
     @Inject
