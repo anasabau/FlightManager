@@ -81,6 +81,7 @@ public class Itinerary implements Serializable {
             ro.uvt.entity.Flight flight = flightBean.findById(Long.decode(selectedFlight));
             selectedItinerary.getFlights().add(flight);
             itineraryBean.update(selectedItinerary);
+            selectedFlight = null;
         }
     }
 

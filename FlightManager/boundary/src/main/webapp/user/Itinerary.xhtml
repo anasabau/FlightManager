@@ -63,7 +63,7 @@
                     </p:dataTable>
 
 
-                    <p:dialog id="dial" widgetVar="Idialog" header="Add Content"  minHeight="40">
+                    <p:dialog id="dial" widgetVar="Idialog" header="Add New Itinerary" resizable="false"  minHeight="40">
                         <h:panelGrid columns="2">
                             Name: <p:inputText id="name"  value="#{itinerary.entity.name}"/><br></br>
 
@@ -76,11 +76,10 @@
                         <p:ajax event="close" update="@form:table"/>
                     </p:dialog>
 
-                    <p:dialog id="flights" widgetVar="flights" header="Add Content"  minHeight="40">
+                    <p:dialog id="flights" widgetVar="flights" header="Add Content"  minHeight="40" resizable="false" responsive="true">
                         <h:panelGrid columns="0">
-                            <h:selectOneListbox   value="#{itinerary.selectedFlight}" size="10">
+                            <h:selectOneListbox    value="#{itinerary.selectedFlight}" size="10" style="width: 100%">
                                 <f:selectItems value="#{itinerary.filteredFlights}"/>
-
                                 <p:ajax event="change" update="addFlightButton"/>
                             </h:selectOneListbox>
 
@@ -91,25 +90,25 @@
                                              oncomplete="PF('flights').hide();"/>
                         </h:panelGrid>
 
-                        <p:ajax event="close" update="@form:table"/>
+                        <p:ajax event="close" update="@form:flights @form:show"/>
                     </p:dialog>
 
 
-                    <p:dialog id="show" widgetVar="show" header="Itinerary Flights"  minHeight="40">
+                    <p:dialog id="show" widgetVar="show" header="Itinerary Flights" resizable="false"  minHeight="40">
                         <h:panelGrid columns="0">
-                            <h:selectOneListbox id="list" size="10">
+                            <h:selectOneListbox id="list" size="10" style="width: 100%">
                                 <f:selectItems value="#{itinerary.selectedItinerary.flights}"/>
 
                             </h:selectOneListbox>
 
-                            <p:commandButton value="remove flight" 
+                            <p:commandButton value="pop flight" 
                                              id="removeFlightButton" 
                                              disabled="#{itinerary.selectedItinerary.flights.size() == 0 }" 
                                              action="#{itinerary.removeFlightFromItinerary()}" 
                                              update="list"/>
                         </h:panelGrid>
 
-                        <p:ajax event="close" update="@form:table"/>
+                        <p:ajax event="close" update="@form:flights"/>
                     </p:dialog>
 
                 </h:form>
