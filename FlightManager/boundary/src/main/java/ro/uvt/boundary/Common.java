@@ -48,7 +48,7 @@ public class Common implements Serializable{
        
        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
        
-       return "login.xhtml?faces-redirect=true";
+       return "/login.xhtml?faces-redirect=true";
        
    }
     

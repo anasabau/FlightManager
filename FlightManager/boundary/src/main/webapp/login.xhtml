@@ -12,20 +12,19 @@
     </h:head>
     <h:body>
         <center>
-            <h1>Welcome to Flight Manager</h1>
             <h:graphicImage value="/resources/logo_text.png"/>
             <f:view transient="true">
-                <h:form class="form">
-                    <div> 
-                        <p:inputText value="#{common.username}">Username: </p:inputText>
+                <div>
+                    <div class="container">
+                        <h:form class="form-signin " style="max-width: 330px">
+                            <p:inputText class="form-control" value="#{common.username}">Username: </p:inputText>
+                            <br></br>
+                            <p:password class="form-control" value="#{common.password}">Password: </p:password>
+                            <br></br>
+                            <p:commandButton   class="btn  btn-primary btn-block" style="text-align: center" value="Login"  action="#{common.login()}"/>
+                        </h:form>
                     </div>
-                    <div>
-                        <p:password value="#{common.password}">Password: </p:password>
-                    </div>
-                    <div class="button">
-                        <p:commandButton style="text-align: center" value="Login"  action="#{common.login()}"/>
-                    </div>
-                </h:form>
+                </div>
             </f:view>
         </center>
     </h:body>
