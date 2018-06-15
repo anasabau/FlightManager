@@ -27,3 +27,23 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+
+
+.ui-icon-seek-next {
+ background-position:-32px -160px;
+}
+.ui-icon-seek-prev {
+ background-position:-48px -160px;
+}
+.ui-icon-seek-end {
+ background-position:-64px -160px;
+}
+.ui-icon-seek-start {
+ background-position:-80px -160px;
+}
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */.ui-icon-seek-first {
+}
+
+span{
+    background-position:-80px -160px;
+}
