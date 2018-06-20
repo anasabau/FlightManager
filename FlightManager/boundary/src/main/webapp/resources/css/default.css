@@ -47,3 +47,7 @@ a:link:hover, a:visited:hover  {
 span{
     background-position:-80px -160px;
 }
+
+button{
+    max-width: 112px;
+}
