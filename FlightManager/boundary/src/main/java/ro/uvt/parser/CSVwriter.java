@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ro.uvt.parser;
 
 import java.io.File;
@@ -19,10 +15,7 @@ import java.util.logging.Logger;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-/**
- *
- * @author dan
- */
+
 public class CSVwriter<T> {
 
     private final Class<T> type;

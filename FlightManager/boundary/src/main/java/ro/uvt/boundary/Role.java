@@ -10,10 +10,7 @@ import lombok.Data;
 import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.RoleBean;
 
-/**
- *
- * @author Anastasia
- */
+
 @Named("role")
 @Data
 @ViewScoped

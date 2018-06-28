@@ -7,10 +7,6 @@ import javax.inject.Named;
 import ro.uvt.entity.Itinerary;
 import ro.uvt.entity.dao.DAO;
 
-/**
- *
- * @author dan
- */
 
 /**
 *  EJB Managed bean for the Itinerary entity

@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import lombok.Data;
 import org.primefaces.context.RequestContext;
 
-/**
- *
- * @author dan
- */
+
 @Named("common")
 @RequestScoped
 @Data

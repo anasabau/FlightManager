@@ -2,10 +2,7 @@ package ro.uvt.entity.dao;
 
 import java.util.List;
 
-/**
- *
- * @author Anastasia
- */
+
 
 public interface DAO {
 

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ro.uvt.boundary;
 
 import java.io.File;
@@ -35,9 +31,7 @@ import ro.uvt.entity.Flight;
 import ro.uvt.entity.FlightState;
 import ro.uvt.parser.CSVwriter;
 
-/*
- * @author dan
- */
+
 @Named("flightView")
 @Data
 @ViewScoped

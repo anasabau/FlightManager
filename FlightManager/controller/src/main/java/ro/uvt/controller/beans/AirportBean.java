@@ -6,10 +6,7 @@ import javax.inject.Inject;
 import ro.uvt.entity.Airport;
 import ro.uvt.entity.dao.Stateful;
 
-/**
- *
- * @author dan
- */
+
 @Stateless
 public class AirportBean {
 

@@ -6,11 +6,7 @@ import javax.inject.Inject;
 import ro.uvt.entity.Roles;
 import ro.uvt.entity.dao.Stateful;
 
-/**
- *
- *
- * @author dan
- */
+
 
 
 @Stateless

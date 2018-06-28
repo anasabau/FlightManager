@@ -13,10 +13,7 @@ import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- *
- * @author Dan
- */
+
 @Entity
 @Data
 @NoArgsConstructor

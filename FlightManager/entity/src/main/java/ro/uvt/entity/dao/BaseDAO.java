@@ -9,10 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-/**
- *
- * @author Anastasia
- */
+
 @Dependent
 @Named("BaseDAO")
 public class BaseDAO implements DAO {

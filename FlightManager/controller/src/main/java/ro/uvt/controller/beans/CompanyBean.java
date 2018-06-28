@@ -6,10 +6,7 @@ import javax.inject.Inject;
 import ro.uvt.entity.Company;
 import ro.uvt.entity.dao.Stateful;
 
-/**
- *
- * @author Anastasia
- */
+
 
 @Stateless
 public class CompanyBean {

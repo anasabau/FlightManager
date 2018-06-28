@@ -14,10 +14,7 @@ import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.FlightBean;
 import ro.uvt.controller.beans.ItineraryBean;
 
-/**
- *
- * @author Anastasia
- */
+
 @Named("itinerary")
 @Data
 @ViewScoped

@@ -7,10 +7,7 @@ import javax.inject.Named;
 import ro.uvt.entity.Flight;
 import ro.uvt.entity.dao.DAO;
 
-/**
- *
- * @author Anastasia
- */
+
 @Stateless
 public class FlightBean {
     

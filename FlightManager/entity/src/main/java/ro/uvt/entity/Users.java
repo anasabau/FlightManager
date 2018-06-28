@@ -10,10 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ro.uvt.entity.dao.Changeable;
 
-/**
- *
- * @author Anastasia
- */
+
 
 @Entity
 @Data

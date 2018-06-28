@@ -10,9 +10,6 @@ import lombok.Data;
 import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.CompanyBean;
 
-/**
- * @author dan
- */
 @Named("company")
 @Data
 @ViewScoped

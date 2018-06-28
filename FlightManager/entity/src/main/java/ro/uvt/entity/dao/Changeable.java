@@ -5,10 +5,7 @@
  */
 package ro.uvt.entity.dao;
 
-/**
- *
- * @author dan
- */
+
 public interface Changeable extends Persistent{
     
     void setActive(boolean is_active);

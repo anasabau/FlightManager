@@ -14,10 +14,7 @@ import ro.uvt.controller.beans.CompanyBean;
 import ro.uvt.controller.beans.RoleBean;
 import ro.uvt.controller.beans.UserBean;
 
-/**
- *
- * @author Anastasia
- */
+
 @Named("user")
 @Data
 @ViewScoped

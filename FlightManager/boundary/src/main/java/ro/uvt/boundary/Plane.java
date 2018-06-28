@@ -13,10 +13,7 @@ import org.primefaces.event.CellEditEvent;
 import ro.uvt.controller.beans.CompanyBean;
 import ro.uvt.controller.beans.PlaneBean;
 
-/**
- *
- * @author Anastasia
- */
+
 @Named("plane")
 @Data
 @ViewScoped

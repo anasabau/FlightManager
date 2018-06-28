@@ -15,10 +15,7 @@ import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- *
- * @author Dan
- */
+
 
 @Entity
 @Data
